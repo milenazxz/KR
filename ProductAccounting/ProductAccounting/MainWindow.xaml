@@ -6,25 +6,86 @@
         xmlns:local="clr-namespace:ProductAccounting"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" 
+                      BlurRadius="10" 
+                      ShadowDepth="2" 
+                      Color="Black" 
+                      Opacity="0.4" />
+    </Window.Resources>
+
     <Grid>
         <TabControl>
-            <TabItem Header="Информация">
+            <TabItem Header="Справочники" FontWeight ="Bold" >
                 <Grid>
-                <Grid Name="MainContent">
-                    
-                    <Button x:Name="buttonWarehouses" Width="200" Height="50" Content="Информация о скаладах" Background="LightGray" Click="Button_Click_Warehouses" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="28,60,0,0" 
+                    <Grid Name="MainContent" Background="#E8F1FA" >
+                        
+
+                        <Button x:Name="buttonDirectory" 
+        Width="300" 
+        Height="45" 
+        Content="Справочник складов"
+        Click="Button_Click_Warehouses" 
+        FontFamily="Century Gothic" 
+        FontSize="18" 
+        FontWeight="Bold"
+        Foreground="White"
+        BorderThickness="0"
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" Margin="75,63,0,0">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#4A90E2" Offset="0"/>
+                                    <GradientStop Color="#778FCB" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Grid>
+                                                    <!-- Background -->
+                                                    <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="5"
+                                    Effect="{StaticResource DropShadowEffect}" />
+
+                                                    <!-- Content -->
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <!-- Hover Effect -->
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="border" Property="Background">
+                                                            <Setter.Value>
+                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                                    <GradientStop Color="#805AA1F2" Offset="0"/>
+                                                                    <GradientStop Color="#804691D3" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button x:Name="buttonItems" Width="232" Height="50" Content="Справочник товаров" Background="LightGray" Click="Button_Click_Items" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="91,153,0,0" 
                         FontSize ="16" FontWeight ="Bold"/>
-                    <Button x:Name="buttonItems" Width="200" Height="50" Content="Информация о товарах" Background="LightGray" Click="Button_Click_Items" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="28,153,0,0" 
+                        <Button x:Name="button" Width="232" Height="50" Content="Справочник поставщиков" Background="LightGray" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="454,153,0,0" 
                         FontSize ="16" FontWeight ="Bold"/>
-                    <Button x:Name="button" Width="200" Height="50" Content="Информация о поставщиках" Background="LightGray" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="28,256,0,0" 
-                        FontSize ="16" FontWeight ="Bold"/>
+                        <Button x:Name="buttonClients" Width="232" Height="50" Content="Справочник клиентов" Background="LightGray" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="454,60,0,0" 
+    FontSize ="16" FontWeight ="Bold" RenderTransformOrigin="0.522,1.647"/>
+                    </Grid>
+                    <Grid Name="PageLayer" Visibility="Hidden">
+                        <Frame Name="FrameInformation" NavigationUIVisibility="Hidden"/>
+                    </Grid>
                 </Grid>
-                <Grid Name="PageLayer" Visibility="Hidden">
-                    <Frame Name="FrameInformation" NavigationUIVisibility="Hidden"/>
-                </Grid>
-              </Grid>
             </TabItem>
-            
+
         </TabControl>
 
     </Grid>

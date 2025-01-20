@@ -1,38 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\C# Projects\\ProductAccounting\\",
+  "WorkspaceRootPath": "D:\\KR\\KR\\ProductAccounting\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\window2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\window2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\models\\warehouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\models\\warehouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\pages\\warehousespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\pages\\warehousespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\pages\\warehousespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\pages\\warehousespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\c# projects\\productaccounting\\productaccounting\\window2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\window2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\models\\warehouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\models\\warehouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\pages\\warehousespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\window2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\window2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\pages\\warehousespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\pages\\warehousespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\C# Projects\\ProductAccounting\\productaccounting\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\window2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\window2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,40 +38,40 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Window2.xaml.cs",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Window2.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Window2.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Window2.xaml.cs",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Window2.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Window2.xaml.cs",
               "RelativeToolTip": "ProductAccounting\\Window2.xaml.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAAACYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T09:47:03.217Z",
+              "WhenOpened": "2024-11-18T09:47:03.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WarehousesPage.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "RelativeToolTip": "ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAADYAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T15:33:01.181Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "WarehousesPage.xaml.cs",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
-              "RelativeDocumentMoniker": "ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
-              "RelativeToolTip": "ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAYwDYAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T15:33:01.181Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Window2.xaml",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Window2.xaml",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Window2.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Window2.xaml",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Window2.xaml",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Window2.xaml",
               "RelativeToolTip": "ProductAccounting\\Window2.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-18T06:49:08.319Z",
@@ -83,11 +79,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "warehouses.cs",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Models\\warehouses.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Models\\warehouses.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Models\\warehouses.cs",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Models\\warehouses.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Models\\warehouses.cs",
               "RelativeToolTip": "ProductAccounting\\Models\\warehouses.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -96,11 +92,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "WarehousesPage.xaml",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\WarehousesPage.xaml",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml",
               "RelativeToolTip": "ProductAccounting\\Pages\\WarehousesPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-18T05:28:08.56Z",
@@ -108,40 +104,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\MainWindow.xaml",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\MainWindow.xaml",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\MainWindow.xaml",
-              "RelativeToolTip": "ProductAccounting\\MainWindow.xaml",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\MainWindow.xaml*",
+              "RelativeToolTip": "ProductAccounting\\MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-17T15:34:36.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\ApplicationDbContext.cs",
               "RelativeToolTip": "ProductAccounting\\ApplicationDbContext.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAjwBUAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T11:18:24.129Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ProductAccounting\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\C# Projects\\ProductAccounting\\ProductAccounting\\MainWindow.xaml.cs",
-              "RelativeToolTip": "ProductAccounting\\MainWindow.xaml.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAACgAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-16T16:00:55.016Z"
+              "WhenOpened": "2024-11-17T11:18:24.129Z"
             }
           ]
         }
