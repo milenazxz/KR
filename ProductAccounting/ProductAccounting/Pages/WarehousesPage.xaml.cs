@@ -24,15 +24,7 @@ namespace ProductAccounting.Pages
         public WarehousesPage()
         {
             InitializeComponent();
-            LoadDataWarehouses();
-        }
-        private void LoadDataWarehouses()
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var warehouses = context.warehouses.ToList();
-                warehousesGrid.ItemsSource = warehouses;
-            }
+            DbFunctions.LoadData<Warehouses>(warehousesGrid, w => w.IdHeadNavigation);
         }
 
         private void CloseWarehousesPage(object sender, EventArgs e)

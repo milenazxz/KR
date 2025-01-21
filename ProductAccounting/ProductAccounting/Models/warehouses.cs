@@ -17,5 +17,9 @@ namespace ProductAccounting.Models
         public string city { get; set; }
         [Required]
         public string address { get; set; }
+        
+        public int id_head { get; set; }
+        
+        public employees IdHeadNavigation { get; set; }
     }
 }
