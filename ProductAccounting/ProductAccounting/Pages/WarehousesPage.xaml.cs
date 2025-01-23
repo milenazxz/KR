@@ -44,44 +44,13 @@ namespace ProductAccounting.Pages
                     await context.SaveChangesAsync();
                 }
             }
-            RefreshDataGrid();
 
         }
-        private void DeleteWarehouse(object sender, EventArgs e)
+        private async void DeleteWarehouse(object sender, EventArgs e)
         {
-            var selectedWarehouse = warehousesGrid.SelectedItem;
-            if (selectedWarehouse != null)
-            {
-               
-                var warehouse = (Models.Warehouses)selectedWarehouse;
-                using (var context = new ApplicationDbContext())
-                {
-                    var itemToRemove = context.warehouses.FirstOrDefault(w => warehouse.id == w.id);
-                    if (itemToRemove!=null)
-                    {
-                        context.warehouses.Remove(itemToRemove);
-                        context.SaveChanges();
-                      
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Элемент с данным ID не найден");
-                    }
-                    RefreshDataGrid();
-                }
-            }
+            var selectedWarehouse =(Warehouses)warehousesGrid.SelectedItem;
+            await DbFunctions.DeleteItem(selectedWarehouse, warehousesGrid, w => w.id == selectedWarehouse.id);
         }
-
-        private void RefreshDataGrid()
-        {
-            using(var context = new ApplicationDbContext()) 
-            {
-                warehousesGrid.ItemsSource = context.warehouses.ToList();
-            }
-        }
-
-
 
     }
 }
