@@ -143,14 +143,12 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.csproj.
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\MainWindow.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\ItemPage.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\WarehousesPage.g.cs
-D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Window2.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\App.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting_MarkupCompile.cache
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting_MarkupCompile.lref
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\MainWindow.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\ItemPage.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\WarehousesPage.baml
-D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Window2.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.g.resources
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.Properties.Resources.resources
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.csproj.GenerateResource.cache
@@ -158,3 +156,5 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.csproj.
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductA.4BAF82C1.Up2Date
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.exe
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.pdb
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForWarehouses.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForWarehouses.baml

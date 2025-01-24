@@ -13,15 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProductAccounting
+namespace ProductAccounting.Forms
 {
     /// <summary>
-    /// Логика взаимодействия для Window2.xaml
+    /// Логика взаимодействия для FormForWarehouses.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class FormForWarehouses : Window
     {
         public Warehouses Result { get; private set; }
-        public Window2()
+        public FormForWarehouses()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace ProductAccounting
             string City = Citywarehouse.Text;
             string Address = Addresswarehouse.Text;
 
-            if (Name != null && City!=null && Address!=null)
+            if (Name != null && City != null && Address != null)
             {
                 Result = new Warehouses() { name = Name, city = City, address = Address };
                 DialogResult = true;
@@ -40,9 +40,6 @@ namespace ProductAccounting
             {
                 MessageBox.Show("Пожалуйста, заполните все поля формы");
             }
-        }       
-
+        }
     }
-
-    
 }

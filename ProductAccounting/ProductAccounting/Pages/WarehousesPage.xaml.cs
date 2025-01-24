@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Models;
+﻿using ProductAccounting.Forms;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace ProductAccounting.Pages
         }
         public async void AddWarehouse(object sender, EventArgs e)
         {
-            var window = new Window2();
+            var window = new FormForWarehouses();
             bool? dialogResult = window.ShowDialog();
             if(dialogResult == true && window.Result != null)
             {

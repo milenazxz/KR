@@ -41,7 +41,7 @@ namespace ProductAccounting {
     public partial class Window2 : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 10 "..\..\Window2.xaml"
+        #line 12 "..\..\Window2.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox Namewarehouse;
         
@@ -49,15 +49,7 @@ namespace ProductAccounting {
         #line hidden
         
         
-        #line 11 "..\..\Window2.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox NamewarehouseText;
-        
-        #line default
-        #line hidden
-        
-        
-        #line 12 "..\..\Window2.xaml"
+        #line 15 "..\..\Window2.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox Citywarehouse;
         
@@ -65,15 +57,7 @@ namespace ProductAccounting {
         #line hidden
         
         
-        #line 13 "..\..\Window2.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox CitywarehouseText;
-        
-        #line default
-        #line hidden
-        
-        
-        #line 14 "..\..\Window2.xaml"
+        #line 18 "..\..\Window2.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox Addresswarehouse;
         
@@ -81,15 +65,15 @@ namespace ProductAccounting {
         #line hidden
         
         
-        #line 15 "..\..\Window2.xaml"
+        #line 21 "..\..\Window2.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox AddressWarehouseText;
+        internal System.Windows.Controls.TextBox Headwarhouse;
         
         #line default
         #line hidden
         
         
-        #line 16 "..\..\Window2.xaml"
+        #line 22 "..\..\Window2.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button OkButWarehouse;
         
@@ -130,24 +114,18 @@ namespace ProductAccounting {
             this.Namewarehouse = ((System.Windows.Controls.TextBox)(target));
             return;
             case 2:
-            this.NamewarehouseText = ((System.Windows.Controls.TextBox)(target));
-            return;
-            case 3:
             this.Citywarehouse = ((System.Windows.Controls.TextBox)(target));
             return;
-            case 4:
-            this.CitywarehouseText = ((System.Windows.Controls.TextBox)(target));
-            return;
-            case 5:
+            case 3:
             this.Addresswarehouse = ((System.Windows.Controls.TextBox)(target));
             return;
-            case 6:
-            this.AddressWarehouseText = ((System.Windows.Controls.TextBox)(target));
+            case 4:
+            this.Headwarhouse = ((System.Windows.Controls.TextBox)(target));
             return;
-            case 7:
+            case 5:
             this.OkButWarehouse = ((System.Windows.Controls.Button)(target));
             
-            #line 16 "..\..\Window2.xaml"
+            #line 22 "..\..\Window2.xaml"
             this.OkButWarehouse.Click += new System.Windows.RoutedEventHandler(this.GetWarehouseInfo);
             
             #line default

@@ -150,6 +150,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DbFunctions.cs" />
+    <Compile Include="Forms\FormForWarehouses.xaml.cs">
+      <DependentUpon>FormForWarehouses.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\employees.cs" />
     <Compile Include="Pages\ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
@@ -157,9 +160,10 @@
     <Compile Include="Pages\WarehousesPage.xaml.cs">
       <DependentUpon>WarehousesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window2.xaml.cs">
-      <DependentUpon>Window2.xaml</DependentUpon>
-    </Compile>
+    <Page Include="Forms\FormForWarehouses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -181,10 +185,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window2.xaml">
+    <Resource Include="Resources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Items.cs" />
