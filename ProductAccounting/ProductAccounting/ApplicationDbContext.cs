@@ -18,12 +18,32 @@ namespace ProductAccounting
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Настройка модели Warehouses
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Warehouses>()
                 .HasOne(W => W.IdHeadNavigation)
                 .WithMany(e => e.Warehouses)
                 .HasForeignKey(W => W.id_head)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            //Настройка модели Clients
+            modelBuilder.Entity<Clients>()
+                .Property(c => c.email)
+                .HasDefaultValue("Неизвестен");
+
+            modelBuilder.Entity<Clients>()
+                .Property(c => c.phonenumber)
+                .HasColumnType("character varying(12)");
+
+            //Настройка модели Supplires
+            modelBuilder.Entity<Supplires>()
+                .Property(s => s.phoneNumber)
+                .HasColumnType("character varying(12)");
+
+            modelBuilder.Entity<Supplires>()
+                .Property(s => s.email)
+                .HasDefaultValue("Неизвестен");
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

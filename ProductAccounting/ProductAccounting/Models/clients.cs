@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Models
 {
-    public class Supplires
+    public class Clients
     {
         public int id { get; set; }
         [Required]
         public string name { get; set; }
+
+        [Required]
+        [RegularExpression ("Юридическое лицо|Физическое лицо|Индивидуальный предприниматель", ErrorMessage = "Недопустимая должность")]
+        public string organform { get; set; }
         [Required]
         public string city { get; set; }
         [Required]
         public string address { get; set; }
         [Required]
-        [Range(1,10)]
-        public int raiting { get; set; }
-        [Required]
-        public string phoneNumber { get; set; }
-        [Required]
+        public string phonenumber { get; set; }
         public string email { get; set; }
     }
 }

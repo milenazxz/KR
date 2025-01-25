@@ -153,7 +153,10 @@
     <Compile Include="Forms\FormForWarehouses.xaml.cs">
       <DependentUpon>FormForWarehouses.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\clients.cs" />
     <Compile Include="Models\employees.cs" />
+    <Compile Include="Models\items.cs" />
+    <Compile Include="Models\units.cs" />
     <Compile Include="Pages\ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
@@ -191,7 +194,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Items.cs" />
     <Compile Include="Models\supplires.cs" />
     <Compile Include="Models\warehouses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
