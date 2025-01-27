@@ -14,7 +14,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="Справочники" FontWeight ="Bold" >
+            <TabItem Header="Справочники" FontWeight ="Bold" MouseDown="OpenHandBook">
                 <Grid>
 
                     <Grid Name="MainContent" Background="#E8F1FA" >
@@ -31,6 +31,41 @@
                 </Grid>
             </TabItem>
 
+        </TabControl>
+
+        <TabControl>
+            <TabItem Header="Поставки" Margin="93,-2,-98,0" FontWeight="Bold" MouseDown="OpenSup">
+                <Grid>
+                    <Grid Name="SupContent" Background="#E8F1FA" >
+                        <Button x:Name="Addsup" Width="300" Height="45" Content="Оформить поставку" Margin="44,62,0,299" />
+                        <Button x:Name="sup" Width="300" Height="45" Content="Список поставок" Margin="44,158,0,203" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+        <TabControl>
+            <TabItem Header="Продажи" Margin="164,-2,-170,0" FontWeight="Bold" MouseDown="OpenSup">
+                <Grid>
+                    <Grid Name="SailContent" Background="#E8F1FA" >
+                        <Button x:Name="Addsail" Width="300" Height="45" Content="Оформить продажу" Margin="44,62,0,299" />
+                        <Button x:Name="sail" Width="300" Height="45" Content="Список продаж" Margin="44,158,0,203" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+        <TabControl>
+            <TabItem Header="Списания" Margin="237,-2,-244,0" FontWeight="Bold" MouseDown="OpenSup">
+                <Grid>
+                    <Grid Name="Content" Background="#E8F1FA" >
+                        <Button x:Name="Add" Width="300" Height="45" Content="Оформить списание" Margin="44,62,0,299" />
+                        <Button x:Name="List" Width="300" Height="45" Content="Список списаний" Margin="44,158,0,203" />
+                    </Grid>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>

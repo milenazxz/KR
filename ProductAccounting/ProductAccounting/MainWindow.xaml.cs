@@ -58,6 +58,14 @@ namespace ProductAccounting
             PageLayer.Visibility = Visibility.Visible;
         }
 
+        private void OpenSup(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void OpenHandBook(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

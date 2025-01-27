@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\KR\KR\ProductAccounting\ProductAccounting\App.xaml
-91596138139
+12-804240053
 
-20-901887365
+241040494557
 48-25915707
-Forms\FormForItems.xaml;Forms\FormForWarehouses.xaml;MainWindow.xaml;Pages\ClientsPage.xaml;Pages\EmployeesPage.xaml;Pages\ItemPage.xaml;Pages\SuppliresPage.xaml;Pages\WarehousesPage.xaml;Resources\StyleButtonsAndGrid.xaml;
+Forms\FormForClients.xaml;Forms\FormForEmployees.xaml;Forms\FormForItems.xaml;Forms\FormForSupplires.xaml;Forms\FormForWarehouses.xaml;MainWindow.xaml;Pages\ClientsPage.xaml;Pages\EmployeesPage.xaml;Pages\ItemPage.xaml;Pages\SuppliresPage.xaml;Pages\WarehousesPage.xaml;Resources\StyleButtonsAndGrid.xaml;
 
 True
 

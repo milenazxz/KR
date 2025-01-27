@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Models;
+﻿using ProductAccounting.Forms;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,8 @@ namespace ProductAccounting.Pages
         }
         public void AddEmployee(object sender, EventArgs e)
         {
-
+            var winFormForEmployees = new FormForEmployees();
+            winFormForEmployees.ShowDialog();
         }
     }
 }

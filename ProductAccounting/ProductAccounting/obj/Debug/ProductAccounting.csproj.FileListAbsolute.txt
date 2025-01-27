@@ -167,3 +167,9 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SuppliresPage.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SuppliresPage.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\EmployeesPage.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\EmployeesPage.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForClients.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForClients.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSupplires.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSupplires.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForEmployees.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForEmployees.baml

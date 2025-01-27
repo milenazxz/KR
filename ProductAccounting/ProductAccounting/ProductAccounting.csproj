@@ -150,8 +150,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DbFunctions.cs" />
+    <Compile Include="Forms\FormForClients.xaml.cs">
+      <DependentUpon>FormForClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForEmployees.xaml.cs">
+      <DependentUpon>FormForEmployees.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormForItems.xaml.cs">
       <DependentUpon>FormForItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForSupplires.xaml.cs">
+      <DependentUpon>FormForSupplires.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormForWarehouses.xaml.cs">
       <DependentUpon>FormForWarehouses.xaml</DependentUpon>
@@ -174,7 +183,19 @@
     <Compile Include="Pages\WarehousesPage.xaml.cs">
       <DependentUpon>WarehousesPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Forms\FormForClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormForEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\FormForItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormForSupplires.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

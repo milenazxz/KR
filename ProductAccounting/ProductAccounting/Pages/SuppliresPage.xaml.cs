@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Models;
+﻿using ProductAccounting.Forms;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,8 @@ namespace ProductAccounting.Pages
         }
         private void AddSupplier(object sender, EventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
+            var winFormForSupplires = new FormForSupplires();
+            winFormForSupplires.ShowDialog();
         }
 
     }

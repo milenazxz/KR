@@ -47,7 +47,6 @@
         <DataGrid x:Name="employeersGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding name}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Город" Binding="{Binding city}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Должность" Binding="{Binding post}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Контакты" Binding="{Binding contacts}" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>

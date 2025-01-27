@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Models;
+﻿using ProductAccounting.Forms;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,8 @@ namespace ProductAccounting.Pages
 
         private void AddClient(object sender, EventArgs e)
         {
-
+            var winFormForClients = new FormForClients();
+            winFormForClients.ShowDialog();
         }
     }
 }
