@@ -158,3 +158,12 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.exe
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\ProductAccounting.pdb
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForWarehouses.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForWarehouses.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Resources\StyleButtonsAndGrid.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForItems.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForItems.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\ClientsPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\ClientsPage.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SuppliresPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SuppliresPage.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\EmployeesPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\EmployeesPage.baml

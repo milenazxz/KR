@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Models
 {
-    public class Supplires
+    public class suppliers
     {
         public int id { get; set; }
         [Required]
@@ -18,9 +18,9 @@ namespace ProductAccounting.Models
         public string address { get; set; }
         [Required]
         [Range(1,10)]
-        public int raiting { get; set; }
+        public int rating { get; set; }
         [Required]
-        public string phoneNumber { get; set; }
+        public string phonenumber { get; set; }
         [Required]
         public string email { get; set; }
     }

@@ -11,8 +11,8 @@
     <Window.Resources>
         <ResourceDictionary Source="/Resources/Styles.xaml"/>
     </Window.Resources>
-    
-    <Grid Background="#E8F1FA" Width="750">
+
+    <Grid Background="#E8F1FA" Height="450" Width="750">
         
         <StackPanel Orientation="Vertical" Margin="63,114,428,116">
             <Label Content="Название склада"/>
@@ -33,7 +33,7 @@
             <Border>
                 <TextBox x:Name="Addresswarehouse"/>
             </Border>
-            <Separator Height="10"  Background="#E8F1FA"/>
+            <Separator Height="10" Background="#E8F1FA"/>
             <Border>
                 <TextBox x:Name="Headwarhouse"/>
             </Border>

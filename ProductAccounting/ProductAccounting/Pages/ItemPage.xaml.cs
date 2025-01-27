@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProductAccounting.Forms;
+using ProductAccounting.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,21 +25,26 @@ namespace ProductAccounting.Pages
         public ItemPage()
         {
             InitializeComponent();
-            LoadItemData();
+            DbFunctions.LoadData<Items>(ItemsGrid);
         }
 
-        private void LoadItemData()
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var items = context.items.ToList();
-                ItemGrid.ItemsSource = items;
-            }
-        }
-
+        
         private void CloseItemPage(object sender, EventArgs e)
         {
             this.Visibility = Visibility.Hidden;
         }
+
+        private async void DeleteItem(object sender, EventArgs e)
+        {
+            var selectedItem = ItemsGrid.SelectedValue as Items;
+            await DbFunctions.DeleteItem<Items>(selectedItem, ItemsGrid, i => i.id == selectedItem.id);
+        }
+
+        private void AddItem(object sender, EventArgs e)
+        {
+            var winFormForItems = new FormForItems();
+            winFormForItems.ShowDialog();
+        }
+
     }
 }

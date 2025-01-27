@@ -150,19 +150,34 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DbFunctions.cs" />
+    <Compile Include="Forms\FormForItems.xaml.cs">
+      <DependentUpon>FormForItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormForWarehouses.xaml.cs">
       <DependentUpon>FormForWarehouses.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\clients.cs" />
     <Compile Include="Models\employees.cs" />
     <Compile Include="Models\items.cs" />
-    <Compile Include="Models\units.cs" />
+    <Compile Include="Pages\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployeesPage.xaml.cs">
+      <DependentUpon>EmployeesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SuppliresPage.xaml.cs">
+      <DependentUpon>SuppliresPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WarehousesPage.xaml.cs">
       <DependentUpon>WarehousesPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Forms\FormForItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\FormForWarehouses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,11 +195,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EmployeesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SuppliresPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WarehousesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\StyleButtonsAndGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

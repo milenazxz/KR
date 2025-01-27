@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <!-- Стиль для textbox в формах -->
     <Style TargetType="TextBox">
         <Setter Property="BorderBrush" Value="#00FFFFFF"/>
@@ -28,5 +29,6 @@
         <Setter Property="MinWidth" Value="420"/>
         <Setter Property="MinHeight" Value="20"/>
     </Style>
+  
 
 </ResourceDictionary>

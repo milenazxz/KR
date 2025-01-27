@@ -33,18 +33,11 @@ namespace ProductAccounting.Pages
             this.Visibility = Visibility.Hidden;
 
         }
-        public async void AddWarehouse(object sender, EventArgs e)
+        public void AddWarehouse(object sender, EventArgs e)
         {
             var window = new FormForWarehouses();
             bool? dialogResult = window.ShowDialog();
-            if(dialogResult == true && window.Result != null)
-            {
-                using (var context = new ApplicationDbContext())
-                {
-                    context.Add(window.Result);
-                    await context.SaveChangesAsync();
-                }
-            }
+            
 
         }
         private async void DeleteWarehouse(object sender, EventArgs e)

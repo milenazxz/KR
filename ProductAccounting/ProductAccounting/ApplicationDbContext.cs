@@ -12,9 +12,10 @@ namespace ProductAccounting
     internal class ApplicationDbContext : DbContext
     {
         public DbSet<Warehouses> warehouses { get; set; }
-        public DbSet<Supplires> supplires { get; set; }
+        public DbSet<suppliers> suppliers { get; set; }
         public DbSet<Items> items { get; set; }
         public DbSet<employees> employees { get; set; }
+        public DbSet<Clients> clients{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,11 +37,11 @@ namespace ProductAccounting
                 .HasColumnType("character varying(12)");
 
             //Настройка модели Supplires
-            modelBuilder.Entity<Supplires>()
-                .Property(s => s.phoneNumber)
+            modelBuilder.Entity<suppliers>()
+                .Property(s => s.phonenumber)
                 .HasColumnType("character varying(12)");
 
-            modelBuilder.Entity<Supplires>()
+            modelBuilder.Entity<suppliers>()
                 .Property(s => s.email)
                 .HasDefaultValue("Неизвестен");
 

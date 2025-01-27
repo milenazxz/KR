@@ -21,6 +21,14 @@ namespace ProductAccounting
                 dataGrid.ItemsSource = data;
             }
         }
+        public static void LoadData<T>(DataGrid dataGrid) where T : class
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var data = context.Set<T>().ToList();
+                dataGrid.ItemsSource = data;
+            }
+        }
 
         /*Функция для удаления элемента из списка и базы данных*/
         public static async Task DeleteItem<T>(T itemForDel, DataGrid dataGrid, Func<T,bool> lFunc) where T: class

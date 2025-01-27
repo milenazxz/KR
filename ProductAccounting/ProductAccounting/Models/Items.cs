@@ -13,7 +13,7 @@ namespace ProductAccounting.Models
         [Required]
         public string name { get; set; }
         [Required]
-        public string productType { get; set; }
+        public string producttype { get; set; }
         [Required]
         public string color { get; set; }
         [Required]

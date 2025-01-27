@@ -31,18 +31,31 @@ namespace ProductAccounting
         private void Button_Click_Warehouses(object sender, RoutedEventArgs e)
         {
             //MainContent.Visibility = Visibility.Hidden;
-            PageLayer.Visibility = Visibility.Visible;
+            
             FrameInformation.Navigate(new WarehousesPage());
+            PageLayer.Visibility = Visibility.Visible;
         }
 
         private void Button_Click_Items(object sender, RoutedEventArgs e)
         {
-            PageLayer.Visibility = Visibility.Visible;
             FrameInformation.Navigate(new ItemPage());
+            PageLayer.Visibility = Visibility.Visible;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Clients(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Кнопка нажата");
+            FrameInformation.Navigate(new ClientsPage());
+            PageLayer.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_Employees(object sender, RoutedEventArgs e)
+        {
+            FrameInformation.Navigate(new EmployeesPage());
+            PageLayer.Visibility = Visibility.Visible;
+        }
+        private void Button_Click_Suppliers(object sender, RoutedEventArgs e)
+        {
+            FrameInformation.Navigate (new SuppliresPage());
+            PageLayer.Visibility = Visibility.Visible;
         }
 
 
