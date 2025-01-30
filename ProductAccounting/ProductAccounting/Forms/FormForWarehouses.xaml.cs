@@ -1,4 +1,5 @@
 ﻿using ProductAccounting.Models;
+using ProductAccounting.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,21 +21,24 @@ namespace ProductAccounting.Forms
     /// </summary>
     public partial class FormForWarehouses : Window
     {
-        public Warehouses Result { get; private set; }
+        public Warehouses result { get; private set; }
         public FormForWarehouses()
         {
             InitializeComponent();
         }
-        public void GetWarehouseInfo(object sender, EventArgs e)
+        public async void AddWarehouseData(object sender, EventArgs e)
         {
             string Name = Namewarehouse.Text;
             string City = Citywarehouse.Text;
             string Address = Addresswarehouse.Text;
+            string Head = Headwarhouse.Text;
 
-            if (Name != null && City != null && Address != null)
+            if (Name != null && City != null && Address != null && Head != null)
             {
-                Result = new Warehouses() { name = Name, city = City, address = Address };
+                result = new Warehouses() { name = Name, city = City, address = Address };
                 DialogResult = true;
+                await DbFunctions.AddData<Warehouses>(result);
+
             }
             else
             {

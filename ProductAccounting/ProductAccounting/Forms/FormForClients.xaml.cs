@@ -23,5 +23,10 @@ namespace ProductAccounting.Forms
         {
             InitializeComponent();
         }
+
+        public void AddEmployee(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

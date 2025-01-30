@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductAccounting.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,21 @@ namespace ProductAccounting.Forms
     /// </summary>
     public partial class FormForEmployees : Window
     {
+        public employees employer;
         public FormForEmployees()
         {
             InitializeComponent();
         }
+        public async void AddEmployee(object sender, EventArgs e)
+        {
+            string Name = NameEmployee.Text;
+            string Post = PostEmployee.Text;
+            string Contact = ContacntEmployee.Text;
+
+            employer = new employees {name = Name, post = Post, contacts = Contact};
+            DialogResult = true;
+            await DbFunctions.AddData<employees>(employer);
+        }
     }
+
 }

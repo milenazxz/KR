@@ -165,6 +165,7 @@
     <Compile Include="Forms\FormForWarehouses.xaml.cs">
       <DependentUpon>FormForWarehouses.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logger.cs" />
     <Compile Include="Models\clients.cs" />
     <Compile Include="Models\employees.cs" />
     <Compile Include="Models\items.cs" />

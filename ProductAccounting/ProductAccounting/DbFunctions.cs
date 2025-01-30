@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -61,6 +63,36 @@ namespace ProductAccounting
                     }
                    
                 }
+        }
+
+        public static async Task AddData<T>(T dataObject) where T : class
+        {
+            if(dataObject == null)
+            {
+                MessageBox.Show("Не удалось добавить данные");
+            }
+            else
+            {
+                using (var context = new ApplicationDbContext())
+                {
+                    await context.Set<T>().AddAsync(dataObject);
+                    await context.SaveChangesAsync();
+                }
+            }
+            
+            
+        }
+
+        public static async Task Refresh<T>(DataGrid dataGrid) where T : class
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var updatedData = await context.Set<T>().ToListAsync();
+                dataGrid.Dispatcher.Invoke(() =>
+                {
+                    dataGrid.ItemsSource = updatedData;
+                });
+            }
         }
     }
 }

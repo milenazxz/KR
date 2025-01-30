@@ -33,7 +33,7 @@
 
         </TabControl>
 
-        <TabControl>
+        <!--        <TabControl>
             <TabItem Header="Поставки" Margin="93,-2,-98,0" FontWeight="Bold" MouseDown="OpenSup">
                 <Grid>
                     <Grid Name="SupContent" Background="#E8F1FA" >
@@ -66,7 +66,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-        </TabControl>
+        </TabControl>-->
 
     </Grid>
 </Window>

@@ -22,10 +22,13 @@ namespace ProductAccounting.Pages
     /// </summary>
     public partial class WarehousesPage : Page
     {
+        Window form = new FormForWarehouses();
         public WarehousesPage()
         {
             InitializeComponent();
             DbFunctions.LoadData<Warehouses>(warehousesGrid, w => w.IdHeadNavigation);
+
+            form.Closed += (sender, args) => DbFunctions.Refresh<Warehouses>(warehousesGrid);
         }
 
         private void CloseWarehousesPage(object sender, EventArgs e)

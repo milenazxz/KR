@@ -39,6 +39,6 @@
             </Border>
         </StackPanel>
         
-        <Button x:Name="OkButWarehouse" Content="Добавить" FontSize="16" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="285,303,285,0" Click="GetWarehouseInfo"/>
+        <Button x:Name="OkButWarehouse" Content="Добавить" FontSize="16" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="285,303,285,0" Click="AddWarehouseData"/>
     </Grid>
 </Window>

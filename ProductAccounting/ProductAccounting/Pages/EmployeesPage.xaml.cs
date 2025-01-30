@@ -38,10 +38,11 @@ namespace ProductAccounting.Pages
             var selectedEmployee = employeersGrid.SelectedItem as employees;
             await DbFunctions.DeleteItem(selectedEmployee, employeersGrid, em => em.id == selectedEmployee.id);
         }
-        public void AddEmployee(object sender, EventArgs e)
+        public async void AddEmployee(object sender, EventArgs e)
         {
             var winFormForEmployees = new FormForEmployees();
             winFormForEmployees.ShowDialog();
+            await DbFunctions.Refresh<employees>(employeersGrid);
         }
     }
 }
