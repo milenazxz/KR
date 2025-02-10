@@ -173,3 +173,7 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSupplires.g.
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSupplires.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForEmployees.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForEmployees.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FindForm.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FindForm.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\bin\Debug\Dapper.dll
+D:\KR\KR\ProductAccounting\ProductAccounting\bin\Debug\Dapper.xml

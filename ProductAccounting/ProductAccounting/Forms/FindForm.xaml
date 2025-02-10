@@ -1,0 +1,21 @@
+﻿<Window x:Class="ProductAccounting.Forms.FindForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProductAccounting.Forms"
+        mc:Ignorable="d"
+        Title="FindForm" Height="300" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#E8F1FA">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="240" Width="900">
+                <Label Content="поиск по " FontWeight="Bold" FontSize="30"  Height="100" Padding="75,25,5,0"/>
+                <ComboBox x:Name="SearchСategory" Height="30" MinWidth="300"/>
+                <TextBox x:Name="FindValue" Height="30" MinWidth="300" Margin="10,0,5,0" FontSize="20"/>
+            </StackPanel>
+            <Button x:Name="Find" Height="30" Width="200" Content="Найти" FontWeight="Bold" FontSize="15" Click="FindInfo" />
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

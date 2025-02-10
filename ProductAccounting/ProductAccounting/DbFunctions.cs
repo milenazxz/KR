@@ -1,7 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using ProductAccounting.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Contexts;
@@ -14,6 +19,13 @@ namespace ProductAccounting
 {
     internal class DbFunctions
     {
+
+        protected static Dictionary<string, string> engHeading = new Dictionary<string, string>
+        {
+            {"ФИО", "name"}
+        };
+        
+        
         /*Функция для загрузки данных из базы данных*/
         public static void LoadData<T>(DataGrid dataGrid, Expression<Func<T, object>> includeProperty) where T:class
         {
@@ -65,6 +77,7 @@ namespace ProductAccounting
                 }
         }
 
+        /*Фунция добавления данных в бд*/
         public static async Task AddData<T>(T dataObject) where T : class
         {
             if(dataObject == null)
@@ -83,6 +96,7 @@ namespace ProductAccounting
             
         }
 
+        /*Функция обновления данных*/
         public static async Task Refresh<T>(DataGrid dataGrid) where T : class
         {
             using (var context = new ApplicationDbContext())
@@ -93,6 +107,49 @@ namespace ProductAccounting
                     dataGrid.ItemsSource = updatedData;
                 });
             }
+        }
+        public static void RefreshAsync<T>(DataGrid dataGrid, IEnumerable inpValues) where T : class
+        {
+          
+            dataGrid.Dispatcher.Invoke(() =>
+                {
+                    dataGrid.ItemsSource = inpValues;
+                });
+            
+        }
+
+        /* Функция поиска в базе данных*/
+        public static async void Find<T>(string colName, string tableName, string value, DataGrid dataGrid) where T : class
+        {
+            
+            var connectionString = ConfigurationManager.ConnectionStrings["PostgreSqlConnection"].ConnectionString;
+
+            using (IDbConnection connection = new NpgsqlConnection(connectionString))
+            {
+                string DbColumnName = "";
+                if (DbFunctions.engHeading.TryGetValue(tableName, out string dbColumnName))
+                {
+                    DbColumnName = dbColumnName;
+                }
+                var query = "SELECT * FROM " + DbColumnName + " WHERE " + colName + " LIKE @searchValue";
+                var result = await connection.QueryAsync<T>(query, new { searchValue = $"%{value}%" });
+                if (result == null)
+                {
+
+                }
+                else
+                {
+                    RefreshAsync<T>(dataGrid, result);
+                }
+                
+            }
+              
+        }
+
+        public static List<string> GetAllHeaders(DataGrid dataGrid)
+        {
+            List<string> headers = dataGrid.Columns.OfType<DataGridTextColumn>().Select(col => col.Header.ToString()).ToList();
+            return headers;
         }
     }
 }

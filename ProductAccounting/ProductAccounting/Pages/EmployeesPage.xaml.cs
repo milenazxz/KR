@@ -44,5 +44,14 @@ namespace ProductAccounting.Pages
             winFormForEmployees.ShowDialog();
             await DbFunctions.Refresh<employees>(employeersGrid);
         }
+        public void FindEmployee(object sender, EventArgs e)
+        {
+
+            
+            FindForm findForm = new FindForm(employeersGrid);
+            findForm.DataComboBox(DbFunctions.GetAllHeaders(employeersGrid));
+            findForm.ShowDialog();
+
+        }
     }
 }
