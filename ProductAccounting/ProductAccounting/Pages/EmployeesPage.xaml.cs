@@ -42,12 +42,10 @@ namespace ProductAccounting.Pages
         {
             var winFormForEmployees = new FormForEmployees();
             winFormForEmployees.ShowDialog();
-            await DbFunctions.Refresh<employees>(employeersGrid);
+           // await DbFunctions.Refresh<employees>(employeersGrid);
         }
         public void FindEmployee(object sender, EventArgs e)
         {
-
-            
             FindForm findForm = new FindForm(employeersGrid);
             findForm.DataComboBox(DbFunctions.GetAllHeaders(employeersGrid));
             findForm.ShowDialog();

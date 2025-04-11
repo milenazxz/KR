@@ -1,8 +1,10 @@
-﻿using ProductAccounting.Models;
+﻿using ProductAccounting.Controllers;
+using ProductAccounting.Models;
 using ProductAccounting.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace ProductAccounting.Forms
 {
@@ -31,14 +34,21 @@ namespace ProductAccounting.Forms
             string Name = Namewarehouse.Text;
             string City = Citywarehouse.Text;
             string Address = Addresswarehouse.Text;
-            string Head = Headwarhouse.Text;
+            int Head = Convert.ToInt32(Headwarhouse.Text);
 
             if (Name != null && City != null && Address != null && Head != null)
             {
-                result = new Warehouses() { name = Name, city = City, address = Address };
-                DialogResult = true;
-                await DbFunctions.AddData<Warehouses>(result);
-
+                var controller = new WarehousesController();
+                bool success = await controller.AddWarehouse(Name, City, Address, Head);
+                if (success)
+                {
+                    DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при добавлении склада (возможно, склад с таким названием уже существует)");
+                }
+               
             }
             else
             {

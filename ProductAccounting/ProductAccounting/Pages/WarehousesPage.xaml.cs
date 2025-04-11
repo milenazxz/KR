@@ -28,7 +28,7 @@ namespace ProductAccounting.Pages
             InitializeComponent();
             DbFunctions.LoadData<Warehouses>(warehousesGrid, w => w.IdHeadNavigation);
 
-            form.Closed += (sender, args) => DbFunctions.Refresh<Warehouses>(warehousesGrid);
+            form.Closed += async (sender, args) => await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
         }
 
         private void CloseWarehousesPage(object sender, EventArgs e)

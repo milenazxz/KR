@@ -152,6 +152,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\WarehousesController.cs" />
     <Compile Include="DbFunctions.cs" />
     <Compile Include="Forms\FindForm.xaml.cs">
       <DependentUpon>FindForm.xaml</DependentUpon>

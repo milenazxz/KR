@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductAccounting
 {
@@ -90,6 +91,7 @@ namespace ProductAccounting
                 {
                     await context.Set<T>().AddAsync(dataObject);
                     await context.SaveChangesAsync();
+                
                 }
             }
             
@@ -97,7 +99,7 @@ namespace ProductAccounting
         }
 
         /*Функция обновления данных*/
-        public static async Task Refresh<T>(DataGrid dataGrid) where T : class
+        public static async Task RefreshAsync<T>(DataGrid dataGrid) where T : class
         {
             using (var context = new ApplicationDbContext())
             {
@@ -108,10 +110,10 @@ namespace ProductAccounting
                 });
             }
         }
-        public static void RefreshAsync<T>(DataGrid dataGrid, IEnumerable inpValues) where T : class
+        public static void Refresh<T>(DataGrid dataGrid, IEnumerable inpValues) where T : class
         {
           
-            dataGrid.Dispatcher.Invoke(() =>
+            dataGrid.Dispatcher.InvokeAsync(() =>
                 {
                     dataGrid.ItemsSource = inpValues;
                 });
@@ -119,7 +121,7 @@ namespace ProductAccounting
         }
 
         /* Функция поиска в базе данных*/
-        public static async void Find<T>(string colName, string tableName, string value, DataGrid dataGrid) where T : class
+        public static async void Search<T>(string colName, string tableName, string value, DataGrid dataGrid) where T : class
         {
             
             var connectionString = ConfigurationManager.ConnectionStrings["PostgreSqlConnection"].ConnectionString;
@@ -135,15 +137,25 @@ namespace ProductAccounting
                 var result = await connection.QueryAsync<T>(query, new { searchValue = $"%{value}%" });
                 if (result == null)
                 {
-
+                    InaccurateSearch<T>(colName, DbColumnName);
                 }
                 else
                 {
-                    RefreshAsync<T>(dataGrid, result);
+                   // RefreshAsync<T>(dataGrid, result);
                 }
                 
             }
               
+        }
+        public static async void InaccurateSearch<T>(string colName, string tableName) where T : class
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["PostgreSqlConnection"].ConnectionString;
+
+            using (IDbConnection connection = new NpgsqlConnection(connectionString))
+            {
+                var query = "SELECT * FROM " + tableName + " WHERE " + colName;
+                var result = await connection.QueryAsync<T>(query);
+            }
         }
 
         public static List<string> GetAllHeaders(DataGrid dataGrid)

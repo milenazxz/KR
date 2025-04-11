@@ -39,7 +39,7 @@ namespace ProductAccounting.Forms
             string value = FindValue.Text;
             string columnName = SearchСategory.Text;
             string tableName = "employees";
-            DbFunctions.Find<employees>(columnName, tableName, value, _grid);
+            DbFunctions.Search<employees>(columnName, tableName, value, _grid);
         }
     }
 }

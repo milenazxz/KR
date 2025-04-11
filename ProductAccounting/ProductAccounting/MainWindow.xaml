@@ -38,7 +38,7 @@
                 <Grid>
                     <Grid Name="SupContent" Background="#E8F1FA" >
                         <Button x:Name="Addsup" Width="300" Height="45" Content="Оформить поставку" Margin="44,62,0,299" />
-                        <Button x:Name="sup" Width="300" Height="45" Content="Список поставок" Margin="44,158,0,203" />
+                        <Button x:Name="sup" Width="300" Height="45" Content="Журнал поставок" Margin="44,158,0,203" />
                     </Grid>
                 </Grid>
             </TabItem>
@@ -50,7 +50,7 @@
                 <Grid>
                     <Grid Name="SailContent" Background="#E8F1FA" >
                         <Button x:Name="Addsail" Width="300" Height="45" Content="Оформить продажу" Margin="44,62,0,299" />
-                        <Button x:Name="sail" Width="300" Height="45" Content="Список продаж" Margin="44,158,0,203" />
+                        <Button x:Name="sail" Width="300" Height="45" Content="Журнал продаж" Margin="44,158,0,203" />
                     </Grid>
                 </Grid>
             </TabItem>
@@ -62,7 +62,7 @@
                 <Grid>
                     <Grid Name="Content" Background="#E8F1FA" >
                         <Button x:Name="Add" Width="300" Height="45" Content="Оформить списание" Margin="44,62,0,299" />
-                        <Button x:Name="List" Width="300" Height="45" Content="Список списаний" Margin="44,158,0,203" />
+                        <Button x:Name="List" Width="300" Height="45" Content="Журнал списаний" Margin="44,158,0,203" />
                     </Grid>
                 </Grid>
             </TabItem>
