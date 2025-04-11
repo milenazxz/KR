@@ -24,7 +24,6 @@ namespace ProductAccounting.Forms
     /// </summary>
     public partial class FormForWarehouses : Window
     {
-        public Warehouses result { get; private set; }
         public FormForWarehouses()
         {
             InitializeComponent();

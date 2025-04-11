@@ -19,5 +19,10 @@ namespace ProductAccounting.Controllers
             return true;
         }
 
+        public async Task DeleteWarehouses(Warehouses selectItem, Func<Warehouses, bool> lFunc) 
+        {
+            await DbFunctions.DeleteItem<Warehouses>(selectItem, lFunc);
+        }
+
     }
 }

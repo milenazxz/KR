@@ -25,7 +25,7 @@ namespace ProductAccounting.Pages
         public SuppliresPage()
         {
             InitializeComponent();
-            DbFunctions.LoadData<suppliers>(suppliresGrid);
+            //DbFunctions.LoadData<suppliers>(suppliresGrid);
         }
 
         private void CloseSuppliresPage(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace ProductAccounting.Pages
         private async void DeleteSupplier(object sender, EventArgs e)
         {
             var selectedSuppliers = suppliresGrid.SelectedItem as suppliers;
-            await DbFunctions.DeleteItem(selectedSuppliers, suppliresGrid, s => s.id == selectedSuppliers.id);
+           // await DbFunctions.DeleteItem(selectedSuppliers, suppliresGrid, s => s.id == selectedSuppliers.id);
         }
         private void AddSupplier(object sender, EventArgs e)
         {

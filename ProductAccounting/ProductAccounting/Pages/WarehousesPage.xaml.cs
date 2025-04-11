@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Forms;
+﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,13 @@ namespace ProductAccounting.Pages
         public WarehousesPage()
         {
             InitializeComponent();
-            DbFunctions.LoadData<Warehouses>(warehousesGrid, w => w.IdHeadNavigation);
+            InitializePageAsync();
+        }
+        private async Task InitializePageAsync()
+        {
+            await DbFunctions.LoadDataAsync<Warehouses>(warehousesGrid, w => w.IdHeadNavigation);
 
-            form.Closed += async (sender, args) => await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
+            //form.Closed += async (sender, args) => await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
         }
 
         private void CloseWarehousesPage(object sender, EventArgs e)
@@ -36,17 +41,24 @@ namespace ProductAccounting.Pages
             this.Visibility = Visibility.Hidden;
 
         }
-        public void AddWarehouse(object sender, EventArgs e)
+        public async void AddWarehouse(object sender, EventArgs e)
         {
             var window = new FormForWarehouses();
             bool? dialogResult = window.ShowDialog();
             
-
+            if (dialogResult == true)
+            {
+                await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
+            }
         }
         private async void DeleteWarehouse(object sender, EventArgs e)
         {
+            var controller = new WarehousesController();
             var selectedWarehouse =(Warehouses)warehousesGrid.SelectedItem;
-            await DbFunctions.DeleteItem(selectedWarehouse, warehousesGrid, w => w.id == selectedWarehouse.id);
+            await controller.DeleteWarehouses(selectedWarehouse, w => w.id == selectedWarehouse.id);
+            //await DbFunctions.DeleteItem(selectedWarehouse, warehousesGrid, w => w.id == selectedWarehouse.id);
+            await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
+
         }
 
     }

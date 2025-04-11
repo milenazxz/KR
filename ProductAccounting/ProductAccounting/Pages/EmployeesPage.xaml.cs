@@ -25,7 +25,7 @@ namespace ProductAccounting.Pages
         public EmployeesPage()
         {
             InitializeComponent();
-            DbFunctions.LoadData<employees>(employeersGrid);
+            DbFunctions.LoadDataAsync<employees>(employeersGrid);
         }
 
         private void CloseEmployeesPage(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace ProductAccounting.Pages
         public async void DeleteEmployee(object sender, EventArgs e)
         {
             var selectedEmployee = employeersGrid.SelectedItem as employees;
-            await DbFunctions.DeleteItem(selectedEmployee, employeersGrid, em => em.id == selectedEmployee.id);
+            //await DbFunctions.DeleteItem(selectedEmployee, employeersGrid, em => em.id == selectedEmployee.id);
         }
         public async void AddEmployee(object sender, EventArgs e)
         {

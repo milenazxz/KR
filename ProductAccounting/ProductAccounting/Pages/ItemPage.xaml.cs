@@ -25,7 +25,7 @@ namespace ProductAccounting.Pages
         public ItemPage()
         {
             InitializeComponent();
-            DbFunctions.LoadData<Items>(ItemsGrid);
+            //DbFunctions.LoadData<Items>(ItemsGrid);
         }
 
         
@@ -37,7 +37,7 @@ namespace ProductAccounting.Pages
         private async void DeleteItem(object sender, EventArgs e)
         {
             var selectedItem = ItemsGrid.SelectedValue as Items;
-            await DbFunctions.DeleteItem<Items>(selectedItem, ItemsGrid, i => i.id == selectedItem.id);
+            //await DbFunctions.DeleteItem<Items>(selectedItem, ItemsGrid, i => i.id == selectedItem.id);
         }
 
         private void AddItem(object sender, EventArgs e)

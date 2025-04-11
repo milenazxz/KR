@@ -25,7 +25,7 @@ namespace ProductAccounting.Pages
         public ClientsPage()
         {
             InitializeComponent();
-            DbFunctions.LoadData<Clients>(clientsGrid);
+            //DbFunctions.LoadData<Clients>(clientsGrid);
         }
 
         private void CloseClientsPage(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace ProductAccounting.Pages
         private async void DeleteClient(object sender, EventArgs e)
         {
             var selectedClient = clientsGrid.SelectedItem as Clients;
-            await DbFunctions.DeleteItem(selectedClient, clientsGrid, c => c.id == selectedClient.id);
+           // await DbFunctions.DeleteItem(selectedClient, clientsGrid, c => c.id == selectedClient.id);
         }
 
         private void AddClient(object sender, EventArgs e)
