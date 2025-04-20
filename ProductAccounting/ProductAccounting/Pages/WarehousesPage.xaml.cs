@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,16 +25,19 @@ namespace ProductAccounting.Pages
     public partial class WarehousesPage : Page
     {
         Window form = new FormForWarehouses();
+        WarehousesController controller = new WarehousesController();
         public WarehousesPage()
         {
             InitializeComponent();
             InitializePageAsync();
         }
-        private async Task InitializePageAsync()
+        private async void InitializePageAsync()
         {
-            await DbFunctions.LoadDataAsync<Warehouses>(warehousesGrid, w => w.IdHeadNavigation);
-
-            //form.Closed += async (sender, args) => await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
+            var loadedData = await controller.LoadData(w => w.IdHeadNavigation);
+            await warehousesGrid.Dispatcher.InvokeAsync(() =>
+            {
+                warehousesGrid.ItemsSource = loadedData;
+            });
         }
 
         private void CloseWarehousesPage(object sender, EventArgs e)
@@ -48,18 +52,29 @@ namespace ProductAccounting.Pages
             
             if (dialogResult == true)
             {
-                await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
+                warehousesGrid.ItemsSource = await controller.RefreshAsync(warehousesGrid);
             }
         }
         private async void DeleteWarehouse(object sender, EventArgs e)
         {
             var controller = new WarehousesController();
-            var selectedWarehouse =(Warehouses)warehousesGrid.SelectedItem;
-            await controller.DeleteWarehouses(selectedWarehouse, w => w.id == selectedWarehouse.id);
-            //await DbFunctions.DeleteItem(selectedWarehouse, warehousesGrid, w => w.id == selectedWarehouse.id);
-            await DbFunctions.RefreshAsync<Warehouses>(warehousesGrid);
+            var selectedWarehouse = warehousesGrid.SelectedItems;
+            await controller.DeleteWarehouses(selectedWarehouse);
+            warehousesGrid.ItemsSource = await controller.RefreshAsync(warehousesGrid);
 
         }
 
+        private async void Changewarehouses_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = (Warehouses)warehousesGrid.SelectedItem;
+            int selectedItemID = selectedItem.id;
+
+            var window = new FormForWarehouses(selectedItemID);
+            bool? dialogResult = window.ShowDialog();
+            if (dialogResult == true)
+            {
+                warehousesGrid.ItemsSource = await controller.RefreshAsync(warehousesGrid);
+            }
+        }
     }
 }

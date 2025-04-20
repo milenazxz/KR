@@ -52,7 +52,7 @@ namespace ProductAccounting
         }
 
         /*Функция для удаления элемента из списка и базы данных*/
-        public static async Task DeleteItem<T>(T itemForDel, /*DataGrid dataGrid,*/ Func<T,bool> lFunc) where T: class
+        public static async Task DeleteItem<T>(T itemForDel, Func<T,bool> lFunc) where T: class
         {
                 if (itemForDel == null)
                 {
@@ -67,13 +67,6 @@ namespace ProductAccounting
                     {
                         context.Set<T>().Remove(itemToRemove);
                         await context.SaveChangesAsync();
-                        
-                       /* var updatedData = await context.Set<T>().ToListAsync();
-                        
-                        dataGrid.Dispatcher.Invoke(() =>
-                        {
-                            dataGrid.ItemsSource = updatedData;
-                        });*/
                         
                     }
                     else

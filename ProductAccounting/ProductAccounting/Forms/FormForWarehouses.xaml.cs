@@ -24,21 +24,48 @@ namespace ProductAccounting.Forms
     /// </summary>
     public partial class FormForWarehouses : Window
     {
+        WarehousesController controller = new WarehousesController();
         public FormForWarehouses()
         {
             InitializeComponent();
+            _ = LoadComboBoxAsync();
+        }
+        public FormForWarehouses(int ID) 
+        {
+            InitializeComponent();
+            Loaded += async (s, e) =>
+            {
+                await LoadWarehouseAsync(ID);
+                await LoadComboBoxAsync();
+            };
+            
+        }
+
+        private async Task LoadWarehouseAsync(int ID)
+        {
+            var item = await controller.LoadDataWarehouse(ID);
+            Namewarehouse.Text = item.name;
+            Citywarehouse.Text = item.city;
+            Addresswarehouse.Text = item.address;
+            HeadwarhouseComboBox.SelectedValue = item.IdHeadNavigation;
+        }
+
+        private async Task LoadComboBoxAsync()
+        {
+            HeadwarhouseComboBox.ItemsSource = await controller.LoadForCombobox();
+            HeadwarhouseComboBox.DisplayMemberPath = "Value";
+            HeadwarhouseComboBox.SelectedValuePath = "Key";
         }
         public async void AddWarehouseData(object sender, EventArgs e)
         {
             string Name = Namewarehouse.Text;
             string City = Citywarehouse.Text;
             string Address = Addresswarehouse.Text;
-            int Head = Convert.ToInt32(Headwarhouse.Text);
+            int Head = (int)HeadwarhouseComboBox.SelectedValue;
 
-            if (Name != null && City != null && Address != null && Head != null)
+            if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(Address) && Head != 0)
             {
-                var controller = new WarehousesController();
-                bool success = await controller.AddWarehouse(Name, City, Address, Head);
+                bool success = await controller.AddWarehouse(Name, City, Address ,Head);
                 if (success)
                 {
                     DialogResult = true;
