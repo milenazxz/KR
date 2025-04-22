@@ -40,8 +40,9 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left"  Click="CloseItemPage"/>
-            <Button x:Name="Deletewarehouses" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"  Click="DeleteItem"/>
-            <Button x:Name="Addwarehouses" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"  Click="AddItem"/>
+            <Button x:Name="DeleteItemBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"  Click="DeleteItem"/>
+            <Button x:Name="AddItemBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"  Click="AddItem"/>
+            <Button x:Name="ChangeItemBtn" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="375,5,0,5" HorizontalAlignment="Left"  Click="ChangeItem"/>
         </Grid>
 
         <DataGrid x:Name="ItemsGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">

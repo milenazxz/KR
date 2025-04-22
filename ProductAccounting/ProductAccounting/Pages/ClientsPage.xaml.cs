@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Forms;
+﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,20 @@ namespace ProductAccounting.Pages
     /// </summary>
     public partial class ClientsPage : Page
     {
+        ClientsController controller = new ClientsController();
         public ClientsPage()
         {
             InitializeComponent();
-            //DbFunctions.LoadData<Clients>(clientsGrid);
+            InitializePageAsync();
+        }
+
+        private async void InitializePageAsync()
+        {
+             List<Clients> loadedData = await controller.LoadData();
+            await clientsGrid.Dispatcher.InvokeAsync(() =>
+            {
+                clientsGrid.ItemsSource = loadedData;
+            });
         }
 
         private void CloseClientsPage(object sender, EventArgs e)
@@ -35,14 +46,31 @@ namespace ProductAccounting.Pages
 
         private async void DeleteClient(object sender, EventArgs e)
         {
-            var selectedClient = clientsGrid.SelectedItem as Clients;
-           // await DbFunctions.DeleteItem(selectedClient, clientsGrid, c => c.id == selectedClient.id);
+            var selectedClients = clientsGrid.SelectedItems;
+            await controller.DeleteClient(selectedClients);
+            clientsGrid.ItemsSource = await controller.RefreshAsync();
         }
 
-        private void AddClient(object sender, EventArgs e)
+        private async void ChangeClientBtn(object sender, EventArgs e) 
+        {
+            Clients selectedItem = (Clients)clientsGrid.SelectedItem;
+            var dialogWin = new FormForClients(selectedItem.id);
+            bool? resualtDialog = dialogWin.ShowDialog();
+            if (resualtDialog == true) 
+            {
+                clientsGrid.ItemsSource = await controller.RefreshAsync();
+            }
+        }
+
+        private async void AddClient(object sender, EventArgs e)
         {
             var winFormForClients = new FormForClients();
-            winFormForClients.ShowDialog();
+            bool? resualDalog = winFormForClients.ShowDialog();
+            if (resualDalog == true) 
+            {
+                clientsGrid.ItemsSource = await controller.RefreshAsync();
+            }
+
         }
     }
 }

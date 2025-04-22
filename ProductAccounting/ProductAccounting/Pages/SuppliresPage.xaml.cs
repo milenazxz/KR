@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Forms;
+﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,21 @@ namespace ProductAccounting.Pages
     /// </summary>
     public partial class SuppliresPage : Page
     {
+        SuppliresController controller = new SuppliresController();
         public SuppliresPage()
         {
             InitializeComponent();
-            //DbFunctions.LoadData<suppliers>(suppliresGrid);
+            InitializePage();
+        }
+
+        private async void InitializePage() 
+        {
+            List<suppliers> loadedEmployees = await controller.LoadData();
+            await suppliresGrid.Dispatcher.InvokeAsync(() => 
+            {
+                suppliresGrid.ItemsSource = loadedEmployees;
+            });
+               
         }
 
         private void CloseSuppliresPage(object sender, EventArgs e)
@@ -34,13 +46,39 @@ namespace ProductAccounting.Pages
         }
         private async void DeleteSupplier(object sender, EventArgs e)
         {
-            var selectedSuppliers = suppliresGrid.SelectedItem as suppliers;
-           // await DbFunctions.DeleteItem(selectedSuppliers, suppliresGrid, s => s.id == selectedSuppliers.id);
+            var selectedSuppliers = suppliresGrid.SelectedItems;
+            await controller.DeleteSupplier(selectedSuppliers);
+            suppliresGrid.ItemsSource = await controller.LoadData();
         }
-        private void AddSupplier(object sender, EventArgs e)
+        private async void AddSupplier(object sender, EventArgs e)
         {
             var winFormForSupplires = new FormForSupplires();
-            winFormForSupplires.ShowDialog();
+            bool? resultDialog = winFormForSupplires.ShowDialog();
+            if (resultDialog == true) 
+            {
+                suppliresGrid.ItemsSource = await controller.LoadData();
+            }
+
+        }
+
+        private async void ChangeSupplierBtn(object sender, EventArgs e) 
+        {
+            suppliers selectedItem = (suppliers)suppliresGrid.SelectedItem;
+            if (selectedItem != null)
+            {
+                int selecyedIDItem = selectedItem.id;
+                var winFormItems = new FormForSupplires(selecyedIDItem);
+                bool? dialogResualt = winFormItems.ShowDialog();
+                if (dialogResualt == true)
+                {
+                    suppliresGrid.ItemsSource = await controller.LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите элемент");
+            }
+
         }
 
     }

@@ -152,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\SuppliresController.cs" />
     <Compile Include="Controllers\WarehousesController.cs" />
     <Compile Include="DbFunctions.cs" />
     <Compile Include="Forms\FindForm.xaml.cs">

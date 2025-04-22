@@ -63,7 +63,7 @@ namespace ProductAccounting.Forms
             string Address = Addresswarehouse.Text;
             int Head = (int)HeadwarhouseComboBox.SelectedValue;
 
-            if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(Address) && Head != 0)
+            if (!string.IsNullOrEmpty(Name) & !string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(Address) && Head != 0)
             {
                 bool success = await controller.AddWarehouse(Name, City, Address ,Head);
                 if (success)

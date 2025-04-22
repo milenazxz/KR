@@ -19,7 +19,7 @@ namespace ProductAccounting.Controllers
         public Warehouses result { get; private set; }
 
         
-        public async Task<List<Warehouses>> LoadData( Expression<Func<Warehouses, object>> lFunc) 
+        public async Task<List<Warehouses>> LoadData(Expression<Func<Warehouses, object>> lFunc) 
         {
             using (var contex = new ApplicationDbContext())
             {
@@ -53,7 +53,6 @@ namespace ProductAccounting.Controllers
                 {
                     await DbFunctions.DeleteItem<Warehouses>(warehouse, w => w.id == warehouse.id);
                 }
-            
         }
 
         public async Task<IEnumerable<KeyValuePair<int, string>>> LoadForCombobox()
@@ -68,7 +67,7 @@ namespace ProductAccounting.Controllers
             
         }
 
-        public async Task<List<Warehouses>> RefreshAsync(DataGrid dataGrid)
+        public async Task<List<Warehouses>> RefreshAsync()
         {
             using (var context = new ApplicationDbContext()) 
             {

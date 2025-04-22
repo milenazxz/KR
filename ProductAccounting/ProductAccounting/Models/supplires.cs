@@ -13,6 +13,11 @@ namespace ProductAccounting.Models
         [Required]
         public string name { get; set; }
         [Required]
+
+        [RegularExpression("Юридическое лицо|Индивидуальный предприниматель", ErrorMessage = "Недопустимая должность")]
+        public string organform { get; set; }
+
+        [Required]
         public string city { get; set; }
         [Required]
         public string address { get; set; }

@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Forms;
+﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
@@ -20,15 +21,27 @@ namespace ProductAccounting.Pages
     /// <summary>
     /// Логика взаимодействия для ItemPage.xaml
     /// </summary>
+    /// 
+ 
     public partial class ItemPage : Page
     {
+        ItemsController controller = new ItemsController();
         public ItemPage()
         {
             InitializeComponent();
-            //DbFunctions.LoadData<Items>(ItemsGrid);
+            InitializePageAsync();
         }
 
-        
+        private async void InitializePageAsync()
+        {
+            var loadedData = await controller.LoadData();
+            await ItemsGrid.Dispatcher.InvokeAsync(() =>
+            {
+                ItemsGrid.ItemsSource = loadedData;
+            });
+        }
+
+
         private void CloseItemPage(object sender, EventArgs e)
         {
             this.Visibility = Visibility.Hidden;
@@ -36,14 +49,40 @@ namespace ProductAccounting.Pages
 
         private async void DeleteItem(object sender, EventArgs e)
         {
-            var selectedItem = ItemsGrid.SelectedValue as Items;
-            //await DbFunctions.DeleteItem<Items>(selectedItem, ItemsGrid, i => i.id == selectedItem.id);
+            var selectedItems = ItemsGrid.SelectedItems;
+            await controller.DeleteItem(selectedItems);
+            ItemsGrid.ItemsSource = await controller.RefreshAsync();
         }
 
-        private void AddItem(object sender, EventArgs e)
+        private async void AddItem(object sender, EventArgs e)
         {
             var winFormForItems = new FormForItems();
-            winFormForItems.ShowDialog();
+            bool? dialogResult = winFormForItems.ShowDialog();
+            if (dialogResult == true) 
+            {
+                ItemsGrid.ItemsSource = await controller.RefreshAsync();
+            }
+        }
+
+        public async void ChangeItem(object sender, EventArgs e) 
+        {
+            var selectedItem = (Items)ItemsGrid.SelectedItem;
+            if (selectedItem != null)
+            {
+                int selecyedIDItem = selectedItem.id;
+                var winFormItems = new FormForItems(selecyedIDItem);
+                bool? dialogResualt = winFormItems.ShowDialog();
+                if (dialogResualt == true)
+                {
+                    ItemsGrid.ItemsSource = await controller.RefreshAsync();
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Пожалуйста, выберите элемент");
+            }
+
+           
         }
 
     }

@@ -40,14 +40,16 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left"  Click="CloseSuppliresPage"/>
-            <Button x:Name="Deletewarehouses" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"  Click="DeleteSupplier"/>
-            <Button x:Name="Addwarehouses" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"  Click="AddSupplier"/>
+            <Button x:Name="DeleteSupplierBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"  Click="DeleteSupplier"/>
+            <Button x:Name="AddSupplierBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"  Click="AddSupplier"/>
+            <Button x:Name="ChangeSupplier" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="375,5,0,5" HorizontalAlignment="Left"  Click="ChangeSupplierBtn"/>
         </Grid>
 
         <DataGrid x:Name="suppliresGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding name}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Город" Binding="{Binding city}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Форма правовой организации" Binding="{Binding organform}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Адрес" Binding="{Binding address}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Рейтинг поставщика" Binding="{Binding rating}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding phonenumber}" Width="*" IsReadOnly="True"/>

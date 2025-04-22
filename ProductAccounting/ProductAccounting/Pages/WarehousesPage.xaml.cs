@@ -52,16 +52,14 @@ namespace ProductAccounting.Pages
             
             if (dialogResult == true)
             {
-                warehousesGrid.ItemsSource = await controller.RefreshAsync(warehousesGrid);
+                warehousesGrid.ItemsSource = await controller.RefreshAsync();
             }
         }
         private async void DeleteWarehouse(object sender, EventArgs e)
         {
-            var controller = new WarehousesController();
             var selectedWarehouse = warehousesGrid.SelectedItems;
             await controller.DeleteWarehouses(selectedWarehouse);
-            warehousesGrid.ItemsSource = await controller.RefreshAsync(warehousesGrid);
-
+            warehousesGrid.ItemsSource = await controller.RefreshAsync();
         }
 
         private async void Changewarehouses_Click(object sender, RoutedEventArgs e)
@@ -73,7 +71,7 @@ namespace ProductAccounting.Pages
             bool? dialogResult = window.ShowDialog();
             if (dialogResult == true)
             {
-                warehousesGrid.ItemsSource = await controller.RefreshAsync(warehousesGrid);
+                warehousesGrid.ItemsSource = await controller.RefreshAsync();
             }
         }
     }
