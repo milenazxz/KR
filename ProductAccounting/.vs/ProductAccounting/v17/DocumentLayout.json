@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\KR\\KR\\ProductAccounting\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\models\\warehouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\models\\warehouses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\controllers\\warehousescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\controllers\\warehousescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\pages\\warehousespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\pages\\warehousespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\pages\\warehousespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\pages\\warehousespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforemployees.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforemployees.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -78,11 +98,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "warehouses.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Models\\warehouses.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Models\\warehouses.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Models\\warehouses.cs",
+              "RelativeToolTip": "ProductAccounting\\Models\\warehouses.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T05:52:30.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\ApplicationDbContext.cs",
+              "RelativeToolTip": "ProductAccounting\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAxwBsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T05:50:35.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "WarehousesController.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Controllers\\WarehousesController.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Controllers\\WarehousesController.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Controllers\\WarehousesController.cs",
+              "RelativeToolTip": "ProductAccounting\\Controllers\\WarehousesController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T05:35:39.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WarehousesPage.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "RelativeToolTip": "ProductAccounting\\Pages\\WarehousesPage.xaml.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACYAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T05:35:27.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WarehousesPage.xaml",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml",
+              "RelativeDocumentMoniker": "ProductAccounting\\Pages\\WarehousesPage.xaml",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\WarehousesPage.xaml",
+              "RelativeToolTip": "ProductAccounting\\Pages\\WarehousesPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-23T05:35:21.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "employees.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Models\\employees.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Models\\employees.cs",
@@ -95,19 +179,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "FormForEmployees.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForEmployees.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForEmployees.xaml",
-              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForEmployees.xaml*",
-              "RelativeToolTip": "ProductAccounting\\Forms\\FormForEmployees.xaml*",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForEmployees.xaml",
+              "RelativeToolTip": "ProductAccounting\\Forms\\FormForEmployees.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-04-23T05:03:59.881Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "FormForEmployees.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForEmployees.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForEmployees.xaml.cs",
@@ -120,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "FormForSupplires.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSupplires.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForSupplires.xaml.cs",
@@ -133,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "EmployeesPage.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\EmployeesPage.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\EmployeesPage.xaml.cs",
@@ -146,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "EmployeesPage.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\EmployeesPage.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\EmployeesPage.xaml",
@@ -158,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "EmployeesController.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Controllers\\EmployeesController.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Controllers\\EmployeesController.cs",
@@ -171,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "ClientsController.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Controllers\\ClientsController.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Controllers\\ClientsController.cs",
@@ -184,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "SuppliresPage.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\SuppliresPage.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\SuppliresPage.xaml.cs",
@@ -197,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "FormForClients.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForClients.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForClients.xaml.cs",
@@ -209,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "SuppliresPage.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\SuppliresPage.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\SuppliresPage.xaml",
@@ -221,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "supplires.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Models\\supplires.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Models\\supplires.cs",
@@ -233,7 +317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "ItemPage.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\ItemPage.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\ItemPage.xaml.cs",
@@ -245,7 +329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "DbFunctions.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\DbFunctions.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\DbFunctions.cs",
@@ -257,7 +341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "SuppliresController.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Controllers\\SuppliresController.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Controllers\\SuppliresController.cs",
@@ -269,7 +353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "ClientsPage.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Pages\\ClientsPage.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Pages\\ClientsPage.xaml.cs",
@@ -281,7 +365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\MainWindow.xaml",

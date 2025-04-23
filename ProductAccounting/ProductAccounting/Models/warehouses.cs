@@ -18,7 +18,7 @@ namespace ProductAccounting.Models
         [Required]
         public string address { get; set; }
         
-        public int id_head { get; set; }
+        public int? id_head { get; set; }
         
         public employees IdHeadNavigation { get; set; }
     }

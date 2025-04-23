@@ -23,8 +23,8 @@ namespace ProductAccounting.Controllers
         {
             using (var contex = new ApplicationDbContext())
             {
-                var loadData = await contex.Set<Warehouses>().Include(lFunc).ToListAsync();
-                return loadData;
+                return await contex.warehouses.Include(lFunc).ToListAsync();
+                
             }
         }
 
