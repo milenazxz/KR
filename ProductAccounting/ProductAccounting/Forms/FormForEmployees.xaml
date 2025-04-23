@@ -11,7 +11,7 @@
         <ResourceDictionary Source="/Resources/Styles.xaml"/>
     </Window.Resources>
 
-    <Grid Background="#E8F1FA" Height="450" Width="750">
+    <Grid Background="#E8F1FA" Height="450" Width="823" Margin="0,0,0,-16">
 
         <StackPanel Orientation="Vertical" Margin="63,114,428,116">
             <Label Content="ФИО"/>
@@ -25,7 +25,12 @@
             </Border>
             <Separator Height="10" Background="#E8F1FA"/>
             <Border>
-                <TextBox x:Name="PostEmployee"/>
+                <ComboBox x:Name="PostEmployee">
+                    <TextBlock> Работник склада </TextBlock>
+                    <TextBlock> Директор</TextBlock>
+                    <TextBlock> Экономист-аналитик</TextBlock>
+                </ComboBox>
+
             </Border>
             <Separator Height="10"  Background="#E8F1FA"/>
             <Border>

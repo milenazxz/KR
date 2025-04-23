@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Models;
+﻿using ProductAccounting.Controllers;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,21 +21,58 @@ namespace ProductAccounting.Forms
     /// </summary>
     public partial class FormForEmployees : Window
     {
-        public employees employer;
+        EmployeesController controller = new EmployeesController();
         public FormForEmployees()
         {
             InitializeComponent();
         }
+        public FormForEmployees(int ID)
+        {
+            InitializeComponent();
+            Loaded += async (s, e) =>
+            {
+                await LoadSupplierData(ID);
+            };
+        }
+        public async Task LoadSupplierData(int ID)
+        {
+            employees supplier = await controller.LoadDataEmp(ID);
+            NameEmployee.Text = supplier.name;
+            PostEmployee.Text = supplier.post;
+            ContacntEmployee.Text = supplier.contacts;
+        }
         public async void AddEmployee(object sender, EventArgs e)
         {
-            string Name = NameEmployee.Text;
-            string Post = PostEmployee.Text;
-            string Contact = ContacntEmployee.Text;
+            string name = NameEmployee.Text;
+            string post = PostEmployee.Text;
+            string contacts = ContacntEmployee.Text;
+            
+            if (!string.IsNullOrEmpty(name) & !string.IsNullOrEmpty(post) & !string.IsNullOrEmpty(contacts)) 
+            {
+                bool succses = await controller.AddEmp(name, post, contacts);
+                if (succses)
+                {
+                    if (succses)
+                    {
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Возникла ошибка при добавлении поставщика");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля формы");
+            }
 
-            employer = new employees {name = Name, post = Post, contacts = Contact};
-            DialogResult = true;
-            await DbFunctions.AddData<employees>(employer);
         }
+
+
     }
 
-}
+       
+    }
+
+
