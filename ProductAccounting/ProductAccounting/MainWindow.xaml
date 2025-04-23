@@ -14,7 +14,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="Справочники" FontWeight ="Bold" MouseDown="OpenHandBook">
+            <TabItem Header="Справочники" FontWeight ="Bold">
                 <Grid>
 
                     <Grid Name="MainContent" Background="#E8F1FA" >
@@ -25,48 +25,25 @@
                         <Button x:Name="buttonEmployees" Width="300" Height="45" Content="Справочник персонала"  Click="Button_Click_Employees" VerticalAlignment="Top" Margin="454,241,0,0" RenderTransformOrigin="0.522,1.647"/>
                     </Grid>
 
-                    <Grid Name="PageLayer" Visibility="Hidden">
-                        <Frame Name="FrameInformation" NavigationUIVisibility="Hidden"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Журналы" FontWeight ="Bold">
+                <Grid>
+
+                    <Grid Name="Jurnals" Background="#E8F1FA" >
+                        <Button x:Name="sup" Width="300" Height="45" Content="Журнал поставок" Margin="0,223,0,138" HorizontalAlignment="Center" />
+                        <Button x:Name="sail" Width="300" Height="45" Content="Журнал продаж" Margin="0,158,0,203" HorizontalAlignment="Center" />
+                        <Button x:Name="List" Width="300" Height="45" Content="Журнал списаний" Margin="0,90,0,271" HorizontalAlignment="Center" />
                     </Grid>
+
+                    
                 </Grid>
             </TabItem>
 
         </TabControl>
-
-        <!--        <TabControl>
-            <TabItem Header="Поставки" Margin="93,-2,-98,0" FontWeight="Bold" MouseDown="OpenSup">
-                <Grid>
-                    <Grid Name="SupContent" Background="#E8F1FA" >
-                        <Button x:Name="Addsup" Width="300" Height="45" Content="Оформить поставку" Margin="44,62,0,299" />
-                        <Button x:Name="sup" Width="300" Height="45" Content="Журнал поставок" Margin="44,158,0,203" />
-                    </Grid>
-                </Grid>
-            </TabItem>
-        </TabControl>
-
-
-        <TabControl>
-            <TabItem Header="Продажи" Margin="164,-2,-170,0" FontWeight="Bold" MouseDown="OpenSup">
-                <Grid>
-                    <Grid Name="SailContent" Background="#E8F1FA" >
-                        <Button x:Name="Addsail" Width="300" Height="45" Content="Оформить продажу" Margin="44,62,0,299" />
-                        <Button x:Name="sail" Width="300" Height="45" Content="Журнал продаж" Margin="44,158,0,203" />
-                    </Grid>
-                </Grid>
-            </TabItem>
-        </TabControl>
-
-
-        <TabControl>
-            <TabItem Header="Списания" Margin="237,-2,-244,0" FontWeight="Bold" MouseDown="OpenSup">
-                <Grid>
-                    <Grid Name="Content" Background="#E8F1FA" >
-                        <Button x:Name="Add" Width="300" Height="45" Content="Оформить списание" Margin="44,62,0,299" />
-                        <Button x:Name="List" Width="300" Height="45" Content="Журнал списаний" Margin="44,158,0,203" />
-                    </Grid>
-                </Grid>
-            </TabItem>
-        </TabControl>-->
-
+        <Grid Name="PageLayer" Visibility="Hidden">
+            <Frame Name="FrameInformation" NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Window>
