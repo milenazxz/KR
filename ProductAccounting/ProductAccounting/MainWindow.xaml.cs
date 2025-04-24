@@ -57,6 +57,11 @@ namespace ProductAccounting
             FrameInformation.Navigate (new SuppliresPage());
             PageLayer.Visibility = Visibility.Visible;
         }
+        private void Button_Click_Sales(object sender, RoutedEventArgs e) 
+        {
+            FrameInformation.Navigate(new SalesPage());
+            PageLayer.Visibility = Visibility.Visible;
+        }
 
         private void OpenSup(object sender, RoutedEventArgs e)
         {

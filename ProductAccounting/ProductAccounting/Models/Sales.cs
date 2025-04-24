@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Models
 {
-    internal class Sales
+    public class Sales
     {
         public int id { get; set; }
         public int? id_employee { get; set; }
         public int? id_client { get; set; }
-        public int? id_warehouses { get; set; }
+        public int? id_warehouse { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime date { get; set; }
 
         public employees IdEmpNavigation { get; set; }
         public Clients IdClientNavigation { get; set; }

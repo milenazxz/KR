@@ -23,5 +23,7 @@ namespace ProductAccounting.Models
         [Required]
         public string phonenumber { get; set; }
         public string email { get; set; }
+
+        public ICollection<Sales> Sales { get; set; }
     }
 }

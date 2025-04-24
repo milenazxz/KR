@@ -177,3 +177,9 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FindForm.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FindForm.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\bin\Debug\Dapper.dll
 D:\KR\KR\ProductAccounting\ProductAccounting\bin\Debug\Dapper.xml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SuppliesPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\WriteOffsPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SalesPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SuppliesPage.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\WriteOffsPage.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SalesPage.baml

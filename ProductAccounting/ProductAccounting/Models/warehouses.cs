@@ -21,5 +21,9 @@ namespace ProductAccounting.Models
         public int? id_head { get; set; }
         
         public employees IdHeadNavigation { get; set; }
+
+        public ICollection<Sales> Sales { get; set; }
+        public ICollection<Writeoffs> Writeoffs { get; set; }
+        public ICollection<Supplies> Supplies { get; set; }
     }
 }

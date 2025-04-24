@@ -25,5 +25,9 @@ namespace ProductAccounting.Models
         public string contacts { get; set; }
 
         public ICollection<Warehouses> Warehouses { get; set; } 
+        public ICollection <Sales> Sales { get; set; }
+        public ICollection<Writeoffs> Writeoffs { get; set; }
+        public ICollection<Supplies> Supplies { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Models
 {
-    internal class Writeoffs
+    public class Writeoffs
     {
         public int id { get; set; }
         public int id_employee { get; set; }

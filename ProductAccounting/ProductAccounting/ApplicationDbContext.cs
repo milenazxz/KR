@@ -17,10 +17,15 @@ namespace ProductAccounting
         public DbSet<employees> employees { get; set; }
         public DbSet<Clients> clients{ get; set; }
 
+        public DbSet<Sales> sales { get; set; }
+        public DbSet<Writeoffs> writeoffs { get; set; }
+        public DbSet<Supplies> supplies { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Настройка модели Warehouses
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Warehouses>()
                 .HasOne(W => W.IdHeadNavigation)
                 .WithMany(e => e.Warehouses)
@@ -45,6 +50,51 @@ namespace ProductAccounting
                 .Property(s => s.email)
                 .HasDefaultValue("Неизвестен");
 
+            //Настройка модели Sales
+            modelBuilder.Entity<Sales>()
+                .HasOne(s => s.IdEmpNavigation)
+                .WithMany(e => e.Sales)
+                .HasForeignKey(s => s.id_employee)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Sales>()
+                .HasOne(s => s.IdClientNavigation)
+                .WithMany(c => c.Sales)
+                .HasForeignKey(s => s.id_client)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Sales>()
+                .HasOne(s => s.IdWarehNavigation)
+                .WithMany(w => w.Sales)
+                .HasForeignKey(s => s.id_warehouse)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            //Настройка модели WriteOffs
+            modelBuilder.Entity<Writeoffs>()
+                .HasOne(w => w.IdEmpNavigation)
+                .WithMany(e => e.Writeoffs)
+                .HasForeignKey(w => w.id_employee)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Writeoffs>()
+                .HasOne(w => w.IdWarehNavigation)
+                .WithMany(war => war.Writeoffs)
+                .HasForeignKey(w => w.id_warehouse)
+                .OnDelete(DeleteBehavior.SetNull);
+            
+            //Настройка модели Supplies
+            modelBuilder.Entity<Supplies>()
+                .HasOne(s => s.IdEmpNavigation)
+                .WithMany(e => e.Supplies)
+                .HasForeignKey(s => s.id_employee)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Supplies>()
+                .HasOne(s => s.IdSupNavigation)
+                .WithMany(sup => sup.Supplies)
+                .HasForeignKey(s=>s.id_supplier)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Supplies>()
+                .HasOne(s => s.IdWarehNavigation)
+                .WithMany(w => w.Supplies)
+                .HasForeignKey(s=>s.id_supplier)
+                .OnDelete(DeleteBehavior.SetNull);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

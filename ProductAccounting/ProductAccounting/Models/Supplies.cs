@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Models
 {
-    internal class Supplies
+    public class Supplies
     {
         public int id { get; set; }
         public int id_employee { get; set; }
