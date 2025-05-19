@@ -22,6 +22,8 @@ namespace ProductAccounting.Forms
     /// <summary>
     /// Логика взаимодействия для FormForSales.xaml
     /// </summary>
+    /// 
+
     public class UserInputData:INotifyPropertyChanged
     {
         private string _name { get; set; }
@@ -29,6 +31,21 @@ namespace ProductAccounting.Forms
         private int _quentity { get; set; }
         private double _price { get; set; }
         private int _nds { get; set; }
+        private int _idItem;
+       
+        public int IdItemNavigation
+        {
+            get => _idItem;
+            set
+            {
+                if (_idItem != value)
+                {
+                    _idItem = value;
+                    OnPropertyChanged(nameof(IdItemNavigation));
+                 
+                }
+            }
+        }
         public string name
         {
             get => _name;
@@ -101,12 +118,8 @@ namespace ProductAccounting.Forms
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+       
 
-    }
-
-    public class ItemsForCombobox
-    {
-      
     }
    
     public partial class FormForSales :  Window, INotifyPropertyChanged
@@ -135,6 +148,7 @@ namespace ProductAccounting.Forms
             Loaded += async (s, e) =>
             {
                 await LoadComboBoxAsync();
+                await LoadItemsComboBoxAsync();
             };
         }
 
@@ -164,16 +178,16 @@ namespace ProductAccounting.Forms
             ClientComboBox.SelectedValuePath = "Key";
         }
 
-        private void AddRow(object sender, EventArgs e) 
-        {
-            ImputItems.Add(new UserInputData
+            private void AddRow(object sender, EventArgs e) 
             {
-                name = "Default Product",
-                unit = "шт.",
-                quentity = 1,
-                price = 0,
-                NDS = 20
-                });
-        }
+                ImputItems.Add(new UserInputData
+                {
+                    name = "Default Product",
+                    unit = "шт.",
+                    quentity = 1,
+                    price = 0,
+                    NDS = 20
+                    });
+            }
     }
 }

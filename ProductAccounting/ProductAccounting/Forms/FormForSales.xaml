@@ -15,12 +15,14 @@
         </x:Array>
 
         <x:Array x:Key="AvailableNDS" Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-            <sys:String>20%</sys:String>
-            <sys:String>10%</sys:String>
-            <sys:String>7%</sys:String>
-            <sys:String>5%</sys:String>
-            <sys:String>0%</sys:String>
+            <sys:String>20</sys:String>
+            <sys:String>10</sys:String>
+            <sys:String>7</sys:String>
+            <sys:String>5</sys:String>
+            <sys:String>0</sys:String>
         </x:Array>
+        
+        
     </Window.Resources>
     
     <Grid Background="#E8F1FA">
@@ -69,28 +71,28 @@
             <DataGrid.Columns>
 
 
-                <DataGridTemplateColumn Header="Наименование">
+                <DataGridTemplateColumn Header="Наименование" Width ="200"> 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding name}"/>
+                            <TextBlock Text="{Binding ItemName}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox x:Name="ProductNameComboBox" ItemsSource="{Binding DataContext.AvailableItems, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
-                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding ItemId, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox x:Name="ProductNameComboBox" ItemsSource="{Binding DataContext.AvailableItems, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdItemNavigation, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="Количество" Binding="{Binding quentity, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                <DataGridTextColumn Header="Единица измерения" Binding="{Binding units, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Единица измерения" Binding="{Binding unit, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Единица Стоимость" Binding="{Binding price, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
 
                 <DataGridTemplateColumn Header="НДС">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding price}"/>
+                            <TextBlock Text="{Binding NDS}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>

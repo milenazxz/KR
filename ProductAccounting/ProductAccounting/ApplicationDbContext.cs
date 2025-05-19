@@ -17,9 +17,13 @@ namespace ProductAccounting
         public DbSet<employees> employees { get; set; }
         public DbSet<Clients> clients{ get; set; }
 
+
         public DbSet<Sales> sales { get; set; }
         public DbSet<Writeoffs> writeoffs { get; set; }
         public DbSet<Supplies> supplies { get; set; }
+
+
+        public DbSet<Itemsforsale> itemsforsales { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -94,6 +98,13 @@ namespace ProductAccounting
                 .HasOne(s => s.IdWarehNavigation)
                 .WithMany(w => w.Supplies)
                 .HasForeignKey(s=>s.id_supplier)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            //Настройка модели ItemsForSale
+            modelBuilder.Entity<Itemsforsale>()
+                .HasOne(ifs => ifs.IdItemNavigation)
+                .WithMany(it => it.itemsforsales)
+                .HasForeignKey(i => i.id_item)
                 .OnDelete(DeleteBehavior.SetNull);
         }
 

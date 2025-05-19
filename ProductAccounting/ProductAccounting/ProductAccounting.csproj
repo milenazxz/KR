@@ -182,6 +182,7 @@
     <Compile Include="Forms\FormForWarehouses.xaml.cs">
       <DependentUpon>FormForWarehouses.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Itemsforsale.cs" />
     <Compile Include="Pages\SuppliesPage.xaml.cs">
       <DependentUpon>SuppliesPage.xaml</DependentUpon>
     </Compile>
