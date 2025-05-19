@@ -40,7 +40,7 @@
         <Grid Grid.Row="0">
             <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left" Click="CloseSalesPage"/>
             <Button x:Name="DeleteSaleBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"/>
-            <Button x:Name="AddSaleBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"/>
+            <Button x:Name="AddSaleBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left" Click="AddSale"/>
             <Button x:Name="ChangeSaleBtn" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="375,5,0,5" HorizontalAlignment="Left"/>
         </Grid>
 

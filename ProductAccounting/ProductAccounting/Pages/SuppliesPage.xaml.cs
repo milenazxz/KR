@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductAccounting.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,31 @@ namespace ProductAccounting.Pages
     /// </summary>
     public partial class SuppliesPage : Page
     {
+        SuppliesController controller = new SuppliesController();
         public SuppliesPage()
         {
             InitializeComponent();
+            InitializePage();
+        }
+        private async void InitializePage()
+        {
+            var loadedData = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdSupNavigation, sup => sup.IdWarehNavigation);
+            await suppliesGrid.Dispatcher.InvokeAsync(() =>
+            {
+                suppliesGrid.ItemsSource = loadedData;
+            });
+        }
+
+        private async void DeleteSupplies(object sender, EventArgs e) 
+        {
+            var selectedItems = suppliesGrid.SelectedItems;
+            await controller.DeleteItems(selectedItems);
+            suppliesGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdSupNavigation, sup => sup.IdWarehNavigation);
+        }
+
+        private void CloseSuppliesPage(object sender, EventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

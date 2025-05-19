@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductAccounting.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,32 @@ namespace ProductAccounting.Forms
     /// </summary>
     public partial class WriteOffsPage : Page
     {
+        WriteOffsController controller = new WriteOffsController();
         public WriteOffsPage()
         {
             InitializeComponent();
+            InitializePage();
+        }
+
+        private async void InitializePage()
+        {
+            var loadedData = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdWarehNavigation);
+            await writeOffsGrid.Dispatcher.InvokeAsync(() =>
+            {
+                writeOffsGrid.ItemsSource = loadedData;
+            });
+        }
+
+        private async void DeleteWriteOffs(object sender, EventArgs e)
+        {
+            var selectedItems = writeOffsGrid.SelectedItems;
+            await controller.DeleteItems(selectedItems);
+            writeOffsGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdWarehNavigation);
+        }
+
+        private void CloseWriteOffsPage(object sender, EventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ProductAccounting.Pages;
+﻿using ProductAccounting.Forms;
+using ProductAccounting.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,15 @@ namespace ProductAccounting
             PageLayer.Visibility = Visibility.Visible;
         }
 
-        private void OpenSup(object sender, RoutedEventArgs e)
+        private void Button_Click_Supplies(object sender, RoutedEventArgs e)
         {
-
+            FrameInformation.Navigate(new SuppliesPage());
+            PageLayer.Visibility = Visibility.Visible;
+        }
+        private void Button_Click_WriteOffs(object sender, RoutedEventArgs e)
+        {
+            FrameInformation.Navigate(new WriteOffsPage());
+            PageLayer.Visibility = Visibility.Visible;
         }
 
         private void OpenHandBook(object sender, MouseButtonEventArgs e)

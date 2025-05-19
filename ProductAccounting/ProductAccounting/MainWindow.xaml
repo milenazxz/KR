@@ -32,9 +32,9 @@
                 <Grid>
 
                     <Grid Name="Jurnals" Background="#E8F1FA" >
-                        <Button x:Name="sup" Width="300" Height="45" Content="Журнал поставок" Margin="0,223,0,138" HorizontalAlignment="Center"  />
+                        <Button x:Name="sup" Width="300" Height="45" Content="Журнал поставок" Margin="0,223,0,138" HorizontalAlignment="Center" Click="Button_Click_Supplies" />
                         <Button x:Name="sail" Width="300" Height="45" Content="Журнал продаж" Margin="0,158,0,203" HorizontalAlignment="Center" Click="Button_Click_Sales" />
-                        <Button x:Name="List" Width="300" Height="45" Content="Журнал списаний" Margin="0,90,0,271" HorizontalAlignment="Center" />
+                        <Button x:Name="List" Width="300" Height="45" Content="Журнал списаний" Margin="0,90,0,271" HorizontalAlignment="Center" Click="Button_Click_WriteOffs" />
                     </Grid>
 
                     

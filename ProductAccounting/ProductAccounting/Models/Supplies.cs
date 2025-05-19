@@ -12,7 +12,7 @@ namespace ProductAccounting.Models
         public int id_employee { get; set; }
         public int id_supplier { get; set; }
         public int id_warehouse { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime date { get; set; }
 
         public employees IdEmpNavigation { get; set; }
         public suppliers IdSupNavigation { get; set; }

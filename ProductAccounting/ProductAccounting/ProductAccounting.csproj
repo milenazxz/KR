@@ -156,8 +156,10 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\SuppliesController.cs" />
     <Compile Include="Controllers\SuppliresController.cs" />
     <Compile Include="Controllers\WarehousesController.cs" />
+    <Compile Include="Controllers\WriteOffsController.cs" />
     <Compile Include="DbFunctions.cs" />
     <Compile Include="Forms\FindForm.xaml.cs">
       <DependentUpon>FindForm.xaml</DependentUpon>
@@ -170,6 +172,9 @@
     </Compile>
     <Compile Include="Forms\FormForItems.xaml.cs">
       <DependentUpon>FormForItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForSales.xaml.cs">
+      <DependentUpon>FormForSales.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormForSupplires.xaml.cs">
       <DependentUpon>FormForSupplires.xaml</DependentUpon>
@@ -221,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\FormForItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormForSales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

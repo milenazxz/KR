@@ -38,8 +38,8 @@
             <!-- Вторая строка для DataGrid -->
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left"/>
-            <Button x:Name="DeleteSuppliesBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"/>
+            <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left" Click="CloseSuppliesPage"/>
+            <Button x:Name="DeleteSuppliesBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left" Click="DeleteSupplies"/>
             <Button x:Name="AddSaleSuppliesBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"/>
             <Button x:Name="ChangeSuppliesBtn" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="375,5,0,5" HorizontalAlignment="Left"/>
         </Grid>

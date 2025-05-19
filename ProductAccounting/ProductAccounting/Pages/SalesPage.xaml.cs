@@ -1,4 +1,5 @@
 ﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +37,32 @@ namespace ProductAccounting.Pages
                 salesGrid.ItemsSource = loadedData;
             });
         }
+        
         private void CloseSalesPage(object sender, EventArgs e)
         {
             this.Visibility = Visibility.Hidden;
 
+        }
+
+        private async void DeleteSale(object sender, EventArgs e) 
+        {
+            var selectedItems = salesGrid.SelectedItems;
+            if (selectedItems == null) 
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            await controller.DeleteItems(selectedItems);
+            salesGrid.ItemsSource =await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
+        }
+
+        public void AddSale(object sender, EventArgs e) 
+        {
+            var winFormForSales = new FormForSales();
+            bool? result = winFormForSales.ShowDialog();
+            if (result == true) 
+            {
+
+            }
         }
     }
 }
