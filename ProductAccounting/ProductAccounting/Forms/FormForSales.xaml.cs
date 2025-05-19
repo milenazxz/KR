@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,144 +24,108 @@ namespace ProductAccounting.Forms
     /// Логика взаимодействия для FormForSales.xaml
     /// </summary>
     /// 
-
-    public class UserInputData:INotifyPropertyChanged
+    public class Itemsforsale : INotifyPropertyChanged
     {
-        private string _name { get; set; }
-        private string _unit { get; set; }
-        private int _quentity { get; set; }
-        private double _price { get; set; }
-        private int _nds { get; set; }
-        private int _idItem;
-       
-        public int IdItemNavigation
+        private int _id_item;
+        private Items _idItemNavigation;
+        private double _pricePerUnit;
+        private string _unit;
+        private int _quantity;
+        private int _nds;
+
+        public int id { get; set; }
+        public int id_sale { get; set; }
+
+        public int id_item
         {
-            get => _idItem;
+            get => _id_item;
             set
             {
-                if (_idItem != value)
+                if (_id_item != value)
                 {
-                    _idItem = value;
-                    OnPropertyChanged(nameof(IdItemNavigation));
-                 
+                    _id_item = value;
+                    OnPropertyChanged();
+                    UpdateRelatedProperties();
                 }
             }
         }
-        public string name
+
+        public Items IdItemNavigation
         {
-            get => _name;
+            get => _idItemNavigation;
             set
             {
-                if (_name != value)
+                if (_idItemNavigation != value)
                 {
-                    _name = value;
-                    OnPropertyChanged(nameof(name));
+                    _idItemNavigation = value;
+                    OnPropertyChanged();
+                    UpdateRelatedProperties();
                 }
             }
         }
-        public string unit
+
+        public double PricePerUnit
+        {
+            get => _pricePerUnit;
+            set { _pricePerUnit = value; OnPropertyChanged(); }
+        }
+
+        public string Unit
         {
             get => _unit;
-            set
-            {
-                if (_unit != value)
-                {
-                    _unit = value;
-                    OnPropertyChanged(nameof(unit));
-                }
-            }
+            set { _unit = value; OnPropertyChanged(); }
         }
-        public int quentity
+
+        public int Quantity
         {
-            get => _quentity;
-            set
-            {
-                if (_quentity != value)
-                {
-                    _quentity = value;
-                    OnPropertyChanged(nameof(quentity));
-                    OnPropertyChanged(nameof(Total)); // Уведомляем об изменении Total
-                }
-            }
-        }
-        public double price
-        {
-            get => _price;
-            set
-            {
-                if (_price != value)
-                {
-                    _price = value;
-                    OnPropertyChanged(nameof(price));
-                    OnPropertyChanged(nameof(Total)); // Уведомляем об изменении Total
-                }
-            }
+            get => _quantity;
+            set { _quantity = value; OnPropertyChanged(); }
         }
 
         public int NDS
         {
             get => _nds;
-            set
-            {
-                if (_nds != value)
-                {
-                    _nds = value;
-                    OnPropertyChanged(nameof(NDS));
-                    OnPropertyChanged(nameof(Total)); // Уведомляем об изменении Total
-                }
-            }
+            set { _nds = value; OnPropertyChanged(); }
         }
-        public double Total => quentity * price * (1 + NDS / 100.0);
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName] string propName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-       
 
-    }
-   
-    public partial class FormForSales :  Window, INotifyPropertyChanged
-    {
-        private IEnumerable<KeyValuePair<int, string>> _availableItems;
-
-        public IEnumerable<KeyValuePair<int, string>> AvailableItems
+        private void UpdateRelatedProperties()
         {
-            get => _availableItems;
-            set
+            if (_idItemNavigation != null)
             {
-                _availableItems = value;
-                OnPropertyChanged(nameof(AvailableItems));
+                PricePerUnit = _idItemNavigation.price;
+                Unit = _idItemNavigation.unit;
             }
         }
+    }
 
-
-
-        public ObservableCollection<UserInputData> ImputItems { get; set; }
+    public partial class FormForSales : Window { 
+       
         public SalesController controller = new SalesController();
+
+        // Коллекция строк DataGrid
+        public ObservableCollection<Itemsforsale> SalesItems { get; set; } = new ObservableCollection<Itemsforsale>();
+
+        // Коллекция товаров для ComboBox в строках
+        public ObservableCollection<Items> AvailableItems { get; set; } = new ObservableCollection<Items>();
+
         public FormForSales()
         {
             InitializeComponent();
-            DataContext = this;
-            ImputItems = new ObservableCollection<UserInputData>();
+
+            DataContext = this; // важно для биндинга
+
             Loaded += async (s, e) =>
             {
                 await LoadComboBoxAsync();
-                await LoadItemsComboBoxAsync();
+                await LoadAvailableItemsAsync();
             };
-        }
-
-        public async Task LoadItemsComboBoxAsync() 
-        {
-            AvailableItems = await controller.LoadForComboBoxItem();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName) 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async Task LoadComboBoxAsync()
@@ -176,18 +141,19 @@ namespace ProductAccounting.Forms
             ClientComboBox.ItemsSource = await controller.LoadForComboboxClient();
             ClientComboBox.DisplayMemberPath = "Value";
             ClientComboBox.SelectedValuePath = "Key";
+
+        }
+        private async Task LoadAvailableItemsAsync()
+        {
+            var itemsFromDb = await controller.LoadItemsAsync(); // метод, возвращающий List<Items> из БД
+            foreach (var item in itemsFromDb)
+                AvailableItems.Add(item);
         }
 
-            private void AddRow(object sender, EventArgs e) 
-            {
-                ImputItems.Add(new UserInputData
-                {
-                    name = "Default Product",
-                    unit = "шт.",
-                    quentity = 1,
-                    price = 0,
-                    NDS = 20
-                    });
-            }
+        private void AddRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            SalesItems.Add(new Itemsforsale());
+        }
+
     }
 }

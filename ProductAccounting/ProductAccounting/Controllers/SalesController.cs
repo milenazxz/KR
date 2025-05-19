@@ -74,14 +74,11 @@ namespace ProductAccounting.Controllers
 
         }
 
-        public async Task<IEnumerable<KeyValuePair<int, string>>> LoadForComboBoxItem() 
+        public async Task<List<Items>> LoadItemsAsync()
         {
-            using (var context = new ApplicationDbContext()) 
+            using (var context = new ApplicationDbContext())
             {
-                var resualt = await context.items
-                    .Select(i => new KeyValuePair<int, string>(i.id, i.name))
-                    .ToListAsync();
-                return resualt;
+                return await context.items.ToListAsync();
             }
         }
     }
