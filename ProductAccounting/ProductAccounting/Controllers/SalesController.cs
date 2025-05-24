@@ -81,5 +81,30 @@ namespace ProductAccounting.Controllers
                 return await context.items.ToListAsync();
             }
         }
+
+        public async Task<int> AddSale(int inpId_head, int inpId_warehouse, int inpId_client, DateTime date) 
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext()) 
+            {
+                Sales sale = new Sales {id_client = inpId_client, id_employee = inpId_head, id_warehouse = inpId_warehouse, date = date};
+                await context.AddAsync<Sales>(sale);
+                await context.SaveChangesAsync();
+                return sale.id;
+            }
+        }
+
+        public async Task AddItemsForSale(int inpSale_id, List<int> items_id, List<int> items_quantity) 
+        {
+            List<Itemsforsale> items = new List<Itemsforsale>();
+            using (ApplicationDbContext context = new ApplicationDbContext()) 
+            {
+                for (int i = 0; i < items_id.Count(); i++) 
+                {
+                    items.Add(new Itemsforsale { id_sale = inpSale_id, id_item = items_id[i], quantity = items_quantity[i] });
+                }
+                await context.AddRangeAsync(items);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

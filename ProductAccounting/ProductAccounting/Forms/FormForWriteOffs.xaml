@@ -1,13 +1,12 @@
-﻿<Window x:Class="ProductAccounting.Forms.FormForSales"
+﻿<Window x:Class="ProductAccounting.Forms.FormForWriteOffs"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting.Forms"
         mc:Ignorable="d"
-        Title="FormForSales" Height="450" Width="800">
+        Title="FormForWriteOffs" Height="450" Width="800">
     <Window.Resources>
-        <!-- Список доступных значений для ComboBox -->
       
         <x:Array x:Key="AvailableNDS" Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
             <sys:String>20</sys:String>
@@ -16,22 +15,17 @@
             <sys:String>5</sys:String>
             <sys:String>0</sys:String>
         </x:Array>
-        
-        
-    </Window.Resources>
-    
-    <Grid Background="#E8F1FA">
 
+
+    </Window.Resources>
+    <Grid Background="#E8F1FA">
         <Grid.RowDefinitions>
-            <RowDefinition Height="130"/>
-            <!-- Первая строка для кнопки -->
-            <RowDefinition Height="280"/>
-            <!-- Вторая строка для DataGrid -->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="130" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0" Name="Head">
-            <Button Content="+" FontSize="20" Margin="17,97,753,4" Click="AddRowButton_Click"/>
+
+        <Grid Grid.Row="0">
+            <Button Content="+" FontSize="20" Margin="17,97,753,4"/>
             <Button Content="-" FontSize="20" Margin="52,97,718,4"/>
             <StackPanel Orientation="Vertical" Margin="35,21,594,13">
                 <Label Content="Ответственный" FontWeight="Bold"  FontSize="20" />
@@ -40,32 +34,29 @@
 
             <StackPanel Orientation="Vertical" Margin="197,31,400,16">
                 <Border>
-                    <ComboBox x:Name="HeadwarhouseComboBox" Margin="0,0,0,20" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdEmpNavigation}"/>
+                    <ComboBox x:Name="HeadwarhouseComboBox" Margin="0,0,0,20" DisplayMemberPath="Name" SelectedValuePath="Id"/>
                 </Border>
                 <Border>
-                    <ComboBox x:Name="WarhouseComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdWarehNavigation.name}"/>
+                    <ComboBox x:Name="WarhouseComboBox" DisplayMemberPath="Name" SelectedValuePath="Id"/>
                 </Border>
             </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="405,21,234,31">
-            <Label Content="Клиент" FontWeight="Bold"  FontSize="20" />
-            <Label Content="Дата" FontWeight="Bold"  FontSize="20" />
-        </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="405,21,234,31">
+                <Label Content="Дата" FontWeight="Bold"  FontSize="20" />
+            </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="486,32,26,24">
-                <Border Margin="0,0,0,14">
-                <ComboBox x:Name="ClientComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdClientNavigation.name}"/>
-            </Border>
-            <Border>
+            <StackPanel Orientation="Vertical" Margin="469,15,43,74">
+                <Border Margin="0,0,0,14"/>
+                <Border>
                     <DatePicker Name="datePicker1" IsDropDownOpen="False" SelectedDateFormat="Short" />
                 </Border>
-               
+
             </StackPanel>
         </Grid>
 
         <DataGrid x:Name="salesItemsGrid" ItemsSource="{Binding SalesItems}" Background="#E8F1FA" AutoGenerateColumns="False" CanUserAddRows="True" HeadersVisibility="Column"  Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Наименование" Width ="200"> 
+                <DataGridTemplateColumn Header="Наименование" Width ="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding IdItemNavigation.name}"/>
@@ -73,9 +64,9 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox x:Name="ProductNameComboBox" ItemsSource="{Binding DataContext.AvailableItems, RelativeSource={RelativeSource AncestorType=Window}}"
-                      DisplayMemberPath="name"
-                      SelectedItem="{Binding IdItemNavigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox x:Name="ProductNameComboBox"   ItemsSource="{Binding DataContext.AvailableItems, RelativeSource={RelativeSource AncestorType=Window}}"
+         DisplayMemberPath="name"
+         SelectedItem="{Binding IdItemNavigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -84,25 +75,8 @@
                 <DataGridTextColumn Header="Единица измерения" Binding="{Binding Unit}"  Width="*"/>
                 <DataGridTextColumn Header="Стоимость" Binding="{Binding PricePerUnit}" Width="*"/>
 
-                <DataGridTemplateColumn Header="НДС">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding NDS}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <ComboBox ItemsSource="{StaticResource AvailableNDS}" SelectedItem="{Binding NDS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-
                 <DataGridTextColumn Header="Сумма" Binding="{Binding Total, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Grid Grid.Row="2">
-            <Button Margin="659,0,10,0" Height="20" Content="Подтвердить" Click="Btn_AddSale"/>
-        </Grid>
     </Grid>
 </Window>

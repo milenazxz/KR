@@ -185,3 +185,7 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\WriteOffsPage.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\SalesPage.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSales.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSales.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSupplies.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForSupplies.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForWriteOffs.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\FormForWriteOffs.baml

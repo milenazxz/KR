@@ -176,11 +176,17 @@
     <Compile Include="Forms\FormForSales.xaml.cs">
       <DependentUpon>FormForSales.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormForSupplies.xaml.cs">
+      <DependentUpon>FormForSupplies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormForSupplires.xaml.cs">
       <DependentUpon>FormForSupplires.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormForWarehouses.xaml.cs">
       <DependentUpon>FormForWarehouses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForWriteOffs.xaml.cs">
+      <DependentUpon>FormForWriteOffs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Itemsforsale.cs" />
     <Compile Include="Pages\SuppliesPage.xaml.cs">
@@ -234,11 +240,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\FormForSupplies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\FormForSupplires.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\FormForWarehouses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormForWriteOffs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

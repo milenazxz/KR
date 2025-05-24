@@ -26,24 +26,24 @@ namespace ProductAccounting.Forms
     /// 
     public class Itemsforsale : INotifyPropertyChanged
     {
-        private int _id_item;
+        private int _id;
         private Items _idItemNavigation;
         private double _pricePerUnit;
         private string _unit;
         private int _quantity;
         private int _nds;
-
+        private double _total;
         public int id { get; set; }
         public int id_sale { get; set; }
 
-        public int id_item
+        public int Id
         {
-            get => _id_item;
+            get => _id;
             set
             {
-                if (_id_item != value)
+                if (_id != value)
                 {
-                    _id_item = value;
+                    _id = value;
                     OnPropertyChanged();
                     UpdateRelatedProperties();
                 }
@@ -67,7 +67,7 @@ namespace ProductAccounting.Forms
         public double PricePerUnit
         {
             get => _pricePerUnit;
-            set { _pricePerUnit = value; OnPropertyChanged(); }
+            set { _pricePerUnit = value; OnPropertyChanged(); RecalculateTotal(); }
         }
 
         public string Unit
@@ -79,13 +79,23 @@ namespace ProductAccounting.Forms
         public int Quantity
         {
             get => _quantity;
-            set { _quantity = value; OnPropertyChanged(); }
+            set { _quantity = value; OnPropertyChanged(); RecalculateTotal(); }
         }
 
         public int NDS
         {
             get => _nds;
-            set { _nds = value; OnPropertyChanged(); }
+            set { _nds = value; OnPropertyChanged(); RecalculateTotal(); }
+        }
+
+        public double Total 
+        {
+            set 
+            {
+                _total = value;
+                OnPropertyChanged();
+            }
+            get => _total;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -101,8 +111,14 @@ namespace ProductAccounting.Forms
             {
                 PricePerUnit = _idItemNavigation.price;
                 Unit = _idItemNavigation.unit;
+                _id = _idItemNavigation.id;
             }
         }
+        private void RecalculateTotal() 
+        {
+            Total = Quantity * PricePerUnit + (Quantity * PricePerUnit) * (NDS / 100.0);
+        }
+
     }
 
     public partial class FormForSales : Window { 
@@ -154,6 +170,48 @@ namespace ProductAccounting.Forms
         {
             SalesItems.Add(new Itemsforsale());
         }
+        private void Btn_AddSale(object sender, RoutedEventArgs e)
+        {
+            GetAddSale();
+            this.Close();
+        }
 
+        public async void GetAddSale() 
+        {
+            int id_sale;
+            List<int> items_id = new List<int>();
+            List<int> item_quantity = new List<int>();
+            if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId && ClientComboBox.SelectedValue is int SelectedClientID)
+            {
+                DateTime date = (DateTime)datePicker1.SelectedDate;
+                id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, date);
+                
+                if (id_sale >= 0) 
+                {
+                   foreach (Itemsforsale item in SalesItems) 
+                    {
+                        if (item.Id >= 0 && item.Quantity > 0) 
+                        {
+                            items_id.Add(item.Id);
+                            item_quantity.Add(item.Quantity);
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Не все поля товаров были заполнены");
+                        }
+                       
+
+                    }
+                   await controller.AddItemsForSale(id_sale, items_id, item_quantity);
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Не все поля регистрации были заполнены");
+            }
+
+        }
+
+        
     }
 }

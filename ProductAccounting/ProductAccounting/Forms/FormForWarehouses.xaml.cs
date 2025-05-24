@@ -61,7 +61,11 @@ namespace ProductAccounting.Forms
             string Name = Namewarehouse.Text;
             string City = Citywarehouse.Text;
             string Address = Addresswarehouse.Text;
-            int Head = (int)HeadwarhouseComboBox.SelectedValue;
+            int Head = 0;
+            if (HeadwarhouseComboBox.SelectedValue is int head_id) 
+            {
+                Head = head_id;
+            }
 
             if (!string.IsNullOrEmpty(Name) & !string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(Address) && Head != 0)
             {
