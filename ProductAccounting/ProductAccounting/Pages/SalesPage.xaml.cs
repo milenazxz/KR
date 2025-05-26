@@ -44,25 +44,25 @@ namespace ProductAccounting.Pages
 
         }
 
-        private async void DeleteSale(object sender, EventArgs e) 
-        {
-            var selectedItems = salesGrid.SelectedItems;
-            if (selectedItems == null) 
-            {
-                MessageBox.Show("Пожалуйста, выберите запись");
-            }
-            await controller.DeleteItems(selectedItems);
-            salesGrid.ItemsSource =await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
-        }
-
         public void AddSale(object sender, EventArgs e) 
         {
             var winFormForSales = new FormForSales();
             bool? result = winFormForSales.ShowDialog();
             if (result == true) 
             {
-
+                InitializePage();
             }
+        }
+
+        private async void DeleteSaleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = salesGrid.SelectedItems;
+            if (selectedItems == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            await controller.DeleteItems(selectedItems);
+            salesGrid.ItemsSource = await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
         }
     }
 }

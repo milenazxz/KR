@@ -48,5 +48,16 @@ namespace ProductAccounting.Forms
         {
             this.Visibility = Visibility.Hidden;
         }
+
+        private void AddWriteOffsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var winFormForWriteOff = new FormForWriteOffs();
+            bool? result = winFormForWriteOff.ShowDialog();
+            
+            if (result == true) 
+            {
+                InitializePage();
+            }
+        }
     }
 }

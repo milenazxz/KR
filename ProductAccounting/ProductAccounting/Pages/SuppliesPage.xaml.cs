@@ -1,4 +1,5 @@
 ﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,17 @@ namespace ProductAccounting.Pages
         private void CloseSuppliesPage(object sender, EventArgs e)
         {
             this.Visibility = Visibility.Hidden;
+        }
+
+        private void AddSaleSuppliesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var winFormSupplies = new FormForSupplies();
+            bool? result = winFormSupplies.ShowDialog();
+
+            if (result == true) 
+            {
+                InitializePage();
+            }
         }
     }
 }

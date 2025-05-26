@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Models
 {
-    public class ItemForSale
+    public class ItemsForWriteOff
     {
         public int id { get; set; }
-        public int id_sale { get; set; }
+        public int id_writeoff { get; set; }
         public int id_item { get; set; }
         public int quantity { get; set; }
 
-        public Sales IdSaleNavigation { get; set; }
+        public Writeoffs IdWriteOffNavigation { get; set; }
         public Items IdItemNavigation { get; set; }
     }
 }

@@ -17,5 +17,7 @@ namespace ProductAccounting.Models
         public employees IdEmpNavigation { get; set; }
         public suppliers IdSupNavigation { get; set; }
         public Warehouses IdWarehNavigation { get; set; }
+
+        public ICollection<ItemsForSupply> itemsforsupplies { get; set; }
     }
 }

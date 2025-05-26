@@ -8,8 +8,11 @@
         Title="FormForSupplies" Height="450" Width="800">
     <Grid Background="#E8F1FA">
         <Grid.RowDefinitions>
-            <RowDefinition Height="130" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="130"/>
+            <!-- Первая строка для кнопки -->
+            <RowDefinition Height="280"/>
+            <!-- Вторая строка для DataGrid -->
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -22,10 +25,10 @@
 
             <StackPanel Orientation="Vertical" Margin="197,31,400,16">
                 <Border>
-                    <ComboBox x:Name="HeadwarhouseComboBox" Margin="0,0,0,20" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                    <ComboBox x:Name="HeadwarhouseComboBox" Margin="0,0,0,20" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdEmpNavigation}"/>
                 </Border>
                 <Border>
-                    <ComboBox x:Name="WarhouseComboBox" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                    <ComboBox x:Name="WarhouseComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdWarehNavigation}"/>
                 </Border>
             </StackPanel>
 
@@ -36,7 +39,7 @@
 
             <StackPanel Orientation="Vertical" Margin="522,32,26,24">
                 <Border Margin="0,0,0,14" Width="202">
-                    <ComboBox x:Name="ClientComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="-23,0,-25,0" />
+                    <ComboBox x:Name="SupplierComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="-23,0,-25,0" SelectedValue="{Binding IdSupNavigation}"/>
                 </Border>
                 <Border>
                     <DatePicker Name="datePicker1" IsDropDownOpen="False" SelectedDateFormat="Short" />
@@ -45,36 +48,36 @@
             </StackPanel>
         </Grid>
 
-        <DataGrid x:Name="salesItemsGrid" ItemsSource="{Binding SalesItems}" Background="#E8F1FA" AutoGenerateColumns="False" CanUserAddRows="True" HeadersVisibility="Column"  Grid.Row="1">
+        <DataGrid x:Name="salesItemsGrid" ItemsSource="{Binding SuppliesItems}" Background="#E8F1FA" AutoGenerateColumns="False" CanUserAddRows="True" HeadersVisibility="Column"  Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Наименование" Width ="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding IdItemNavigation.name}"/>
+                            <TextBlock Text="{Binding IdNavigation.name}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
                             <ComboBox x:Name="ProductNameComboBox"   ItemsSource="{Binding DataContext.AvailableItems, RelativeSource={RelativeSource AncestorType=Window}}"
                  DisplayMemberPath="name"
-                 SelectedItem="{Binding IdItemNavigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 SelectedItem="{Binding IdNavigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="Количество"  Binding="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="*"/>
                 <DataGridTextColumn Header="Единица измерения" Binding="{Binding Unit}"  Width="*"/>
-                <DataGridTextColumn Header="Стоимость" Binding="{Binding PricePerUnit}" Width="*"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Price}" Width="*"/>
 
                 <DataGridTemplateColumn Header="НДС">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding NDS}"/>
+                            <TextBlock Text="{Binding Nds}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox  SelectedItem="{Binding NDS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox  SelectedItem="{Binding Nds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -83,7 +86,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <Grid Grid.Row="2">
+            <Button Margin="659,0,10,0" Height="20" Content="Подтвердить" Click="Button_ClickAddSup"/>
+        </Grid>
     </Grid>
-    
-    
+
 </Window>

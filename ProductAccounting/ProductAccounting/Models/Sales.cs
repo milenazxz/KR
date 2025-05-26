@@ -21,5 +21,7 @@ namespace ProductAccounting.Models
         public Clients IdClientNavigation { get; set; }
         public Warehouses IdWarehNavigation { get; set; }
 
+        public ICollection<ItemForSale> ItemForSales { get; set; }
+
     }
 }

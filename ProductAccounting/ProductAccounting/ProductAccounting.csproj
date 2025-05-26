@@ -188,7 +188,9 @@
     <Compile Include="Forms\FormForWriteOffs.xaml.cs">
       <DependentUpon>FormForWriteOffs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Itemsforsale.cs" />
+    <Compile Include="Models\itemsforsale.cs" />
+    <Compile Include="Models\itemsforsupply.cs" />
+    <Compile Include="Models\itemsforwriteoff.cs" />
     <Compile Include="Pages\SuppliesPage.xaml.cs">
       <DependentUpon>SuppliesPage.xaml</DependentUpon>
     </Compile>

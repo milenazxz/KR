@@ -95,12 +95,12 @@ namespace ProductAccounting.Controllers
 
         public async Task AddItemsForSale(int inpSale_id, List<int> items_id, List<int> items_quantity) 
         {
-            List<Itemsforsale> items = new List<Itemsforsale>();
+            List<ItemForSale> items = new List<ItemForSale>();
             using (ApplicationDbContext context = new ApplicationDbContext()) 
             {
                 for (int i = 0; i < items_id.Count(); i++) 
                 {
-                    items.Add(new Itemsforsale { id_sale = inpSale_id, id_item = items_id[i], quantity = items_quantity[i] });
+                    items.Add(new ItemForSale { id_sale = inpSale_id, id_item = items_id[i], quantity = items_quantity[i] });
                 }
                 await context.AddRangeAsync(items);
                 await context.SaveChangesAsync();

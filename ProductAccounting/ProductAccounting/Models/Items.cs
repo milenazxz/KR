@@ -25,6 +25,8 @@ namespace ProductAccounting.Models
         [Required]
         public string unit { get; set; }
 
-        public ICollection<Itemsforsale> itemsforsales { get; set; }
+        public ICollection<ItemForSale> ItemForSales { get; set; }
+        public ICollection<ItemsForSupply> itemsForSupplies { get; set; }
+        public ICollection<ItemsForWriteOff> itemsForWriteOffs { get; set; }
     }
 }

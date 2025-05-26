@@ -23,7 +23,8 @@ namespace ProductAccounting
         public DbSet<Supplies> supplies { get; set; }
 
 
-        public DbSet<Itemsforsale> itemsforsales { get; set; }
+        public DbSet<ItemForSale> itemsforsales { get; set; }
+        public DbSet<ItemsForSupply> itemsforsupply { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -101,11 +102,58 @@ namespace ProductAccounting
                 .OnDelete(DeleteBehavior.SetNull);
 
             //Настройка модели ItemsForSale
-            modelBuilder.Entity<Itemsforsale>()
-                .HasOne(ifs => ifs.IdItemNavigation)
-                .WithMany(it => it.itemsforsales)
-                .HasForeignKey(i => i.id_item)
+            modelBuilder.Entity<ItemForSale>(entity =>
+            {
+                entity.ToTable("itemsforsale"); // Явно указываем имя таблицы в snake_case
+
+                entity.HasKey(e => e.id);
+
+                entity.HasOne(e => e.IdSaleNavigation)
+                    .WithMany(s => s.ItemForSales) // Убедитесь, что в классе Sale есть public ICollection<ItemForSale> ItemForSales
+                    .HasForeignKey(e => e.id_sale)
+                    .OnDelete(DeleteBehavior.SetNull); // Будьте осторожны с SetNull — нужно, чтобы FK позволял NULL
+
+                entity.HasOne(e => e.IdItemNavigation)
+                    .WithMany(i => i.ItemForSales) // В классе Item должно быть public ICollection<ItemForSale> ItemForSales
+                    .HasForeignKey(e => e.id_item)
+                    .OnDelete(DeleteBehavior.SetNull);
+            });
+
+            //Настройка модели ItemsForSupply
+            modelBuilder.Entity<ItemsForSupply>(entity =>
+            {
+                entity.ToTable("itemsforsupply");
+                entity.HasKey(e => e.id);
+
+                entity.HasOne(e => e.IdSupplyNavigation)
+                .WithMany(sup => sup.itemsforsupplies)
+                .HasForeignKey(e => e.id_supply)
                 .OnDelete(DeleteBehavior.SetNull);
+
+                entity.HasOne(e => e.IdItemNavigation)
+                .WithMany(i => i.itemsForSupplies)
+                .HasForeignKey(e => e.id_item)
+                .OnDelete(DeleteBehavior.SetNull);
+            });
+
+            //Настройка модели ItemsForWriteOff
+            modelBuilder.Entity<ItemsForWriteOff>(entity => 
+            {
+                entity.ToTable("itemsforwriteoff");
+
+                entity.HasKey(e => e.id);
+
+                entity.HasOne(e => e.IdWriteOffNavigation)
+                .WithMany(wr => wr.writeOffs)
+                .HasForeignKey(e => e.id_writeoff)
+                .OnDelete(DeleteBehavior.SetNull);
+
+                entity.HasOne(e => e.IdItemNavigation)
+                .WithMany(i => i.itemsForWriteOffs)
+                .HasForeignKey(e => e.id_item)
+                .OnDelete(DeleteBehavior.SetNull);
+            });
+             
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

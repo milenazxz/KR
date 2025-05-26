@@ -17,5 +17,7 @@ namespace ProductAccounting.Models
 
         public employees IdEmpNavigation { get; set; }
         public Warehouses IdWarehNavigation { get; set; }
+
+        public ICollection<ItemsForWriteOff> writeOffs { get; set; }
     }
 }

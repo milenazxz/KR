@@ -173,6 +173,7 @@ namespace ProductAccounting.Forms
         private void Btn_AddSale(object sender, RoutedEventArgs e)
         {
             GetAddSale();
+            this.DialogResult = true;
             this.Close();
         }
 
