@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Warehouses> warehouses { get; set; }
         public DbSet<suppliers> suppliers { get; set; }

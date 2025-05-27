@@ -24,6 +24,10 @@ namespace ProductAccounting.Models
         [Required]
         public string contacts { get; set; }
 
+        public string login { get; set; }
+
+        public string emp_password { get; set; } 
+
         public ICollection<Warehouses> Warehouses { get; set; } 
         public ICollection <Sales> Sales { get; set; }
         public ICollection<Writeoffs> Writeoffs { get; set; }

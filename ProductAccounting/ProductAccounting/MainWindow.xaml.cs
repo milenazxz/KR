@@ -79,5 +79,11 @@ namespace ProductAccounting
         {
 
         }
+
+        private void AddUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RegistartionForm form = new RegistartionForm();
+            form.ShowDialog();
+        }
     }
 }

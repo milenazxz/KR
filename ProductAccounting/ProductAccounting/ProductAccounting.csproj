@@ -158,9 +158,13 @@
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SuppliesController.cs" />
     <Compile Include="Controllers\SuppliresController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WarehousesController.cs" />
     <Compile Include="Controllers\WriteOffsController.cs" />
     <Compile Include="DbFunctions.cs" />
+    <Compile Include="Forms\AuthorizationForm.xaml.cs">
+      <DependentUpon>AuthorizationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FindForm.xaml.cs">
       <DependentUpon>FindForm.xaml</DependentUpon>
     </Compile>
@@ -187,6 +191,9 @@
     </Compile>
     <Compile Include="Forms\FormForWriteOffs.xaml.cs">
       <DependentUpon>FormForWriteOffs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistartionForm.xaml.cs">
+      <DependentUpon>RegistartionForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\itemsforsale.cs" />
     <Compile Include="Models\itemsforsupply.cs" />
@@ -222,6 +229,10 @@
     <Compile Include="Pages\WarehousesPage.xaml.cs">
       <DependentUpon>WarehousesPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Forms\AuthorizationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\FindForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\FormForWriteOffs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\RegistartionForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

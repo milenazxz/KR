@@ -1,0 +1,33 @@
+﻿<Window x:Class="ProductAccounting.Forms.AuthorizationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProductAccounting.Forms"
+        mc:Ignorable="d"
+        Title="AuthorizationForm" Height="450" Width="800">
+    <Window.Resources>
+        <x:Array x:Key="AvailableRoles" Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+            <sys:String>Директор</sys:String>
+            <sys:String>Работник склада</sys:String>
+            <sys:String>Экономист-аналитик</sys:String>
+        </x:Array>
+    </Window.Resources>
+            <Grid>
+        <StackPanel Orientation="Vertical" Margin="241,158,453,157">
+            <Label x:Name="Login" Content="Логин" FontWeight="Bold" FontSize="20"/>
+            <Label x:Name="Password" Content="Пароль" FontWeight="Bold" FontSize="20"/>
+            <Label x:Name="Role" Content="Роль" FontWeight="Bold" FontSize="20"/>
+        </StackPanel>
+
+        <StackPanel Margin="400,158,216,157">
+            <TextBox x:Name="LoginField" Margin="0,5,0,23"/>
+            <PasswordBox x:Name="PasswordField"  Margin="0,0,0,21"/>
+            <ComboBox x:Name="RoleField" Margin="0,0,0,10" ItemsSource="{StaticResource AvailableRoles}"/>
+        </StackPanel>
+
+        <StackPanel Margin="294,298,245,99">
+            <Button x:Name="AuthorizationBtn" Content="Войти" FontWeight="Bold" Height="30" Width="200" Click="AuthorizationBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
