@@ -1,4 +1,5 @@
 ﻿using ProductAccounting.Forms;
+using ProductAccounting.Models;
 using ProductAccounting.Pages;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,15 @@ namespace ProductAccounting
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private CurrentUserData _currentUser;
+        public MainWindow(CurrentUserData currentUser)
         {
             InitializeComponent();
+            _currentUser = currentUser;
+            if (_currentUser.GetRole() == "Работник склада") //Ограничение функционала в зависимости от роли
+            {
+                UserTab.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Button_Click_Warehouses(object sender, RoutedEventArgs e)

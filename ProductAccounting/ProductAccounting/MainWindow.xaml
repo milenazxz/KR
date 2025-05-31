@@ -38,7 +38,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header ="Пользователи" FontWeight ="Bold">
+            <TabItem Header ="Пользователи" FontWeight ="Bold" x:Name="UserTab">
                 <Grid>
                     <Grid Name="Users"  Background="#E8F1FA">
                     <Button x:Name="OpenUserBtn" Width="360" Height="45" Content="Посмотреть список пользователей" Margin="0,223,0,138" HorizontalAlignment="Center"/>

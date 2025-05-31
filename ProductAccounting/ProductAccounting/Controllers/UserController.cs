@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -45,7 +46,7 @@ namespace ProductAccounting.Controllers
                             employees newEmployee = new employees { name = inpName, post = role, contacts = inpContacts, login = login, emp_password = hashPassword };
                             await context.AddAsync(newEmployee);
                             await context.SaveChangesAsync();
-                        
+                      
                     }
 
                 }
@@ -178,21 +179,23 @@ namespace ProductAccounting.Controllers
 
         }
 
-        public bool Authorization(string inpLogin, string inpPassword, string inpRole) 
+        public CurrentUserData Authorization(string inpLogin, string inpPassword, string inpRole) 
         {
             employees employee = null;
-            using (var connection = _context.Database.GetDbConnection())
+            var connection = _context.Database.GetDbConnection();
+            if (connection.State != ConnectionState.Open)
             {
                 connection.Open();
-
-                string request = "SELECT * FROM employees WHERE login = @Login AND post = @Role";
-                employee = connection.QueryFirstOrDefault<employees>(request, new { Login = inpLogin, Role = inpRole });
-                if (VerifyPassword(inpPassword, employee.emp_password))
-                {
-                    return true;
-                }
             }
-            return false;
+            string request = "SELECT * FROM employees WHERE login = @Login AND post = @Role";
+            employee = connection.QueryFirstOrDefault<employees>(request, new { Login = inpLogin, Role = inpRole });
+            if (VerifyPassword(inpPassword, employee.emp_password))
+            {
+                CurrentUserData currentUser = new CurrentUserData(employee.name, employee.post);
+                return currentUser;
+            }
+            
+            return null;
             
         }
     }
