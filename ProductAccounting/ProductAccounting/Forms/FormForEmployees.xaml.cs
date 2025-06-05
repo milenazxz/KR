@@ -19,6 +19,13 @@ namespace ProductAccounting.Forms
     /// <summary>
     /// Логика взаимодействия для FormForEmployees.xaml
     /// </summary>
+    
+    public class EmployeeDTO
+    {
+        public string name { get; set; }
+        public string post { get; set; }
+        public string contacts { get; set; }
+    }
     public partial class FormForEmployees : Window
     {
         EmployeesController controller = new EmployeesController();
@@ -36,10 +43,10 @@ namespace ProductAccounting.Forms
         }
         public async Task LoadSupplierData(int ID)
         {
-            employees supplier = await controller.LoadDataEmp(ID);
-            NameEmployee.Text = supplier.name;
-            PostEmployee.Text = supplier.post;
-            ContacntEmployee.Text = supplier.contacts;
+            EmployeeDTO employeeDTO = await controller.LoadDataEmp(ID);
+            NameEmployee.Text = employeeDTO.name;
+            PostEmployee.Text = employeeDTO.post;
+            ContacntEmployee.Text = employeeDTO.contacts;
         }
         public async void AddEmployee(object sender, EventArgs e)
         {

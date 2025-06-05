@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -20,12 +21,18 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task<employees> LoadDataEmp(int ID)
+        public async Task<EmployeeDTO> LoadDataEmp(int ID)
         {
             using (var context = new ApplicationDbContext())
             {
-                var item = await context.Set<employees>().FirstOrDefaultAsync(i => i.id == ID);
-                return item;
+                employees employee= await context.Set<employees>().FirstOrDefaultAsync(i => i.id == ID);
+                EmployeeDTO employeeDTO = new EmployeeDTO
+                {
+                    name = employee.name,
+                    post = employee.post,
+                    contacts = employee.contacts,
+                };
+                return employeeDTO;
             }
         }
 

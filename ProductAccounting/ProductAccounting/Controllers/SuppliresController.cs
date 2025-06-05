@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -23,12 +24,22 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task<suppliers> LoadDataSup(int ID) 
+        public async Task<SupplyerDTO> LoadDataSup(int ID) 
         {
             using (var context = new ApplicationDbContext()) 
             {
-                var loadedItem = await context.Set<suppliers>().FirstOrDefaultAsync(i => i.id == ID);
-                return loadedItem;
+                suppliers supplyer = await context.Set<suppliers>().FirstOrDefaultAsync(i => i.id == ID);
+                SupplyerDTO supplyerDTO = new SupplyerDTO
+                {
+                    name = supplyer.name,
+                    organform = supplyer.organform,
+                    city = supplyer.city,
+                    address = supplyer.address,
+                    rating = supplyer.rating,
+                    phonenumber = supplyer.phonenumber,
+                    email = supplyer.email,
+                };
+                return supplyerDTO;
             }
         }
         public async Task DeleteSupplier(IList selectedItems) 
@@ -47,6 +58,31 @@ namespace ProductAccounting.Controllers
             suppliers supplier = new suppliers { name = Name, organform = Organform, city = City, address = Address, rating = Rating, phonenumber = Phone, email = Email};
             await DbFunctions.AddData<suppliers>(supplier);
             return true;
+        }
+
+        public async Task<bool> ChangeSupplier(int IdSupplier, string name, string organform, string city, string address, int rating, string phone, string email)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                suppliers supplyer = context.Set<suppliers>().FirstOrDefault(s => s.id == IdSupplier);
+                if (supplyer != null)
+                {
+                    supplyer.name = name;
+                    supplyer.organform = organform;
+                    supplyer.city = city;
+                    supplyer.address = address;
+                    supplyer.rating = rating;
+                    supplyer.phonenumber = phone;
+                    supplyer.email = email;
+                    await DbFunctions.ChangeData<suppliers>(supplyer);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
         }
     }
 }

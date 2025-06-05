@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Xml.Linq;
 using System.Windows.Threading;
 using System.Linq.Expressions;
+using ProductAccounting.Forms;
 
 
 namespace ProductAccounting.Controllers
@@ -28,21 +29,52 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task<Warehouses> LoadDataWarehouse(int IdItem) 
+        public async Task<WarehouseDTO> LoadDataWarehouse(int IdItem) 
         {
             using (var context = new ApplicationDbContext())
             {
                 var item = await context.Set<Warehouses>().FirstOrDefaultAsync(w => w.id == IdItem);
-                return item;
+                WarehouseDTO warehouseDTO = new WarehouseDTO
+                {
+                    Name = item.name,
+                    City = item.city,
+                    Address = item.address,
+                    Id_head = item.id_head,
+                };
+                return warehouseDTO;
             }
             
         }
         
-        public async Task<bool> AddWarehouse(string Name, string City, string Address, int Head)
+        public async Task<bool> AddWarehouse(WarehouseDTO warehouseDTO)
         {
-            result = new Warehouses() { name = Name, city = City, address = Address, id_head = Head};
+            result = new Warehouses() { name = warehouseDTO.Name, city = warehouseDTO.City, address = warehouseDTO.Address, id_head = warehouseDTO.Id_head};
             await DbFunctions.AddData<Warehouses>(result);
             return true;
+        }
+
+        public async Task<bool> ChangeWarehouse(int IdWareHouse, WarehouseUpdateDTO warehouseUpdateDTO, List<string> changedFields)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                Warehouses warehouse = context.Set<Warehouses>().FirstOrDefault(w => w.id == IdWareHouse);
+                if(warehouse == null) return false;
+                if (changedFields.Contains(nameof(WarehouseUpdateDTO.Name)))
+                    warehouse.name = warehouseUpdateDTO.Name;
+
+                if (changedFields.Contains(nameof(WarehouseUpdateDTO.City)))
+                    warehouse.city = warehouseUpdateDTO.City;
+
+                if (changedFields.Contains(nameof(WarehouseUpdateDTO.Address)))
+                    warehouse.address = warehouseUpdateDTO.Address;
+
+                if (changedFields.Contains(nameof(WarehouseUpdateDTO.Id_head)))
+                    warehouse.id_head = warehouseUpdateDTO.Id_head;
+
+                await DbFunctions.ChangeData<Warehouses>(warehouse);
+                return true;
+            }
+
         }
 
         public async Task DeleteWarehouses(IList selectItems) 

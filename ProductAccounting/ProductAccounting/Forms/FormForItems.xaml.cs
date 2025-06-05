@@ -18,6 +18,16 @@ namespace ProductAccounting.Forms
     /// <summary>
     /// Логика взаимодействия для FormForItems.xaml
     /// </summary>
+    
+    public class ItemDTO
+    {
+        public string name { get; set; }
+        public string producttype { get; set; }
+        public string color { get; set; }
+        public double price { get; set; }
+        public double magnitude { get; set; }
+        public string unit { get; set; }
+    }
     public partial class FormForItems : Window
     {
         ItemsController controller = new ItemsController();
@@ -34,7 +44,16 @@ namespace ProductAccounting.Forms
                 await LoadItemsAsync(ID);
             };
         }
-
+        private async Task LoadItemsAsync(int ID)
+        {
+            ItemDTO itemDTO = await controller.LoadDataItem(ID);
+            NameItem.Text = itemDTO.name;
+            TypeItem.Text = itemDTO.producttype;
+            ColorItem.Text = itemDTO.color;
+            PriceItem.Text = itemDTO.price.ToString();
+            MagnitudeItem.Text = itemDTO.magnitude.ToString();
+            UnitItem.Text = itemDTO.unit;
+        }
         private async void AddItem_Click(object sender, RoutedEventArgs e)
         {
             string name = NameItem.Text;
@@ -64,16 +83,7 @@ namespace ProductAccounting.Forms
                
         }
 
-        private async Task LoadItemsAsync(int ID)
-        {
-            var item = await controller.LoadDataItem(ID);
-            NameItem.Text = item.name;
-            TypeItem.Text = item.producttype;
-            ColorItem.Text = item.color;
-            PriceItem.Text = item.price.ToString();
-            MagnitudeItem.Text = item.magnitude.ToString();
-            UnitItem.Text = item.unit;
-        }
+       
     }
 
 }

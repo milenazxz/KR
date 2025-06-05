@@ -3,6 +3,7 @@ using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,15 +65,25 @@ namespace ProductAccounting.Pages
 
         private async void Changewarehouses_Click(object sender, RoutedEventArgs e)
         {
+            int selectedItemID;
             var selectedItem = (Warehouses)warehousesGrid.SelectedItem;
-            int selectedItemID = selectedItem.id;
-
-            var window = new FormForWarehouses(selectedItemID);
-            bool? dialogResult = window.ShowDialog();
-            if (dialogResult == true)
+            if(selectedItem != null)
             {
-                warehousesGrid.ItemsSource = await controller.RefreshAsync();
+                selectedItemID = selectedItem.id;
+                var window = new FormForWarehouses(selectedItemID);
+                bool? dialogResult = window.ShowDialog();
+                if (dialogResult == true)
+                {
+                    warehousesGrid.ItemsSource = await controller.RefreshAsync();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста выберите запись");
             }
         }
+            
+
+            
     }
 }

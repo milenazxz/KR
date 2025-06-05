@@ -26,7 +26,7 @@ namespace ProductAccounting
     public partial class MainWindow : Window
     {
         private CurrentUserData _currentUser;
-        public MainWindow(CurrentUserData currentUser)
+       /* public MainWindow(CurrentUserData currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
@@ -34,6 +34,11 @@ namespace ProductAccounting
             {
                 UserTab.Visibility = Visibility.Hidden;
             }
+        }*/
+        public MainWindow()
+        {
+            InitializeComponent();
+           
         }
 
         private void Button_Click_Warehouses(object sender, RoutedEventArgs e)

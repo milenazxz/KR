@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace ProductAccounting.Controllers
 {
@@ -19,12 +21,21 @@ namespace ProductAccounting.Controllers
                 return items;
             }
         }
-        public async Task<Items> LoadDataItem(int IdItem)
+        public async Task<ItemDTO> LoadDataItem(int IdItem)
         {
             using (var context = new ApplicationDbContext())
             {
-                var item = await context.Set<Items>().FirstOrDefaultAsync(i => i.id == IdItem);
-                return item;
+                Items item = await context.Set<Items>().FirstOrDefaultAsync(i => i.id == IdItem);
+                ItemDTO itemDTO = new ItemDTO
+                {
+                    name = item.name,
+                    producttype = item.producttype,
+                    color = item.color,
+                    price = item.price,
+                    magnitude = item.magnitude,
+                    unit = item.unit,
+                };
+                return itemDTO;
             }
 
         }

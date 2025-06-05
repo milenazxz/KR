@@ -3,6 +3,7 @@ using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,12 +20,27 @@ namespace ProductAccounting.Forms
     /// <summary>
     /// Логика взаимодействия для FormForSupplires.xaml
     /// </summary>
+    /// 
+    public class SupplyerDTO
+    {
+        public string name { get; set; }
+        public string organform { get; set; }
+        public string city { get; set; }
+        public string  address { get; set; }
+        public int rating { get; set; }
+        public string phonenumber { get; set; }
+        public string email { get; set; }
+}
     public partial class FormForSupplires : Window
     {
+        private int IdSupplier;
+        private bool _forCreate;
+
         SuppliresController controller = new SuppliresController();
         public FormForSupplires()
         {
             InitializeComponent();
+            _forCreate = true;
         }
 
         public FormForSupplires(int ID)
@@ -34,11 +50,13 @@ namespace ProductAccounting.Forms
             {
                 await LoadSupplierData(ID);
             };
+            _forCreate = false;
+            IdSupplier = ID;
         }
 
         public async Task LoadSupplierData(int ID) 
         {
-            suppliers supplier = await controller.LoadDataSup(ID);
+            SupplyerDTO supplier = await controller.LoadDataSup(ID);
             NameSupplire.Text = supplier.name;
             OrganformSupplire.Text = supplier.organform;
             CitySupplire.Text= supplier.city;
@@ -57,11 +75,12 @@ namespace ProductAccounting.Forms
             int rating = Convert.ToInt32(RatingSupplire.Text);
             string phone = PhoneNumberSupplire.Text;
             string email = EmailSupplire.Text;
+
             if (!string.IsNullOrEmpty(name) & !string.IsNullOrEmpty(organform) & !string.IsNullOrEmpty(city) & !string.IsNullOrEmpty(address) & rating != 0 & !string.IsNullOrEmpty(phone) & !string.IsNullOrEmpty(email))
             {
-                bool succses = await controller.AddSupplier(name, organform, city, address, rating, phone, email);
-                if (succses)
+                if (_forCreate)
                 {
+                    bool succses = await controller.AddSupplier(name, organform, city, address, rating, phone, email);
                     if (succses)
                     {
                         DialogResult = true;
@@ -70,7 +89,21 @@ namespace ProductAccounting.Forms
                     {
                         MessageBox.Show("Возникла ошибка при добавлении поставщика");
                     }
+
                 }
+                else
+                {
+                    bool success = await controller.ChangeSupplier(IdSupplier, name, organform, city, address, rating, phone, email);
+                    if (success)
+                    {
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка при обновлении данных поставщика (возможно, поставщика с таким названием уже существует)");
+                    }
+                }
+              
             }
             else 
             {

@@ -54,12 +54,20 @@ namespace ProductAccounting.Pages
         private async void ChangeClientBtn(object sender, EventArgs e) 
         {
             Clients selectedItem = (Clients)clientsGrid.SelectedItem;
-            var dialogWin = new FormForClients(selectedItem.id);
-            bool? resualtDialog = dialogWin.ShowDialog();
-            if (resualtDialog == true) 
+            if(selectedItem != null)
             {
-                clientsGrid.ItemsSource = await controller.RefreshAsync();
+                var dialogWin = new FormForClients(selectedItem.id);
+                bool? resualtDialog = dialogWin.ShowDialog();
+                if (resualtDialog == true)
+                {
+                    clientsGrid.ItemsSource = await controller.RefreshAsync();
+                }
             }
+            else
+            {
+                MessageBox.Show("Пожалуйста выберете запись");
+            }
+           
         }
 
         private async void AddClient(object sender, EventArgs e)

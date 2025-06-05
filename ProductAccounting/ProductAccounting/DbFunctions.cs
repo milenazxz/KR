@@ -9,11 +9,13 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductAccounting
@@ -93,8 +95,15 @@ namespace ProductAccounting
                 
                 }
             }
-            
-            
+        }
+
+        public static async Task ChangeData<T>(T dataObject) where T: class
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                 context.Update<T>(dataObject);
+                 await context.SaveChangesAsync();
+            }
         }
 
         /*Функция обновления данных*/

@@ -18,6 +18,19 @@ namespace ProductAccounting.Forms
     /// <summary>
     /// Логика взаимодействия для FormForClients.xaml
     /// </summary>
+    
+    public class ClientDTO
+    {
+        public string name { get; set; }
+        public string organform { get; set; }
+        public string city { get; set; }
+
+        public string address { get; set; }
+
+        public string phonenumber { get; set; }
+        public string email { get; set; }
+    }
+    
     public partial class FormForClients : Window
     {
         ClientsController controller = new ClientsController();
@@ -38,13 +51,13 @@ namespace ProductAccounting.Forms
 
         private async Task LoadClientData(int ID) 
         {
-           var item = await controller.LoadDataClient(ID);
-            NameClient.Text = item.name;
-            OrganformClient.Text = item.organform;
-            CityClient.Text = item.city;
-            AddressClient.Text = item.address;
-            PhoneNumberClient.Text = item.phonenumber;
-            EmailClient.Text = item.email;
+            ClientDTO clientDTO = await controller.LoadDataClient(ID);
+            NameClient.Text = clientDTO.name;
+            OrganformClient.Text = clientDTO.organform;
+            CityClient.Text = clientDTO.city;
+            AddressClient.Text = clientDTO.address;
+            PhoneNumberClient.Text = clientDTO.phonenumber;
+            EmailClient.Text = clientDTO.email;
         }
         
         public async void AddEmployee (object sender, EventArgs e)
