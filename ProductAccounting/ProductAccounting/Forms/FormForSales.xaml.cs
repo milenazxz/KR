@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -135,7 +136,7 @@ namespace ProductAccounting.Forms
         {
             InitializeComponent();
 
-            DataContext = this; // важно для биндинга
+            DataContext = this;
 
             Loaded += async (s, e) =>
             {
@@ -185,6 +186,7 @@ namespace ProductAccounting.Forms
             if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId && ClientComboBox.SelectedValue is int SelectedClientID)
             {
                 DateTime date = (DateTime)datePicker1.SelectedDate;
+                string rusDate = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
                 id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, date);
                 
                 if (id_sale >= 0) 

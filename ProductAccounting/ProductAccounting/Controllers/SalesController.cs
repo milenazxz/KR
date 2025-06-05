@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -9,6 +10,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Xml.Linq;
 
 namespace ProductAccounting.Controllers
 {
@@ -82,7 +85,7 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task<int> AddSale(int inpId_head, int inpId_warehouse, int inpId_client, DateTime date) 
+        public async Task<int> AddSale(int inpId_head, int inpId_warehouse, int inpId_client, string date) 
         {
             using (ApplicationDbContext context = new ApplicationDbContext()) 
             {
@@ -95,6 +98,7 @@ namespace ProductAccounting.Controllers
 
         public async Task AddItemsForSale(int inpSale_id, List<int> items_id, List<int> items_quantity) 
         {
+            //переписать на словарь item_id ключ, а items_quantity значение
             List<ItemForSale> items = new List<ItemForSale>();
             using (ApplicationDbContext context = new ApplicationDbContext()) 
             {
@@ -104,6 +108,91 @@ namespace ProductAccounting.Controllers
                 }
                 await context.AddRangeAsync(items);
                 await context.SaveChangesAsync();
+            }
+        }
+
+        public void SaleXml(int inpId_head, int inpId_warehouse, int clientID, string date, int inpSale_id, List<int> items_id, List<int> items_quantity) 
+        {
+            Clients clientData = null;
+            List<Items> items = new List<Items>();
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                clientData = context.clients.FirstOrDefault(c => c.id == clientID);
+                foreach (var id in items_id) 
+                {
+                    items.Add(context.items.FirstOrDefault(i => i.id == id));
+                }
+            }
+                XDocument xdoc = XDocument.Load("ON_NSCHFDOPPR_1105312123110501001_1102212112110201001_20250605_997ca06b-153f-4464-be64-7fd65b5e834a_0_0_0_0_0_00.xml");
+            XElement root = xdoc.Element("Файл");
+            if (root == null) 
+            {
+                MessageBox.Show("Элемент \"Файл\" не найден");
+                return;
+            }
+           
+            XElement doc = root.Element("Документ");
+            if(doc == null)
+            {
+                MessageBox.Show("Элемент \"Документ\" не найден");
+                return;
+
+            }
+           
+            XElement theInvoice = doc.Element("СвСчФакт");
+            if(theInvoice != null)
+            {
+                List<XAttribute> attributes = theInvoice.Attributes().ToList();
+                attributes[0].Value = inpSale_id.ToString();
+                attributes[1].Value = date;
+            }
+            else
+            {
+                return;
+            }
+
+            XElement client = theInvoice.Element("СвПокуп");
+            if(client != null) 
+            {
+                //supplier.Attribute
+                List<XElement> allDescendants = client.Descendants().ToList();
+
+                List<XAttribute> clientAtrs = allDescendants[1].Attributes().ToList(); //СвЮЛУч
+                clientAtrs[0].Value = clientData.name; //Атрибут НаимОрг
+
+                List<XAttribute> addressAtrs = allDescendants[3].Attributes().ToList();//АдрИнф 
+                addressAtrs[2].Value = clientData.address; // Атрибут АдрТекст
+            }
+            else
+            {
+                MessageBox.Show("Элемент \"СвПокуп\" не найден");
+            }
+
+            XElement tableTheInvoice = doc.Element("ТаблСчФакт");
+            if(tableTheInvoice != null)
+            {
+                List<XElement> allElementsTheInvoice = tableTheInvoice.Descendants().ToList();
+                allElementsTheInvoice[0].Remove(); //Очищаем стврые сведенья о товарах
+                foreach(Items item in items)
+                {
+                    XElement itemData = new XElement("СведТов");
+                    XAttribute rowNub = new XAttribute("НомСтр", "1");
+                    XAttribute itemName = new XAttribute("НаимТов", $"{item.name}");
+                    XAttribute unitItem = new XAttribute("НаимЕдИзм", $"{item.unit}");
+                    //XAttribute quantity = new XAttribute("КолТов", $"{item.unit}"); доставть из словаря по item.ifd значение
+                    XAttribute priceItem = new XAttribute("ЦенаТов", $"{item.price}");
+                    //XAttribute priceItems = new XAttribute("СтТовБезНДС", $"{item.price * }"); доставть из словаря по item.ifd значение и умножить
+                    //XAttribute nsdItem = new XAttribute("НалСт", ${ item.nds });
+                    //XAttribute totalPriceItems = new XAttribute("СтТовУчНал", $"{item.price * }"); доставть из словаря по item.ifd значение и умножить еще посичтать налог
+                    XElement TaxForItem = new XElement("СумНал"); //нужно будет продублтровать при добавлении
+                    XElement total = new XElement("ВсегоОпл");
+                    //XAttribute totalSum = new XAttribute("СтТовБезНДСВсего", $"{item.price * }"); доставть из словаря по item.ifd значение и умножить
+                    //XAttribute totalSumWithNds = new XAttribute("СтТовУчНалВсего", $"{item.price * }"); доставть из словаря по item.ifd значение и умножить
+                    XElement totalSumTax = new XElement("СумНалВсего");
+
+                }
+
+
             }
         }
     }

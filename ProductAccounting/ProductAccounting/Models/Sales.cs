@@ -15,7 +15,7 @@ namespace ProductAccounting.Models
         public int? id_warehouse { get; set; }
 
         [Required]
-        public DateTime date { get; set; }
+        public string date { get; set; }
 
         public employees IdEmpNavigation { get; set; }
         public Clients IdClientNavigation { get; set; }

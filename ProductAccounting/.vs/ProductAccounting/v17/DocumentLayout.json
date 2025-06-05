@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\KR\\KR\\ProductAccounting\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforsales.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforsales.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforwarehouses.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforwarehouses.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -30,11 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "FormForSales.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "RelativeToolTip": "ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAQwIkAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T13:03:44.488Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "FormForWarehouses.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWarehouses.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForWarehouses.xaml",
@@ -45,20 +62,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FormForWarehouses.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWarehouses.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForWarehouses.xaml.cs",
               "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWarehouses.xaml.cs",
               "RelativeToolTip": "ProductAccounting\\Forms\\FormForWarehouses.xaml.cs",
-              "ViewState": "AQIAAHEAAAAAAAAAAAAwwKcAAAAIAAAA",
+              "ViewState": "AQIAAJcAAAAAAAAAAAAiwKcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-03T10:12:35.179Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "WarehousesController.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Controllers\\WarehousesController.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Controllers\\WarehousesController.cs",
@@ -70,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AuthorizationForm.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\AuthorizationForm.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\AuthorizationForm.xaml",
@@ -81,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthorizationForm.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\AuthorizationForm.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\Forms\\AuthorizationForm.xaml.cs",
