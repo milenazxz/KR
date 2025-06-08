@@ -46,8 +46,15 @@
                     </Grid>
                 </Grid>
             </TabItem>
-                
-                
+            
+            <TabItem Header ="Журнал изменений" FontWeight ="Bold" x:Name="ChangesTab">
+                <Grid>
+                    <Grid Name="Changes"  Background="#E8F1FA">
+                        <Button x:Name="OpenChangesBtn" Width="360" Height="45" Content="Открыть журнал изменений" Margin="0,174,0,187" HorizontalAlignment="Center" Click="OpenChangesBtn_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
         </TabControl>
         <Grid Name="PageLayer" Visibility="Hidden">
             <Frame Name="FrameInformation" NavigationUIVisibility="Hidden"/>

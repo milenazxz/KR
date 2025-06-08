@@ -153,6 +153,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\BackupsDataBase.cs" />
+    <Compile Include="Controllers\ChangesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -200,6 +201,9 @@
     <Compile Include="Models\itemsforsale.cs" />
     <Compile Include="Models\itemsforsupply.cs" />
     <Compile Include="Models\itemsforwriteoff.cs" />
+    <Compile Include="Pages\ChangesPage.xaml.cs">
+      <DependentUpon>ChangesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SuppliesPage.xaml.cs">
       <DependentUpon>SuppliesPage.xaml</DependentUpon>
     </Compile>
@@ -272,6 +276,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\RegistartionForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChangesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

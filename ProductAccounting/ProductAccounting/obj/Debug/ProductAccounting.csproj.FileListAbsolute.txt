@@ -193,3 +193,5 @@ D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\AuthorizationForm.g
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\AuthorizationForm.baml
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\RegistartionForm.g.cs
 D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Forms\RegistartionForm.baml
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\ChangesPage.g.cs
+D:\KR\KR\ProductAccounting\ProductAccounting\obj\Debug\Pages\ChangesPage.baml

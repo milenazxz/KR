@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using System.Windows.Threading;
 using System.Linq.Expressions;
 using ProductAccounting.Forms;
+using static ProductAccounting.Logger;
 
 
 namespace ProductAccounting.Controllers
@@ -55,6 +56,7 @@ namespace ProductAccounting.Controllers
 
         public async Task<bool> ChangeWarehouse(int IdWareHouse, WarehouseUpdateDTO warehouseUpdateDTO, List<string> changedFields)
         {
+
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 Warehouses warehouse = context.Set<Warehouses>().FirstOrDefault(w => w.id == IdWareHouse);

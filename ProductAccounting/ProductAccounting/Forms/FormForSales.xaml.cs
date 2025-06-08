@@ -187,7 +187,7 @@ namespace ProductAccounting.Forms
             {
                 DateTime date = (DateTime)datePicker1.SelectedDate;
                 string rusDate = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
-                id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, date);
+                id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, rusDate);
                 
                 if (id_sale >= 0) 
                 {
@@ -206,6 +206,7 @@ namespace ProductAccounting.Forms
 
                     }
                    await controller.AddItemsForSale(id_sale, items_id, item_quantity);
+
                 }
             }
             else 

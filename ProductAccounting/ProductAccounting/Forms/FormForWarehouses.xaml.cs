@@ -34,37 +34,25 @@ namespace ProductAccounting.Forms
 
         public string Name
         {
-            get { return _name; }
-            set
-            {
-                 _name = value;
-            }
+            get => _name;
+            set {_name = value;}
         }
 
         public string City
         {
             get => _city;
-            set
-            {
-               _city = value;
-            }
+            set {_city = value;}
         }
         public string Address
         {
             get => _address;
-            set
-            {
-               _address = value;
-            }
+            set {_address = value;}
         }
 
         public int? Id_head
         {
             get => _id_haed;
-            set
-            {
-                _id_haed = value;
-            }
+            set{_id_haed = value;}
         }
       
     }
@@ -212,6 +200,7 @@ namespace ProductAccounting.Forms
                     bool success = await controller.AddWarehouse(newDto);
                     if (success) DialogResult = true;
                     else MessageBox.Show("Ошибка при добавлении склада");
+                    Logger.Log($"Пользователь создал новый склад в справочнике warehouses {DateTime.Now} \n");
                 }
                 else
                 {
@@ -225,6 +214,7 @@ namespace ProductAccounting.Forms
                     bool success = await controller.ChangeWarehouse(IdWareHouse, _curreentWarehouseDTO, changes);
                     if (success) DialogResult = true;
                     else MessageBox.Show("Ошибка при обновлении склада");
+                    Logger.Log($"Пользователь внес изменения в справочник warehouses {DateTime.Now} \n");
                 }
             }
             else

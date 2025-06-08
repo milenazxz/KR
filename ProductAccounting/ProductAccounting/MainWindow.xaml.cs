@@ -34,11 +34,12 @@ namespace ProductAccounting
             {
                 UserTab.Visibility = Visibility.Hidden;
             }
+            Logger.wasChanged += Logger.PrintChangesToFile;
         }*/
         public MainWindow()
         {
             InitializeComponent();
-           
+            Logger.wasChanged += Logger.PrintChangesToFile;
         }
 
         private void Button_Click_Warehouses(object sender, RoutedEventArgs e)
@@ -87,15 +88,17 @@ namespace ProductAccounting
             PageLayer.Visibility = Visibility.Visible;
         }
 
-        private void OpenHandBook(object sender, MouseButtonEventArgs e)
-        {
-
-        }
 
         private void AddUserBtn_Click(object sender, RoutedEventArgs e)
         {
             RegistartionForm form = new RegistartionForm();
             form.ShowDialog();
+        }
+
+        private void OpenChangesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FrameInformation.Navigate(new ChangesPage());
+            PageLayer.Visibility = Visibility.Visible;
         }
     }
 }

@@ -61,6 +61,7 @@ namespace ProductAccounting.Pages
             var selectedWarehouse = warehousesGrid.SelectedItems;
             await controller.DeleteWarehouses(selectedWarehouse);
             warehousesGrid.ItemsSource = await controller.RefreshAsync();
+            Logger.Log($"Пользователь удалил склад в справочнике warehouses {DateTime.Now} \n");
         }
 
         private async void Changewarehouses_Click(object sender, RoutedEventArgs e)
