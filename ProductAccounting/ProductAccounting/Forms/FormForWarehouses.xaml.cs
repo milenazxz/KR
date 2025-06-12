@@ -7,9 +7,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,6 +39,7 @@ namespace ProductAccounting.Forms
             get => _name;
             set {_name = value;}
         }
+
 
         public string City
         {
@@ -101,6 +104,7 @@ namespace ProductAccounting.Forms
                 OnPropertyChanged();
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propName = null)
         {
@@ -135,6 +139,7 @@ namespace ProductAccounting.Forms
             _curreentWarehouseDTO = new WarehouseUpdateDTO();
             this.DataContext = _curreentWarehouseDTO;
             _forCreate = true;
+             Loaded += async (s, e) => await LoadComboBoxAsync();
         }
         public FormForWarehouses(int ID)
         {
@@ -160,13 +165,14 @@ namespace ProductAccounting.Forms
                 Name = _originalWarehouseDTO.Name,
                 City = _originalWarehouseDTO.City,
                 Address = _originalWarehouseDTO.Address,
-                Id_head = _originalWarehouseDTO.Id_head
+                Id_head = _originalWarehouseDTO.Id_head,
+
             };
 
             Namewarehouse.Text = _curreentWarehouseDTO.Name;
             Citywarehouse.Text = _curreentWarehouseDTO.City;
             Addresswarehouse.Text = _curreentWarehouseDTO.Address;
-            //HeadwarhouseComboBox.SelectedValue = _curreentWarehouseDTO.IdHeadNavigation;
+            HeadwarhouseComboBox.SelectedValue = _curreentWarehouseDTO.Id_head;
         }
 
         private async Task LoadComboBoxAsync()

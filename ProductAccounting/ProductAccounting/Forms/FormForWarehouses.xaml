@@ -35,7 +35,7 @@
             </Border>
             <Separator Height="10" Background="#E8F1FA"/>
             <Border>
-                <ComboBox x:Name="HeadwarhouseComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" />
+                <ComboBox x:Name="HeadwarhouseComboBox" DisplayMemberPath="Value" SelectedValuePath="Key"/>
             </Border>
         </StackPanel>
         

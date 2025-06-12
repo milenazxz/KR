@@ -34,7 +34,8 @@ namespace ProductAccounting.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                var item = await context.Set<Warehouses>().FirstOrDefaultAsync(w => w.id == IdItem);
+                var item = await context.Set<Warehouses>().Include(w=> w.IdHeadNavigation)
+                    .FirstOrDefaultAsync(w => w.id == IdItem);
                 WarehouseDTO warehouseDTO = new WarehouseDTO
                 {
                     Name = item.name,

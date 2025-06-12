@@ -100,5 +100,11 @@ namespace ProductAccounting
             FrameInformation.Navigate(new ChangesPage());
             PageLayer.Visibility = Visibility.Visible;
         }
+
+        private void Show_Btn_Users(object sender, RoutedEventArgs e)
+        {
+            FrameInformation.Navigate(new UsersPage());
+            PageLayer.Visibility = Visibility.Visible;
+        }
     }
 }

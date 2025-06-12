@@ -25,6 +25,10 @@ namespace ProductAccounting.Controllers
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+        public UserController()
+        {
+
+        }
         public async Task Registration(string login, string password, string role, string inpName, string inpContacts) 
         {
             employees employee = null;
@@ -197,6 +201,15 @@ namespace ProductAccounting.Controllers
             
             return null;
             
+        }
+
+        public async Task<List<employees>> LoadDataUsers()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                return await context.Set<employees>().ToListAsync();
+              
+            }
         }
     }
 }
