@@ -2,7 +2,10 @@
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,20 +25,111 @@ namespace ProductAccounting.Forms
     
     public class EmployeeDTO
     {
-        public string name { get; set; }
-        public string post { get; set; }
-        public string contacts { get; set; }
+        private string _name { get; set; }
+        private string _post { get; set; }
+        private string _contacts { get; set; }
+
+        public string Name 
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+            }
+        }
+        public string Post
+        {
+            get => _post;
+            set
+            {
+                _post = value;
+            }
+
+        }
+        public string Contacts
+        {
+            get => _contacts;
+            set
+            {
+                _contacts = value;
+            }
+        }
+    }
+
+    public class EmployeeUpdateDTO:INotifyPropertyChanged
+    {
+        private string _name { get; set; }
+        private string _post { get; set; }
+        private string _contacts { get; set; }
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Post
+        {
+            get => _post;
+            set
+            {
+                _post = value;
+                OnPropertyChanged();
+            }
+
+        }
+        public string Contacts
+        {
+            get => _contacts;
+            set
+            {
+                _contacts = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+
+    }
+    public static class EmployeeComparer
+    {
+        public static List<string> GetChangedFields(EmployeeDTO originalDTO, EmployeeUpdateDTO currentDTO)
+        {
+            List<string> changedFields = new List<string>();
+            if (originalDTO.Name != currentDTO.Name) changedFields.Add(nameof(currentDTO.Name));
+            if (originalDTO.Post != currentDTO.Post) changedFields.Add(nameof(currentDTO.Post));
+            if (originalDTO.Contacts != currentDTO.Contacts) changedFields.Add(nameof(currentDTO.Contacts));
+            return changedFields;
+        }
     }
     public partial class FormForEmployees : Window
     {
         EmployeesController controller = new EmployeesController();
+        private EmployeeDTO _origrnalDTO;
+        private EmployeeUpdateDTO _currentDTO;
+        private bool _forCreate;
+        private int _idEmployee;
         public FormForEmployees()
         {
             InitializeComponent();
+            _currentDTO = new EmployeeUpdateDTO();
+            this.DataContext = _currentDTO;
+            _forCreate = true;
         }
         public FormForEmployees(int ID)
         {
             InitializeComponent();
+            _currentDTO = new EmployeeUpdateDTO();
+            this.DataContext = _currentDTO;
+            _idEmployee = ID;
+            _forCreate = false;
             Loaded += async (s, e) =>
             {
                 await LoadSupplierData(ID);
@@ -43,31 +137,60 @@ namespace ProductAccounting.Forms
         }
         public async Task LoadSupplierData(int ID)
         {
-            EmployeeDTO employeeDTO = await controller.LoadDataEmp(ID);
-            NameEmployee.Text = employeeDTO.name;
-            PostEmployee.Text = employeeDTO.post;
-            ContacntEmployee.Text = employeeDTO.contacts;
+            _origrnalDTO = await controller.LoadDataEmp(ID);
+            _currentDTO = new EmployeeUpdateDTO
+            {
+                Name = _origrnalDTO.Name,
+                Post = _origrnalDTO.Post,
+                Contacts = _origrnalDTO.Contacts,
+            };
+            NameEmployee.Text = _currentDTO.Name;
+            PostEmployee.Text = _currentDTO.Post;
+            ContacntEmployee.Text = _currentDTO.Contacts;
         }
         public async void AddEmployee(object sender, EventArgs e)
         {
-            string name = NameEmployee.Text;
-            string post = PostEmployee.Text;
-            string contacts = ContacntEmployee.Text;
+            _currentDTO.Name = NameEmployee.Text;
+            _currentDTO.Post = PostEmployee.Text;
+            _currentDTO.Contacts = ContacntEmployee.Text;
             
-            if (!string.IsNullOrEmpty(name) & !string.IsNullOrEmpty(post) & !string.IsNullOrEmpty(contacts)) 
+            if (!string.IsNullOrEmpty(_currentDTO.Name) 
+                && !string.IsNullOrEmpty(_currentDTO.Post)
+                && !string.IsNullOrEmpty(_currentDTO.Contacts)) 
             {
-                bool succses = await controller.AddEmp(name, post, contacts);
-                if (succses)
+                if (_forCreate)
                 {
+                    bool succses = await controller.AddEmp(_currentDTO);
                     if (succses)
                     {
-                        DialogResult = true;
+                        if (succses)
+                        {
+                            DialogResult = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Возникла ошибка при добавлении поставщика");
+                        }
+                    }
+                }
+                else
+                {
+                    List<string> changes = EmployeeComparer.GetChangedFields(_origrnalDTO, _currentDTO);
+                    
+                    if(changes.Count == 0)
+                    {
+                        MessageBox.Show("Нет изменений для сохранения");
+                        return;
                     }
                     else
                     {
-                        MessageBox.Show("Возникла ошибка при добавлении поставщика");
+                        bool success = await controller.ChangeEmployee(_idEmployee, _currentDTO, changes);
+                        if (success) DialogResult = true;
+                        else MessageBox.Show("Ошибка при обновлении склада");
+                        Logger.Log($"Пользователь внес изменения в справочник сотрудники {DateTime.Now} \n");
                     }
                 }
+                
             }
             else
             {

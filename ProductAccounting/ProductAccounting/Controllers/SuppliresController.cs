@@ -24,20 +24,20 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task<SupplyerDTO> LoadDataSup(int ID) 
+        public async Task<SupplierDTO> LoadDataSup(int ID) 
         {
             using (var context = new ApplicationDbContext()) 
             {
                 suppliers supplyer = await context.Set<suppliers>().FirstOrDefaultAsync(i => i.id == ID);
-                SupplyerDTO supplyerDTO = new SupplyerDTO
+                SupplierDTO supplyerDTO = new SupplierDTO
                 {
-                    name = supplyer.name,
-                    organform = supplyer.organform,
-                    city = supplyer.city,
-                    address = supplyer.address,
-                    rating = supplyer.rating,
-                    phonenumber = supplyer.phonenumber,
-                    email = supplyer.email,
+                    Name = supplyer.name,
+                    Organform = supplyer.organform,
+                    City = supplyer.city,
+                    Address = supplyer.address,
+                    Rating = supplyer.rating,
+                    PhoneNumber = supplyer.phonenumber,
+                    Email = supplyer.email,
                 };
                 return supplyerDTO;
             }
@@ -53,34 +53,45 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task<bool> AddSupplier(string Name, string Organform, string City, string Address, int Rating, string Phone, string Email) 
+        public async Task<bool> AddSupplier(SupplierUpdateDTO currentDTO) 
         {
-            suppliers supplier = new suppliers { name = Name, organform = Organform, city = City, address = Address, rating = Rating, phonenumber = Phone, email = Email};
+            suppliers supplier = new suppliers { name = currentDTO.Name, organform = currentDTO.Organform, city = currentDTO.City, address = currentDTO.Address, rating = currentDTO.Rating,
+                phonenumber = currentDTO.PhoneNumber, email = currentDTO.Email
+            };
             await DbFunctions.AddData<suppliers>(supplier);
             return true;
         }
 
-        public async Task<bool> ChangeSupplier(int IdSupplier, string name, string organform, string city, string address, int rating, string phone, string email)
+        public async Task<bool> ChangeSupplier(int IdSupplier, SupplierUpdateDTO currrentDTO, List<string> changedFields)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                suppliers supplyer = context.Set<suppliers>().FirstOrDefault(s => s.id == IdSupplier);
-                if (supplyer != null)
-                {
-                    supplyer.name = name;
-                    supplyer.organform = organform;
-                    supplyer.city = city;
-                    supplyer.address = address;
-                    supplyer.rating = rating;
-                    supplyer.phonenumber = phone;
-                    supplyer.email = email;
-                    await DbFunctions.ChangeData<suppliers>(supplyer);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                suppliers supplier = context.Set<suppliers>().FirstOrDefault(s => s.id == IdSupplier);
+                if (supplier == null) return false;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.Name)))
+                    supplier.name = currrentDTO.Name;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.Organform)))
+                    supplier.organform = currrentDTO.Organform;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.City)))
+                    supplier.city = currrentDTO.City;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.Address)))
+                    supplier.address = currrentDTO.Address;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.Rating)))
+                    supplier.rating = currrentDTO.Rating;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.PhoneNumber)))
+                    supplier.phonenumber = currrentDTO.PhoneNumber;
+
+                if (changedFields.Contains(nameof(SupplierUpdateDTO.Email)))
+                    supplier.email = currrentDTO.Email;
+
+                await DbFunctions.ChangeData<suppliers>(supplier);
+                return true;
             }
 
         }

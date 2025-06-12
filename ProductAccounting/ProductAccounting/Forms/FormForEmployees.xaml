@@ -21,11 +21,11 @@
 
         <StackPanel Orientation="Vertical"  Margin="254,120,42,104" >
             <Border>
-                <TextBox x:Name="NameEmployee"/>
+                <TextBox x:Name="NameEmployee" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
             <Separator Height="10" Background="#E8F1FA"/>
             <Border>
-                <ComboBox x:Name="PostEmployee">
+                <ComboBox x:Name="PostEmployee" Text="{Binding Post, UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock> Работник склада </TextBlock>
                     <TextBlock> Директор</TextBlock>
                     <TextBlock> Экономист-аналитик</TextBlock>
@@ -34,7 +34,7 @@
             </Border>
             <Separator Height="10"  Background="#E8F1FA"/>
             <Border>
-                <TextBox x:Name="ContacntEmployee"/>
+                <TextBox x:Name="ContacntEmployee" Text="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
         </StackPanel>
 

@@ -47,7 +47,7 @@ namespace ProductAccounting.Controllers
             
         }
         
-        public async Task<bool> AddWarehouse(WarehouseDTO warehouseDTO)
+        public async Task<bool> AddWarehouse(WarehouseUpdateDTO warehouseDTO)
         {
             result = new Warehouses() { name = warehouseDTO.Name, city = warehouseDTO.City, address = warehouseDTO.Address, id_head = warehouseDTO.Id_head};
             await DbFunctions.AddData<Warehouses>(result);

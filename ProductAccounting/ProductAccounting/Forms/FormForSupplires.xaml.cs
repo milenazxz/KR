@@ -2,9 +2,12 @@
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,25 +24,168 @@ namespace ProductAccounting.Forms
     /// Логика взаимодействия для FormForSupplires.xaml
     /// </summary>
     /// 
-    public class SupplyerDTO
+    public class SupplierDTO
     {
-        public string name { get; set; }
-        public string organform { get; set; }
-        public string city { get; set; }
-        public string  address { get; set; }
-        public int rating { get; set; }
-        public string phonenumber { get; set; }
-        public string email { get; set; }
+        private string _name { get; set; }
+        private string _organform { get; set; }
+        private string _city { get; set; }
+        private string  _address { get; set; }
+        private int _rating { get; set; }
+        private string _phonenumber { get; set; }
+        private string _email { get; set; }
+
+        public string Name
+        {
+            get => _name;
+            set => _name = value;
+        }
+
+        public string Organform
+        {
+            get => _organform;
+            set => _organform = value;
+        }
+
+        public string City
+        {
+            get => _city; 
+            set => _city = value;
+        }
+        public string Address
+        {
+            get => _address; 
+            set => _address = value;
+        }
+        public int Rating
+        {
+            get => _rating; 
+            set => _rating = value;
+        }
+        public string PhoneNumber
+        {
+            get => _phonenumber; 
+            set => _phonenumber = value;
+        }
+        public string Email
+        {
+            get => _email; 
+            set => _email = value;
+        }
 }
+
+    public class SupplierUpdateDTO:INotifyPropertyChanged
+    {
+        private string _name { get; set; }
+        private string _organform { get; set; }
+        private string _city { get; set; }
+        private string _address { get; set; }
+        private int _rating { get; set; }
+        private string _phonenumber { get; set; }
+        private string _email { get; set; }
+
+        public string Name
+        {
+            get => _name;
+            set 
+            {
+                _name = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        public string Organform
+        {
+            get => _organform;
+            set
+            {
+                _organform = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string City
+        {
+            get => _city;
+            set
+            {
+                _city = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Address
+        {
+            get => _address;
+            set
+            {
+                _address = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Rating
+        {
+            get => _rating;
+            set
+            {
+                _rating = value;
+                OnPropertyChanged();
+            }
+        }
+        public string PhoneNumber
+        {
+            get => _phonenumber;
+            set
+            {
+                _phonenumber = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+    }
+
+    public static class SupplierComparer
+    {
+        public static List<string> GetChangedFields(SupplierDTO originalDTO, SupplierUpdateDTO currentDTO)
+        {
+            List<string> changedFields = new List<string>();
+            if (originalDTO.Name != currentDTO.Name) changedFields.Add(nameof(currentDTO.Name));
+            if (originalDTO.Organform != currentDTO.Organform) changedFields.Add(nameof(currentDTO.Organform));
+            if (originalDTO.City != currentDTO.City) changedFields.Add(nameof(currentDTO.City));
+            if (originalDTO.Address != currentDTO.Address) changedFields.Add(nameof(currentDTO.Address));
+            if (originalDTO.Rating != currentDTO.Rating) changedFields.Add(nameof(currentDTO.Rating));
+            if (originalDTO.PhoneNumber != currentDTO.PhoneNumber) changedFields.Add(nameof(currentDTO.PhoneNumber));
+            if (originalDTO.Email != currentDTO.Email) changedFields.Add(nameof(currentDTO.Email));
+            return changedFields;
+        }
+    }
+
     public partial class FormForSupplires : Window
     {
-        private int IdSupplier;
+        private SupplierDTO _originalDTO;
+        private SupplierUpdateDTO _currentDTO;
+        private int _idSupplier;
         private bool _forCreate;
+        Regex _phoneRegex = new Regex(@"^(?:\+7|8)\d{10}$");
 
         SuppliresController controller = new SuppliresController();
         public FormForSupplires()
         {
             InitializeComponent();
+            _currentDTO = new SupplierUpdateDTO();
+            this.DataContext = _currentDTO;
             _forCreate = true;
         }
 
@@ -50,37 +196,70 @@ namespace ProductAccounting.Forms
             {
                 await LoadSupplierData(ID);
             };
+
+            _currentDTO = new SupplierUpdateDTO();
+            this.DataContext = _currentDTO;
             _forCreate = false;
-            IdSupplier = ID;
+            _idSupplier = ID;
         }
 
         public async Task LoadSupplierData(int ID) 
         {
-            SupplyerDTO supplier = await controller.LoadDataSup(ID);
-            NameSupplire.Text = supplier.name;
-            OrganformSupplire.Text = supplier.organform;
-            CitySupplire.Text= supplier.city;
-            AddressSupplire.Text = supplier.address;
-            RatingSupplire.Text = supplier.rating.ToString();
-            PhoneNumberSupplire.Text = supplier.phonenumber;
-            EmailSupplire.Text = supplier.email;
+            _originalDTO = await controller.LoadDataSup(ID);
+            _currentDTO = new SupplierUpdateDTO 
+            {
+                Name = _originalDTO.Name,
+                Organform = _originalDTO.Organform,
+                City = _originalDTO.City,
+                Address = _originalDTO.Address,
+                Rating = _originalDTO.Rating,
+                PhoneNumber = _originalDTO.PhoneNumber,
+                Email = _originalDTO.Email,
+            };
+
+            NameSupplire.Text = _currentDTO.Name;
+            OrganformSupplire.Text = _currentDTO.Organform;
+            CitySupplire.Text= _currentDTO.City;
+            AddressSupplire.Text = _currentDTO.Address;
+            RatingSupplire.Text = _currentDTO.Rating.ToString();
+            PhoneNumberSupplire.Text = _currentDTO.PhoneNumber;
+            EmailSupplire.Text = _currentDTO.Email;
         }
 
         public async void AddSuppliers(object sender, EventArgs e) 
         {
-            string name = NameSupplire.Text;
-            string organform = OrganformSupplire.Text;
-            string city = CitySupplire.Text;
-            string address = AddressSupplire.Text;
-            int rating = Convert.ToInt32(RatingSupplire.Text);
-            string phone = PhoneNumberSupplire.Text;
-            string email = EmailSupplire.Text;
+            _currentDTO.Name = NameSupplire.Text;
+            _currentDTO.Organform = OrganformSupplire.Text;
+            _currentDTO.City = CitySupplire.Text;
+            _currentDTO.Address = AddressSupplire.Text;
+            if (_currentDTO.Rating >= 11)
+            {
+                MessageBox.Show("Поле Рейтинг использует 10 бальную шкалу");
+                return;
+            }
+            else
+            {
+                _currentDTO.Rating = Convert.ToInt32(RatingSupplire.Text);
+            }
+            _currentDTO.PhoneNumber = PhoneNumberSupplire.Text;
+            if (!_phoneRegex.IsMatch(_currentDTO.PhoneNumber))
+            {
+                MessageBox.Show("Неверный формат номера телефона");
+                return;
+            }
+            _currentDTO.Email = EmailSupplire.Text;
 
-            if (!string.IsNullOrEmpty(name) & !string.IsNullOrEmpty(organform) & !string.IsNullOrEmpty(city) & !string.IsNullOrEmpty(address) & rating != 0 & !string.IsNullOrEmpty(phone) & !string.IsNullOrEmpty(email))
+            if (!string.IsNullOrEmpty(_currentDTO.Name) 
+                && !string.IsNullOrEmpty(_currentDTO.Organform) 
+                && !string.IsNullOrEmpty(_currentDTO.City) 
+                && !string.IsNullOrEmpty(_currentDTO.Address) 
+                && _currentDTO.Rating != 0
+                && !string.IsNullOrEmpty(_currentDTO.PhoneNumber) 
+                && !string.IsNullOrEmpty(_currentDTO.Email))
             {
                 if (_forCreate)
                 {
-                    bool succses = await controller.AddSupplier(name, organform, city, address, rating, phone, email);
+                    bool succses = await controller.AddSupplier(_currentDTO);
                     if (succses)
                     {
                         DialogResult = true;
@@ -93,7 +272,8 @@ namespace ProductAccounting.Forms
                 }
                 else
                 {
-                    bool success = await controller.ChangeSupplier(IdSupplier, name, organform, city, address, rating, phone, email);
+                    List<string> changes = SupplierComparer.GetChangedFields(_originalDTO, _currentDTO);
+                    bool success = await controller.ChangeSupplier(_idSupplier, _currentDTO, changes);
                     if (success)
                     {
                         DialogResult = true;
