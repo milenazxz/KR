@@ -1,4 +1,5 @@
 ﻿using ProductAccounting.Controllers;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,6 @@ namespace ProductAccounting.Pages
         {
             InitializeComponent();
             InitializePageAsync();
-
-
         }
 
         private async void InitializePageAsync()
@@ -43,6 +42,47 @@ namespace ProductAccounting.Pages
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
+        }
+
+        private async void Add_Click(object sender, RoutedEventArgs e)
+        {
+            var winAddUser = new RegistartionForm();
+            bool? result = winAddUser.ShowDialog();
+            if(result == true) 
+            {
+                await controller.LoadDataUsers();
+            }
+        }
+        private async void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var user = UsersGrid.SelectedItems;
+            bool? result = await controller.DeleteUser(user);
+            if(result == true)
+            {
+                UsersGrid.ItemsSource = await controller.LoadDataUsers();
+            }
+        }
+
+        private async void Change_Click(object sender, RoutedEventArgs e)
+        {
+          
+            employees item = (employees)UsersGrid.SelectedItem;
+            if(item != null)
+            {
+                int selectedItemID = item.id;
+                var winAddUser = new RegistartionForm(selectedItemID);
+                bool? result = winAddUser.ShowDialog();
+                if (result == true)
+                {
+                    UsersGrid.ItemsSource = await controller.LoadDataUsers();
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите элемент");
+            }
+           
         }
     }
 }

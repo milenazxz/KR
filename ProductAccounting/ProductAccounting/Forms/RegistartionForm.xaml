@@ -17,19 +17,19 @@
         <StackPanel Orientation="Vertical" Margin="159,104,443,108">
             <Label x:Name="Name" Content="Имя" FontWeight="Bold" FontSize="20"/>
             <Label x:Name="Login" Content="Логин" FontWeight="Bold" FontSize="20"/>
-            <Label x:Name="Password1" Content="Пароль" FontWeight="Bold" FontSize="20"/>
-            <Label x:Name="Password2" Content="Повторите пароль" FontWeight="Bold" FontSize="20"/>
             <Label x:Name="Role" Content="Роль" FontWeight="Bold" FontSize="20"/>
             <Label x:Name="Contacts" Content="Контакты" FontWeight="Bold" FontSize="20"/>
+            <Label x:Name="Password1" Content="Пароль" FontWeight="Bold" FontSize="20"/>
+            <Label x:Name="Password2" Content="Повторите пароль" FontWeight="Bold" FontSize="20"/>
         </StackPanel>
 
-        <StackPanel Margin="400,104,216,94">
-            <TextBox x:Name="NameField" Margin="0,5,0,23"/>
-            <TextBox x:Name="LoginField" Margin="0,5,0,23"/>
-            <PasswordBox x:Name="PasswordField1"  Margin="0,0,0,21"/>
-            <PasswordBox x:Name="PasswordField2"  Margin="0,0,0,21"/>
-            <ComboBox x:Name="RoleField" Margin="0,0,0,10" ItemsSource="{StaticResource AvailableRoles}"/>
-            <TextBox x:Name="ContactsField" Margin="0,5,0,23"/>
+        <StackPanel Margin="400,110,216,114">
+            <TextBox x:Name="NameField" Margin="0,0,0,7" Height="23"/>
+            <TextBox x:Name="LoginField" Margin="0,5,0,11" Height="23"/>
+            <ComboBox x:Name="RoleField" ItemsSource="{StaticResource AvailableRoles}" Height="23" Margin="0,2,0,10"/>
+            <TextBox x:Name="ContactsField" Margin="0,5,0,15" Height="23" />
+            <PasswordBox x:Name="PasswordField1" Margin="0,0,0,15" Height="23"/>
+            <PasswordBox x:Name="PasswordField2" Height="23"/>
         </StackPanel>
         <StackPanel Margin="270,352,270,51">
             <Button x:Name="RegistrationBtn" Content="Зарегистрировать" FontWeight="Bold" Height="30" Width="200" Click="RegistrationBtn_Click"/>

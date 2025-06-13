@@ -39,6 +39,9 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left" Click="Close_Click"/>
+            <Button x:Name="DeleteItemBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left" Click="Delete_Click"/>
+            <Button x:Name="AddItemBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left" Click="Add_Click"/>
+            <Button x:Name="ChangeItemBtn" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="375,5,0,5" HorizontalAlignment="Left" Click="Change_Click"/>
         </Grid>
 
         <DataGrid x:Name="UsersGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">

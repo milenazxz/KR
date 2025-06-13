@@ -1,7 +1,9 @@
 ﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -29,7 +31,7 @@ namespace ProductAccounting.Controllers
         {
 
         }
-        public async Task Registration(string login, string password, string role, string inpName, string inpContacts) 
+        public async Task Registration(string password, UserUpdateDTO currentDTO) 
         {
             employees employee = null;
             using (var connection = _context.Database.GetDbConnection())
@@ -37,17 +39,17 @@ namespace ProductAccounting.Controllers
                 connection.Open();
 
                 var request = "SELECT * FROM employees WHERE login = @Login";
-                employee = connection.QueryFirstOrDefault<employees>(request, new { Login = login });
+                employee = connection.QueryFirstOrDefault<employees>(request, new { Login = currentDTO.Login });
             }
             using (ApplicationDbContext context = new ApplicationDbContext()) 
             {
                 if (employee == null)
                 {
-                    if (LoginValidation(login) && PasswordValidation(password))
+                    if (LoginValidation(currentDTO.Login) && PasswordValidation(password))
                     {
                         string hashPassword = HashPassword(password);
                         
-                            employees newEmployee = new employees { name = inpName, post = role, contacts = inpContacts, login = login, emp_password = hashPassword };
+                            employees newEmployee = new employees { name = currentDTO.Name, post = currentDTO.Post, contacts = currentDTO.Post, login = currentDTO.Login, emp_password = hashPassword };
                             await context.AddAsync(newEmployee);
                             await context.SaveChangesAsync();
                       
@@ -196,9 +198,10 @@ namespace ProductAccounting.Controllers
             if (VerifyPassword(inpPassword, employee.emp_password))
             {
                 CurrentUserData currentUser = new CurrentUserData(employee.name, employee.post);
+                connection.Close();
                 return currentUser;
             }
-            
+            connection.Close();
             return null;
             
         }
@@ -208,7 +211,56 @@ namespace ProductAccounting.Controllers
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 return await context.Set<employees>().ToListAsync();
-              
+            }
+        }
+
+        public async Task<bool> DeleteUser(IList items)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                foreach(var item in items)
+                {
+                    if(item is employees user)
+                    {
+                        await DbFunctions.DeleteItem<employees>(user, i => i.id == user.id);
+                    }
+                }
+                return true;
+            }
+        }
+
+        public async Task<UserDTO> LoadDataUser(int ID) 
+        {
+            using(ApplicationDbContext context = new ApplicationDbContext()) 
+            {
+                employees userData = await context.Set<employees>().FirstOrDefaultAsync(u => u.id == ID);
+                UserDTO user = new UserDTO
+                {
+                    Name = userData.name,
+                    Post = userData.post,
+                    Contacts = userData.contacts,
+                    Login = userData.login,
+                };
+                return user;
+            }
+        }
+        public async Task<bool> ChangeDataUser(int ID, UserUpdateDTO currentDTO, List<string> changesFields)
+        {
+            using(ApplicationDbContext context = new ApplicationDbContext())
+            {
+                employees userData = await context.Set<employees>().FirstOrDefaultAsync(u => u.id == ID);
+                if (userData == null) return false;
+
+                if (changesFields.Contains(nameof (UserUpdateDTO.Name)))
+                    userData.name = currentDTO.Name;
+                if(changesFields.Contains(nameof(UserDTO.Post)))
+                    userData.post = currentDTO.Post;
+                if(changesFields.Contains(nameof(UserDTO.Login)))
+                    userData.login = currentDTO.Login;
+                if(changesFields.Contains(nameof(UserDTO.Contacts)))
+                    userData.contacts = currentDTO.Contacts;
+                await DbFunctions.ChangeData<employees>(userData);
+                return true;
             }
         }
     }
