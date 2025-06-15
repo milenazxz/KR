@@ -1,5 +1,6 @@
 ﻿using ProductAccounting.Controllers;
 using ProductAccounting.Forms;
+using ProductAccounting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,19 @@ namespace ProductAccounting.Pages
             }
             await controller.DeleteItems(selectedItems);
             salesGrid.ItemsSource = await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
+        }
+        private async void New_Dok_click(object sender, RoutedEventArgs e)
+        {
+            Sales selectedSale = (Sales)salesGrid.SelectedItem;
+            if (selectedSale == null) 
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                await controller.SaleXml(selectedSale.id);
+            }
+            
         }
     }
 }

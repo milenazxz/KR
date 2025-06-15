@@ -12,7 +12,7 @@ namespace ProductAccounting.Models
         public int id_sale { get; set; }
         public int id_item { get; set; }
         public int quantity { get; set; }
-
+        public int nds { get; set; }
         public Sales IdSaleNavigation { get; set; }
         public Items IdItemNavigation { get; set; }
     }

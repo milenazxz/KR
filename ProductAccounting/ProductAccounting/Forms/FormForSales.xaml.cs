@@ -25,7 +25,7 @@ namespace ProductAccounting.Forms
     /// Логика взаимодействия для FormForSales.xaml
     /// </summary>
     /// 
-    public class Itemsforsale : INotifyPropertyChanged
+    public class ItemsforsaleDTO : INotifyPropertyChanged
     {
         private int _id;
         private Items _idItemNavigation;
@@ -127,11 +127,11 @@ namespace ProductAccounting.Forms
         public SalesController controller = new SalesController();
 
         // Коллекция строк DataGrid
-        public ObservableCollection<Itemsforsale> SalesItems { get; set; } = new ObservableCollection<Itemsforsale>();
+        public ObservableCollection<ItemsforsaleDTO> SalesItems { get; set; } = new ObservableCollection<ItemsforsaleDTO>();
 
         // Коллекция товаров для ComboBox в строках
         public ObservableCollection<Items> AvailableItems { get; set; } = new ObservableCollection<Items>();
-
+       
         public FormForSales()
         {
             InitializeComponent();
@@ -169,7 +169,7 @@ namespace ProductAccounting.Forms
 
         private void AddRowButton_Click(object sender, RoutedEventArgs e)
         {
-            SalesItems.Add(new Itemsforsale());
+            SalesItems.Add(new ItemsforsaleDTO());
         }
         private void Btn_AddSale(object sender, RoutedEventArgs e)
         {
@@ -183,15 +183,17 @@ namespace ProductAccounting.Forms
             int id_sale;
             List<int> items_id = new List<int>();
             List<int> item_quantity = new List<int>();
-            if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId && ClientComboBox.SelectedValue is int SelectedClientID)
+            if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId 
+                && ClientComboBox.SelectedValue is int SelectedClientID)
             {
+               
                 DateTime date = (DateTime)datePicker1.SelectedDate;
-                string rusDate = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
-                id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, rusDate);
+                string DateForDoc = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
+                id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, DateForDoc);
                 
                 if (id_sale >= 0) 
                 {
-                   foreach (Itemsforsale item in SalesItems) 
+                  /* foreach (Itemsforsale item in SalesItems) 
                     {
                         if (item.Id >= 0 && item.Quantity > 0) 
                         {
@@ -204,8 +206,8 @@ namespace ProductAccounting.Forms
                         }
                        
 
-                    }
-                   await controller.AddItemsForSale(id_sale, items_id, item_quantity);
+                    }*/
+                   await controller.AddItemsForSale(id_sale, SalesItems);
 
                 }
             }
