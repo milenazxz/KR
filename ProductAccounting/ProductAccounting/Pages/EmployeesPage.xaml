@@ -43,7 +43,7 @@
             <Button x:Name="DeleteEmployeeBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"  Click="DeleteEmployee"/>
             <Button x:Name="AddEmployeeBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"  Click="AddEmployee"/>
             <Button x:Name="ChangeEmployee" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="270,5,0,5" HorizontalAlignment="Left"  Click="ChangeSupplierBtn"/>
-            <Button x:Name="FindEmployeeBtn" Content="Найти"  Background="#778FCB" Width="100" Height="30" Margin="375,5,0,5" HorizontalAlignment="Left"  Click="FindEmployee"/>
+          
         </Grid>
 
         <DataGrid x:Name="employeersGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">

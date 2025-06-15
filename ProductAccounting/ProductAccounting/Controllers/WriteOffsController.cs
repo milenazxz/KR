@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -12,6 +13,7 @@ namespace ProductAccounting.Controllers
 {
     public class WriteOffsController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<Writeoffs>> LoadData(Expression<Func<Writeoffs, object>> WFunc, Expression<Func<Writeoffs, object>> EFunc)
         {
             using (var context = new ApplicationDbContext())
@@ -29,7 +31,7 @@ namespace ProductAccounting.Controllers
             {
                 if (item is Writeoffs writeoffs)
                 {
-                    await DbFunctions.DeleteItem<Writeoffs>(writeoffs, s => s.id == writeoffs.id);
+                    await dbFunctions.DeleteItem<Writeoffs>(writeoffs, s => s.id == writeoffs.id);
                 }
             }
         }
@@ -60,8 +62,7 @@ namespace ProductAccounting.Controllers
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 Writeoffs writeOff = new Writeoffs{ id_employee = inpId_head, id_warehouse = inpId_warehouse, date = date };
-                await context.AddAsync<Writeoffs>(writeOff);
-                await context.SaveChangesAsync();
+                await dbFunctions.AddData<Writeoffs>(writeOff);
                 return writeOff.id;
             }
         }

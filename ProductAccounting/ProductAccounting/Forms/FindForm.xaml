@@ -13,7 +13,7 @@
                 <ComboBox x:Name="SearchСategory" Height="30" MinWidth="300"/>
                 <TextBox x:Name="FindValue" Height="30" MinWidth="300" Margin="10,0,5,0" FontSize="20"/>
             </StackPanel>
-            <Button x:Name="Find" Height="30" Width="200" Content="Найти" FontWeight="Bold" FontSize="15" Click="FindInfo" />
+            <Button x:Name="Find" Height="30" Width="200" Content="Найти" FontWeight="Bold" FontSize="15"  />
         </StackPanel>
         
         

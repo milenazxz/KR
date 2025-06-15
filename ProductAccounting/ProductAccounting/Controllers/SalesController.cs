@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductAccounting.Forms;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -17,7 +18,7 @@ namespace ProductAccounting.Controllers
 {
     public class SalesController
     {
-
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<Sales>> LoadData(Expression<Func<Sales, object>> WFunc, Expression<Func<Sales, object>> CFunc, Expression<Func<Sales, object>> EFunc)
         {
             using (var context = new ApplicationDbContext())
@@ -36,7 +37,7 @@ namespace ProductAccounting.Controllers
             {
                 if (item is Sales sale)
                 {
-                    await DbFunctions.DeleteItem<Sales>(sale, i => i.id == sale.id);
+                    await dbFunctions.DeleteItem<Sales>(sale, i => i.id == sale.id);
                 }
             }
         }
@@ -90,8 +91,7 @@ namespace ProductAccounting.Controllers
             using (ApplicationDbContext context = new ApplicationDbContext()) 
             {
                 Sales sale = new Sales {id_client = inpId_client, id_employee = inpId_head, id_warehouse = inpId_warehouse, date = date};
-                await context.AddAsync<Sales>(sale);
-                await context.SaveChangesAsync();
+                await dbFunctions.AddData<Sales>(sale);
                 return sale.id;
             }
         }

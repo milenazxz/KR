@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using System.Linq.Expressions;
 using ProductAccounting.Forms;
 using static ProductAccounting.Logger;
+using ProductAccounting.Interfaces;
 
 
 namespace ProductAccounting.Controllers
@@ -19,8 +20,8 @@ namespace ProductAccounting.Controllers
     public class WarehousesController
     {
         public Warehouses result { get; private set; }
+        IDbFunctions dbFunctions = new DbFunctions();
 
-        
         public async Task<List<Warehouses>> LoadData(Expression<Func<Warehouses, object>> lFunc) 
         {
             using (var contex = new ApplicationDbContext())
@@ -51,7 +52,7 @@ namespace ProductAccounting.Controllers
         public async Task<bool> AddWarehouse(WarehouseUpdateDTO warehouseDTO)
         {
             result = new Warehouses() { name = warehouseDTO.Name, city = warehouseDTO.City, address = warehouseDTO.Address, id_head = warehouseDTO.Id_head};
-            await DbFunctions.AddData<Warehouses>(result);
+            await dbFunctions.AddData<Warehouses>(result);
             return true;
         }
 
@@ -74,7 +75,7 @@ namespace ProductAccounting.Controllers
                 if (changedFields.Contains(nameof(WarehouseUpdateDTO.Id_head)))
                     warehouse.id_head = warehouseUpdateDTO.Id_head;
 
-                await DbFunctions.ChangeData<Warehouses>(warehouse);
+                await dbFunctions.ChangeData<Warehouses>(warehouse);
                 return true;
             }
 
@@ -86,7 +87,7 @@ namespace ProductAccounting.Controllers
 
                 if (selectedItem is Warehouses warehouse)
                 {
-                    await DbFunctions.DeleteItem<Warehouses>(warehouse, w => w.id == warehouse.id);
+                    await dbFunctions.DeleteItem<Warehouses>(warehouse, w => w.id == warehouse.id);
                 }
         }
 

@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Npgsql;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -20,51 +22,26 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductAccounting
 {
-    internal class DbFunctions
+    internal class DbFunctions : IDbFunctions
     {
 
-        protected static Dictionary<string, string> engHeading = new Dictionary<string, string>
+      /*  protected static Dictionary<string, string> engHeading = new Dictionary<string, string>
         {
             {"ФИО", "name"}
-        };
+        };*/
         
-        
-        /*Функция для загрузки данных из базы данных*/
-        public static async Task LoadDataAsync<T>(DataGrid dataGrid, Expression<Func<T, object>> includeProperty) where T:class
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var data = await context.Set<T>().Include(includeProperty).ToListAsync();
-                await dataGrid.Dispatcher.InvokeAsync(() =>
-                {
-                    dataGrid.ItemsSource = data;
-                });
-            }
-        }
-        public static async Task LoadDataAsync<T>(DataGrid dataGrid) where T : class
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var data = await context.Set<T>().ToListAsync();
-                await dataGrid.Dispatcher.InvokeAsync(() =>
-                {
-                    dataGrid.ItemsSource = data;
-                });
-            }
-        }
 
         /*Функция для удаления элемента из списка и базы данных*/
-        public static async Task DeleteItem<T>(T itemForDel, Func<T,bool> lFunc) where T: class
+        public async Task DeleteItem<T>(T itemForDel, Expression<Func<T, bool>> predicate) where T: class
         {
                 if (itemForDel == null)
                 {
-                    MessageBox.Show("Объект для удаления не выбран");
                     return;
                 }
 
                 using (var context = new ApplicationDbContext())
                 {
-                    var itemToRemove = await Task.Run(() => context.Set<T>().FirstOrDefault(lFunc));
+                    var itemToRemove = await context.Set<T>().FirstOrDefaultAsync(predicate);
                     if (itemToRemove != null)
                     {
                         context.Set<T>().Remove(itemToRemove);
@@ -73,18 +50,18 @@ namespace ProductAccounting
                     }
                     else
                     {
-                        MessageBox.Show("Элемент с данным ID не найден");
+                        return;
                     }
                    
                 }
         }
 
         /*Фунция добавления данных в бд*/
-        public static async Task AddData<T>(T dataObject) where T : class
+        public async Task AddData<T>(T dataObject) where T : class
         {
             if(dataObject == null)
             {
-                MessageBox.Show("Не удалось добавить данные");
+                return;
             }
             else
             {
@@ -97,7 +74,7 @@ namespace ProductAccounting
             }
         }
 
-        public static async Task ChangeData<T>(T dataObject) where T: class
+        public async Task ChangeData<T>(T dataObject) where T: class
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -106,30 +83,8 @@ namespace ProductAccounting
             }
         }
 
-        /*Функция обновления данных*/
-        public static async Task RefreshAsync<T>(DataGrid dataGrid) where T : class
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var updatedData = await context.Set<T>().ToListAsync();
-                dataGrid.Dispatcher.Invoke(() =>
-                {
-                    dataGrid.ItemsSource = updatedData;
-                });
-            }
-        }
-        public static void Refresh<T>(DataGrid dataGrid, IEnumerable inpValues) where T : class
-        {
-          
-            dataGrid.Dispatcher.InvokeAsync(() =>
-                {
-                    dataGrid.ItemsSource = inpValues;
-                });
-            
-        }
-
         /* Функция поиска в базе данных*/
-        public static async void Search<T>(string colName, string tableName, string value, DataGrid dataGrid) where T : class
+       /* public static async void Search<T>(string colName, string tableName, string value, DataGrid dataGrid) where T : class
         {
             
             var connectionString = ConfigurationManager.ConnectionStrings["PostgreSqlConnection"].ConnectionString;
@@ -170,6 +125,6 @@ namespace ProductAccounting
         {
             List<string> headers = dataGrid.Columns.OfType<DataGridTextColumn>().Select(col => col.Header.ToString()).ToList();
             return headers;
-        }
+        }*/
     }
 }

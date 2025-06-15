@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
 using ProductAccounting.Forms;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -18,6 +19,7 @@ namespace ProductAccounting.Controllers
 {
     public class UserController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         private const int SaltSize = 16;
         private const int HashSize = 32;
         private const int Iterations = 100_000;
@@ -50,9 +52,7 @@ namespace ProductAccounting.Controllers
                         string hashPassword = HashPassword(password);
                         
                             employees newEmployee = new employees { name = currentDTO.Name, post = currentDTO.Post, contacts = currentDTO.Post, login = currentDTO.Login, emp_password = hashPassword };
-                            await context.AddAsync(newEmployee);
-                            await context.SaveChangesAsync();
-                      
+                            await dbFunctions.AddData<employees>(newEmployee);
                     }
 
                 }
@@ -222,7 +222,7 @@ namespace ProductAccounting.Controllers
                 {
                     if(item is employees user)
                     {
-                        await DbFunctions.DeleteItem<employees>(user, i => i.id == user.id);
+                        await dbFunctions.DeleteItem<employees>(user, i => i.id == user.id);
                     }
                 }
                 return true;
@@ -259,7 +259,7 @@ namespace ProductAccounting.Controllers
                     userData.login = currentDTO.Login;
                 if(changesFields.Contains(nameof(UserDTO.Contacts)))
                     userData.contacts = currentDTO.Contacts;
-                await DbFunctions.ChangeData<employees>(userData);
+                await dbFunctions.ChangeData<employees>(userData);
                 return true;
             }
         }

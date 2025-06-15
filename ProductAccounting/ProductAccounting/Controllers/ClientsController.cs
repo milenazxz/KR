@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ProductAccounting.Forms;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -12,6 +14,7 @@ namespace ProductAccounting.Controllers
 {
     internal class ClientsController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<Clients>> LoadData()
         {
             using (var context = new ApplicationDbContext()) 
@@ -42,7 +45,7 @@ namespace ProductAccounting.Controllers
         public async Task<bool> AddClient(ClientUpdateDTO currentDTO) 
         {
             Clients client = new Clients {name = currentDTO.Name, organform = currentDTO.Organform, city = currentDTO.City, address = currentDTO.Address, phonenumber = currentDTO.Phonenumber, email= currentDTO.Email };
-            await DbFunctions.AddData<Clients>(client);
+            await dbFunctions.AddData<Clients>(client);
             return true;
         }
         public async Task<bool> ChangeClient(int IdClient, ClientUpdateDTO currentDTO, List<string> changedFields)
@@ -69,7 +72,7 @@ namespace ProductAccounting.Controllers
                 if (changedFields.Contains(nameof(ClientUpdateDTO.Email)))
                     client.email = currentDTO.Email;
 
-                await DbFunctions.ChangeData<Clients>(client);
+                await dbFunctions.ChangeData<Clients>(client);
                 return true;
             }
         }
@@ -80,7 +83,7 @@ namespace ProductAccounting.Controllers
             {
                 if (selectedClient is Clients client)
                 {
-                    await DbFunctions.DeleteItem<Clients>(client, c => c.id == client.id);
+                    await dbFunctions.DeleteItem<Clients>(client, c => c.id == client.id);
                 }
             }
             

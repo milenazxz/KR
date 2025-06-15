@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductAccounting.Forms;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -10,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace ProductAccounting.Controllers
 {
+
     internal class EmployeesController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<employees>> LoadData() 
         {
             using (var contex = new ApplicationDbContext()) 
@@ -39,7 +42,7 @@ namespace ProductAccounting.Controllers
         public async Task<bool> AddEmp(EmployeeUpdateDTO currentDTO)
         {
             employees employee = new employees { name = currentDTO.Name, post = currentDTO.Post, contacts = currentDTO.Contacts };
-            await DbFunctions.AddData<employees>(employee);
+            await dbFunctions.AddData<employees>(employee);
             return true;
         }
 
@@ -59,7 +62,7 @@ namespace ProductAccounting.Controllers
                 if (changedFields.Contains(nameof(EmployeeUpdateDTO.Contacts)))
                     employee.contacts = currentDTO.Contacts;
 
-                await DbFunctions.ChangeData<employees>(employee);
+                await dbFunctions.ChangeData<employees>(employee);
                 return true;
             }
         }
@@ -70,7 +73,7 @@ namespace ProductAccounting.Controllers
             {
                 if (selectedEmployee is employees employee)
                 {
-                    await DbFunctions.DeleteItem<employees>(employee, е => е.id == employee.id);
+                    await dbFunctions.DeleteItem<employees>(employee, е => е.id == employee.id);
                 }
             }
 

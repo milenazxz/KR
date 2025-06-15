@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -13,6 +14,7 @@ namespace ProductAccounting.Controllers
 {
     public class SuppliesController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<Supplies>> LoadData(Expression<Func<Supplies, object>> WFunc, Expression<Func<Supplies, object>> CFunc, Expression<Func<Supplies, object>> EFunc)
         {
             using (var context = new ApplicationDbContext())
@@ -31,7 +33,7 @@ namespace ProductAccounting.Controllers
             {
                 if (item is Supplies supply)
                 {
-                    await DbFunctions.DeleteItem<Supplies>(supply, s => s.id == supply.id);
+                    await dbFunctions.DeleteItem<Supplies>(supply, s => s.id == supply.id);
                 }
             }
         }
@@ -74,8 +76,7 @@ namespace ProductAccounting.Controllers
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 Supplies supply = new Supplies { id_supplier = inpId_supplier, id_employee = inpId_head, id_warehouse = inpId_warehouse, date = date };
-                await context.AddAsync<Supplies>(supply);
-                await context.SaveChangesAsync();
+                await dbFunctions.AddData<Supplies>(supply);
                 return supply.id;
             }
         }

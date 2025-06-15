@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ProductAccounting.Forms;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -15,6 +17,7 @@ namespace ProductAccounting.Controllers
 {
     internal class SuppliresController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<suppliers>> LoadData() 
         {
             using (var context = new ApplicationDbContext()) 
@@ -48,7 +51,7 @@ namespace ProductAccounting.Controllers
             {
                 if (selectdItem is suppliers item) 
                 {
-                    await DbFunctions.DeleteItem(item, i => i.id == item.id);
+                    await dbFunctions.DeleteItem(item, i => i.id == item.id);
                 }
             }
         }
@@ -58,7 +61,7 @@ namespace ProductAccounting.Controllers
             suppliers supplier = new suppliers { name = currentDTO.Name, organform = currentDTO.Organform, city = currentDTO.City, address = currentDTO.Address, rating = currentDTO.Rating,
                 phonenumber = currentDTO.PhoneNumber, email = currentDTO.Email
             };
-            await DbFunctions.AddData<suppliers>(supplier);
+            await dbFunctions.AddData<suppliers>(supplier);
             return true;
         }
 
@@ -90,7 +93,7 @@ namespace ProductAccounting.Controllers
                 if (changedFields.Contains(nameof(SupplierUpdateDTO.Email)))
                     supplier.email = currrentDTO.Email;
 
-                await DbFunctions.ChangeData<suppliers>(supplier);
+                await dbFunctions.ChangeData<suppliers>(supplier);
                 return true;
             }
 

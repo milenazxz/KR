@@ -34,12 +34,12 @@ namespace ProductAccounting.Forms
         {
            SearchСategory.ItemsSource = headers;
         }
-        public void FindInfo(object sender, EventArgs e)
+       /* public void FindInfo(object sender, EventArgs e)
         {
             string value = FindValue.Text;
             string columnName = SearchСategory.Text;
             string tableName = "employees";
             DbFunctions.Search<employees>(columnName, tableName, value, _grid);
-        }
+        }*/
     }
 }

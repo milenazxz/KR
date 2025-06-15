@@ -80,12 +80,12 @@ namespace ProductAccounting.Pages
 
         }
 
-        public void FindEmployee(object sender, EventArgs e)
+       /* public void FindEmployee(object sender, EventArgs e)
         {
             FindForm findForm = new FindForm(employeersGrid);
             findForm.DataComboBox(DbFunctions.GetAllHeaders(employeersGrid));
             findForm.ShowDialog();
 
-        }
+        }*/
     }
 }

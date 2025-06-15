@@ -197,6 +197,7 @@
     <Compile Include="Forms\RegistartionForm.xaml.cs">
       <DependentUpon>RegistartionForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IDbFunctions.cs" />
     <Compile Include="Models\CurrentUserData.cs" />
     <Compile Include="Models\itemsforsale.cs" />
     <Compile Include="Models\itemsforsupply.cs" />

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ProductAccounting.Forms;
+using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
@@ -13,6 +15,7 @@ namespace ProductAccounting.Controllers
 {
     internal class ItemsController
     {
+        IDbFunctions dbFunctions = new DbFunctions();
         public async Task<List<Items>> LoadData() 
         {
             using (var context = new ApplicationDbContext())
@@ -43,7 +46,7 @@ namespace ProductAccounting.Controllers
         public async Task<bool> AddItem(ItemUpdateDTO currentDTO) 
         {
             var addItem = new Items {name = currentDTO.Name, producttype = currentDTO.ProducTtype, color = currentDTO.Color, price = currentDTO.Price, magnitude = currentDTO.Magnitude, unit = currentDTO.Unit };
-            await DbFunctions.AddData<Items>(addItem);
+            await dbFunctions.AddData<Items>(addItem);
             return true;
         }
 
@@ -72,7 +75,7 @@ namespace ProductAccounting.Controllers
                 if (changedFields.Contains(nameof(currentDTO.Unit)))
                     item.unit = currentDTO.Unit;
 
-                await DbFunctions.ChangeData<Items>(item);
+                await dbFunctions.ChangeData<Items>(item);
                 return true;
             }
         }
@@ -84,7 +87,7 @@ namespace ProductAccounting.Controllers
             {
                 if (selecteItem is Items item) 
                 {
-                    await DbFunctions.DeleteItem<Items>(item, i => i.id == item.id);
+                    await dbFunctions.DeleteItem<Items>(item, i => i.id == item.id);
                 }
                
             }
