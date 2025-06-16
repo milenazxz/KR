@@ -218,6 +218,8 @@ namespace ProductAccounting.Controllers
                 sumNalTotal.Add(SumNal);
 
             }
+            Documents documents = new Documents();
+            documents.CreatrDocumentXlsx();
             doc.Save("ON_NSCHFDOPPR_1105312123110501001_1102212112110201001_20250605_997ca06b-153f-4464-be64-7fd65b5e834a_0_0_0_0_0_00.xml");
         }
     }

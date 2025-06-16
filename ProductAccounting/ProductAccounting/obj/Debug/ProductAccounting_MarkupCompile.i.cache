@@ -12,9 +12,9 @@ DEBUG;TRACE
 D:\KR\KR\ProductAccounting\ProductAccounting\App.xaml
 231224508113
 
-54-103153247
-491498782868
+55432930385
+561319945688
 Forms\AuthorizationForm.xaml;Forms\FindForm.xaml;Forms\FormForClients.xaml;Forms\FormForEmployees.xaml;Forms\FormForItems.xaml;Forms\FormForSales.xaml;Forms\FormForSupplies.xaml;Forms\FormForSupplires.xaml;Forms\FormForWarehouses.xaml;Forms\FormForWriteOffs.xaml;Forms\RegistartionForm.xaml;Pages\ChangesPage.xaml;Pages\SuppliesPage.xaml;Pages\UsersPage.xaml;Pages\WriteOffsPage.xaml;MainWindow.xaml;Pages\ClientsPage.xaml;Pages\EmployeesPage.xaml;Pages\ItemPage.xaml;Pages\SalesPage.xaml;Pages\SuppliresPage.xaml;Pages\WarehousesPage.xaml;Resources\StyleButtonsAndGrid.xaml;
 
-True
+False
 
