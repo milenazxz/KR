@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting.Forms"
         mc:Ignorable="d"
-        Title="FormForItems" Height="500" Width="760">
+        Title="FormForItems" Height="500" Width="760"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <!-- Подключение файла стилей формы -->
     <Window.Resources>
         <ResourceDictionary Source="/Resources/Styles.xaml"/>

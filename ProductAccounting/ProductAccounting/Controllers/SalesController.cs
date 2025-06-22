@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
@@ -114,6 +115,7 @@ namespace ProductAccounting.Controllers
 
         public async Task SaleXml(int IdSale) 
         {
+            var culture = new CultureInfo("ru-RU");
             double totalWithoutNDS = 0;
             double totalWithNDS = 0;
             double sumNal = 0;
@@ -190,10 +192,11 @@ namespace ProductAccounting.Controllers
 
                 foreach (ItemForSale item in itemsData)
                 {
-                    totalWithoutNDS += item.IdItemNavigation.price * item.quantity;
-                    totalWithNDS += (itemSum) + (itemSum * item.nds / 100);
                     itemSum = item.IdItemNavigation.price * item.quantity;
-                    sumNal += itemSum * item.nds / 100;
+                    totalWithoutNDS += itemSum;
+                    totalWithNDS += (itemSum) + (itemSum * item.nds / 100);
+                    sumNal += itemSum * (item.nds / 100);
+                    double priceWithTax = itemSum + (itemSum * item.nds / 100);
                     XElement itemData = new XElement("СведТов",
                         new XAttribute("НомСтр", itemNumber.ToString()),
                         new XAttribute("НаимТов", $"{item.IdItemNavigation.name}"),
@@ -202,21 +205,20 @@ namespace ProductAccounting.Controllers
                         new XAttribute("ЦенаТов", $"{item.IdItemNavigation.price}"),
                         new XAttribute("СтТовБезНДС", $"{itemSum}"),
                         new XAttribute("НалСт", $"{item.nds}"),
-                        new XAttribute("СтТовУчНал", $"{(itemSum) + (itemSum * item.nds / 100)}")
+                        new XAttribute("СтТовУчНал", priceWithTax.ToString("F2", culture))
                         );
                     tableTheInvoice.Add(itemData);
                     itemNumber++;
                 }
                 XElement totalSum = new XElement("ВсегоОпл",
-                        new XAttribute("СтТовБезНДСВсего", $"{totalWithoutNDS}"),
-                        new XAttribute("СтТовУчНалВсего", $"{totalWithNDS}")
+                        new XAttribute("СтТовБезНДСВсего", totalWithoutNDS.ToString("F2", culture)),
+                        new XAttribute("СтТовУчНалВсего", totalWithNDS.ToString("F2", culture))
                     );
                 XElement sumNalTotal = new XElement("СумНалВсего");
                 XElement SumNal = new XElement("СумНал", sumNal.ToString("F2", CultureInfo.InvariantCulture));
                 tableTheInvoice.Add(totalSum);
                 totalSum.Add(sumNalTotal);
                 sumNalTotal.Add(SumNal);
-
             }
             Documents documents = new Documents();
             documents.CreatrDocumentXlsx();

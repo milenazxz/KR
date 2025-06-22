@@ -50,8 +50,19 @@ namespace ProductAccounting.Pages
         private async void DeleteItem(object sender, EventArgs e)
         {
             var selectedItems = ItemsGrid.SelectedItems;
-            await controller.DeleteItem(selectedItems);
-            ItemsGrid.ItemsSource = await controller.RefreshAsync();
+            if(selectedItems.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста,выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteItem(selectedItems);
+                    ItemsGrid.ItemsSource = await controller.RefreshAsync();
+                }
+            }
         }
 
         private async void AddItem(object sender, EventArgs e)

@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -70,8 +72,15 @@ namespace ProductAccounting.Controllers
                 return result;
             }
         }
+        public async Task<List<Items>> LoadItemsAsync()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return await context.items.ToListAsync();
+            }
+        }
 
-        public async Task<int> AddSupply(int inpId_head, int inpId_warehouse, int inpId_supplier, DateTime date)
+        public async Task<int> AddSupply(int inpId_head, int inpId_warehouse, int inpId_supplier, string date)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -81,14 +90,14 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task AddItemsForSupply(int inpSupply_id, List<int> items_id, List<int> items_quantity)
+        public async Task AddItemsForSupply(int inpSupply_id, ObservableCollection<ItemsforSupplyDTO> itemsforsupplyDTO)
         {
             List<ItemsForSupply> items = new List<ItemsForSupply>();
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                for (int i = 0; i < items_id.Count(); i++)
+                foreach(var item in itemsforsupplyDTO)
                 {
-                    items.Add(new ItemsForSupply { id_supply = inpSupply_id, id_item = items_id[i], quantity = items_quantity[i] });
+                    items.Add(new ItemsForSupply { id_supply = inpSupply_id, id_item = item.Id, quantity = item.Quantity, nds = item.Nds });
                 }
                 await context.AddRangeAsync(items);
                 await context.SaveChangesAsync();

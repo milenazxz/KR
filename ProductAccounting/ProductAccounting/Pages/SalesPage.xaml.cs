@@ -58,12 +58,19 @@ namespace ProductAccounting.Pages
         private async void DeleteSaleBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedItems = salesGrid.SelectedItems;
-            if (selectedItems == null)
+            if (selectedItems.Count == 0)
             {
                 MessageBox.Show("Пожалуйста, выберите запись");
             }
-            await controller.DeleteItems(selectedItems);
-            salesGrid.ItemsSource = await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteItems(selectedItems);
+                    salesGrid.ItemsSource = await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
+                }
+            }
         }
         private async void New_Dok_click(object sender, RoutedEventArgs e)
         {

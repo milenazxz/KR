@@ -47,8 +47,19 @@ namespace ProductAccounting.Pages
         public async void DeleteEmployee(object sender, EventArgs e)
         {
             var selectedSuppliers = employeersGrid.SelectedItems;
-            await controller.DeleteEmployee(selectedSuppliers);
-            employeersGrid.ItemsSource = await controller.LoadData();
+            if(selectedSuppliers.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста,выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteEmployee(selectedSuppliers);
+                    employeersGrid.ItemsSource = await controller.LoadData();
+                }
+            }
         }
         public async void AddEmployee(object sender, EventArgs e)
         {

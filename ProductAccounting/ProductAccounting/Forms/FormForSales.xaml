@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting.Forms"
         mc:Ignorable="d"
-        Title="FormForSales" Height="450" Width="800">
+        Title="FormForSales" Height="550" Width="920"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
         <!-- Список доступных значений для ComboBox -->
       
@@ -25,20 +25,22 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="130"/>
             <!-- Первая строка для кнопки -->
-            <RowDefinition Height="280"/>
+            <RowDefinition Height="300"/>
             <!-- Вторая строка для DataGrid -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0" Name="Head">
-            <Button Content="+" FontSize="20" Margin="17,97,753,4" Click="AddRowButton_Click"/>
-            <Button Content="-" FontSize="20" Margin="52,97,718,4"/>
-            <StackPanel Orientation="Vertical" Margin="35,21,594,13">
+            <StackPanel Orientation="Horizontal">
+            <Button Content="+" FontSize="20" Width="50" Margin="20,97,0,4" Click="AddRowButton_Click"/>
+                <Button Content="-" FontSize="20" Width="50" Margin="20,97,0,4" Click="DeleteRowButton_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="24,20,694,32">
                 <Label Content="Ответственный" FontWeight="Bold"  FontSize="20" />
                 <Label Content="Склад" FontWeight="Bold"  FontSize="20" />
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="197,31,400,16">
+            <StackPanel Orientation="Vertical" Margin="206,31,475,31">
                 <Border>
                     <ComboBox x:Name="HeadwarhouseComboBox" Margin="0,0,0,20" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdEmpNavigation}"/>
                 </Border>
@@ -47,12 +49,12 @@
                 </Border>
             </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="405,21,234,31">
+        <StackPanel Orientation="Vertical" Margin="450,20,338,32">
             <Label Content="Клиент" FontWeight="Bold"  FontSize="20" />
             <Label Content="Дата" FontWeight="Bold"  FontSize="20" />
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="486,32,26,24">
+        <StackPanel Orientation="Vertical" Margin="567,31,52,25">
                 <Border Margin="0,0,0,14">
                 <ComboBox x:Name="ClientComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdClientNavigation.name}"/>
             </Border>
@@ -101,8 +103,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="2">
-            <Button Margin="659,0,10,0" Height="20" Content="Подтвердить" Click="Btn_AddSale"/>
+        <Grid Grid.Row="2" Margin="10,0,-10,0">
+            <Button Margin="711,10,69,44" Height="30" Width="120" Content="Подтвердить" Click="Btn_AddSale"/>
         </Grid>
     </Grid>
 </Window>

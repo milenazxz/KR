@@ -40,8 +40,19 @@ namespace ProductAccounting.Pages
         private async void DeleteSupplies(object sender, EventArgs e) 
         {
             var selectedItems = suppliesGrid.SelectedItems;
-            await controller.DeleteItems(selectedItems);
-            suppliesGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdSupNavigation, sup => sup.IdWarehNavigation);
+            if(selectedItems.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteItems(selectedItems);
+                    suppliesGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdSupNavigation, sup => sup.IdWarehNavigation);
+                }
+            }
         }
 
         private void CloseSuppliesPage(object sender, EventArgs e)

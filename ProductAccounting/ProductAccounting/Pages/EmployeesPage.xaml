@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProductAccounting.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+       d:DesignHeight="450" d:DesignWidth="800"
       Title="EmployeesPage">
 
     <Page.Resources>
@@ -38,12 +38,17 @@
             <RowDefinition Height="*"/>
             <!-- Вторая строка для DataGrid -->
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left"  Click="CloseEmployeesPage"/>
-            <Button x:Name="DeleteEmployeeBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left"  Click="DeleteEmployee"/>
-            <Button x:Name="AddEmployeeBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left"  Click="AddEmployee"/>
-            <Button x:Name="ChangeEmployee" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="270,5,0,5" HorizontalAlignment="Left"  Click="ChangeSupplierBtn"/>
-          
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,5,0,5" Grid.ColumnSpan ="2">
+                <Button x:Name="AddEmployeeBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="0,0,10,0" HorizontalAlignment="Left"  Click="AddEmployee"/>
+                <Button x:Name="ChangeEmployee" Content="Изменить"  Background="#778FCB" Width="100" Height="30" Margin="0,0,10,0" HorizontalAlignment="Left"  Click="ChangeSupplierBtn"/>
+                <Button x:Name="DeleteEmployeeBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="0,0,10,0" HorizontalAlignment="Left"  Click="DeleteEmployee"/>
+                <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="0,0,10,0"  HorizontalAlignment="Left"  Click="CloseEmployeesPage"/>
+            </StackPanel>
         </Grid>
 
         <DataGrid x:Name="employeersGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">

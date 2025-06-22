@@ -47,8 +47,19 @@ namespace ProductAccounting.Pages
         private async void DeleteSupplier(object sender, EventArgs e)
         {
             var selectedSuppliers = suppliresGrid.SelectedItems;
-            await controller.DeleteSupplier(selectedSuppliers);
-            suppliresGrid.ItemsSource = await controller.LoadData();
+            if(selectedSuppliers.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteSupplier(selectedSuppliers);
+                    suppliresGrid.ItemsSource = await controller.LoadData();
+                }
+            }
         }
         private async void AddSupplier(object sender, EventArgs e)
         {

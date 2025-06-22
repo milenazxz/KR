@@ -37,8 +37,8 @@ namespace ProductAccounting.Forms
                 CurrentUserData result = controller.Authorization(login, Password, Role);
                 if (result != null)
                 { 
-                   // MainWindow mainWindow = new MainWindow(result);
-                    //mainWindow.Show();
+                   MainWindow mainWindow = new MainWindow(result);
+                   mainWindow.Show();
                     this.Close();
                 }
                 else

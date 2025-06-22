@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -24,7 +25,7 @@ namespace ProductAccounting.Forms
     /// Логика взаимодействия для FormForSupplies.xaml
     /// </summary>
 
-    public class ItemsforSupply : INotifyPropertyChanged
+    public class ItemsforSupplyDTO : INotifyPropertyChanged
     {
         private int _id;
         private int _quantity;
@@ -126,8 +127,10 @@ namespace ProductAccounting.Forms
                     _idNavigation = value;
                     OnPropertyChanged();
                     UpdateRelotedPropertes();
-                } 
+                }
+
             }
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -142,15 +145,15 @@ namespace ProductAccounting.Forms
         {
             if (_idNavigation != null) 
             {
-                _id = _idNavigation.id;
-                _unit = _idNavigation.unit;
-                _price = _idNavigation.price;
+                Id = _idNavigation.id;
+                Unit = _idNavigation.unit;
+                Price = _idNavigation.price;
             }
         }
 
         public void RecalculateTotal() 
         {
-            Total = Quantity * Price + (Quantity * Price) * (Nds / 100.0);
+            Total = Math.Round(Quantity * Price + (Quantity * Price) * (Nds / 100.0),2);
         }
 
     }
@@ -158,15 +161,17 @@ namespace ProductAccounting.Forms
     {
         SuppliesController controller = new SuppliesController();
 
-        public ObservableCollection<ItemsforSupply> SuppliesItems { get; set; } = new ObservableCollection<ItemsforSupply>();
+        public ObservableCollection<ItemsforSupplyDTO> SuppliesItems { get; set; } = new ObservableCollection<ItemsforSupplyDTO>();
 
         public ObservableCollection<Items> AvailableItems { get; set; } = new ObservableCollection<Items> ();
         public FormForSupplies()
         {
             InitializeComponent();
+            DataContext = this;
             Loaded += async (s, e) =>
             {
                await LoadDataForComboBox();
+               await LoadAvailableItemsAsync();
             };
         }
 
@@ -184,10 +189,37 @@ namespace ProductAccounting.Forms
             SupplierComboBox.DisplayMemberPath = "Value";
             SupplierComboBox.SelectedValuePath = "Key";
         }
+        private async Task LoadAvailableItemsAsync()
+        {
+            var itemsFromDb = await controller.LoadItemsAsync(); // метод, возвращающий List<Items> из БД
+            foreach (var item in itemsFromDb)
+                AvailableItems.Add(item);
+        }
+        private void AddRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            SuppliesItems.Add(new ItemsforSupplyDTO());
+        }
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = supplyItemsGrid.SelectedItems.Cast<ItemsforSupplyDTO>().ToList();
 
-        private void Button_ClickAddSup(object sender, RoutedEventArgs e)
+            if (selectedItems.Count > 0)
+            {
+                foreach (var item in selectedItems)
+                {
+                    SuppliesItems.Remove(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите хотя бы одну строку для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        public void Button_ClickAddSup(object sender, RoutedEventArgs e)
         {
             GetAddSupply();
+            this.DialogResult = true;
+            this.Close();
         }
 
         public async void GetAddSupply()
@@ -198,11 +230,12 @@ namespace ProductAccounting.Forms
             if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId && SupplierComboBox.SelectedValue is int SelectedSupplierID)
             {
                 DateTime date = (DateTime)datePicker1.SelectedDate;
-                id_supply = await controller.AddSupply(SelectedHeadId, SelectedWarehouseId, SelectedSupplierID, date);
+                string DateForDoc = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
+                id_supply = await controller.AddSupply(SelectedHeadId, SelectedWarehouseId, SelectedSupplierID, DateForDoc);
 
                 if (id_supply >= 0)
                 {
-                    foreach (ItemsforSupply item in SuppliesItems)
+                    /*foreach (ItemsforSupplyDTO item in SuppliesItems)
                     {
                         if (item.Id >= 0 && item.Quantity > 0)
                         {
@@ -212,11 +245,11 @@ namespace ProductAccounting.Forms
                         else
                         {
                             MessageBox.Show("Не все поля товаров были заполнены");
-                        }
+                        }*
 
 
-                    }
-                    await controller.AddItemsForSupply(id_supply, items_id, item_quantity);
+                    }*/
+                    await controller.AddItemsForSupply(id_supply, SuppliesItems);
                 }
             }
             else

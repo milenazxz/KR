@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting.Forms"
         mc:Ignorable="d"
-        Title="FormForEmployees" Height="450" Width="800">
+        Title="FormForEmployees" Height="400" Width="800"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <!-- Подключение файла стилей формы -->
     <Window.Resources>
         <ResourceDictionary Source="/Resources/Styles.xaml"/>
     </Window.Resources>
 
-    <Grid Background="#E8F1FA" Height="450" Width="823" Margin="0,0,0,-16">
+    <Grid Background="#E8F1FA" Height="450" Width="800" Margin="0,0,0,-16">
 
-        <StackPanel Orientation="Vertical" Margin="63,114,428,116">
+        <StackPanel Orientation="Vertical" Margin="137,116,540,207">
             <Label Content="ФИО"/>
             <Label Content="Должность"/>
             <Label Content="Контакты"/>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical"  Margin="254,120,42,104" >
+        <StackPanel Orientation="Vertical"  Margin="254,120,89,209" >
             <Border>
                 <TextBox x:Name="NameEmployee" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
@@ -38,6 +38,6 @@
             </Border>
         </StackPanel>
 
-        <Button x:Name="OkButWarehouse" Content="Добавить" FontSize="16" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="285,303,285,0" Click="AddEmployee"/>
+        <Button x:Name="OkButWarehouse" Content="Подтвердить" FontSize="16" Width="130" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="285,303,285,0" Click="AddEmployee"/>
     </Grid>
 </Window>

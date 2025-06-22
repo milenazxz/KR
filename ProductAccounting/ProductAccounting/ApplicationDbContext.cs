@@ -25,6 +25,7 @@ namespace ProductAccounting
 
         public DbSet<ItemForSale> itemsforsales { get; set; }
         public DbSet<ItemsForSupply> itemsforsupply { get; set; }
+        public DbSet<ItemsForWriteOff> itemsForWriteOffs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -98,7 +99,7 @@ namespace ProductAccounting
             modelBuilder.Entity<Supplies>()
                 .HasOne(s => s.IdWarehNavigation)
                 .WithMany(w => w.Supplies)
-                .HasForeignKey(s=>s.id_supplier)
+                .HasForeignKey(s=>s.id_warehouse)
                 .OnDelete(DeleteBehavior.SetNull);
 
             //Настройка модели ItemsForSale

@@ -56,10 +56,21 @@ namespace ProductAccounting.Pages
         private async void Delete_Click(object sender, RoutedEventArgs e)
         {
             var user = UsersGrid.SelectedItems;
-            bool? result = await controller.DeleteUser(user);
-            if(result == true)
+            if(user.Count == 0)
             {
-                UsersGrid.ItemsSource = await controller.LoadDataUsers();
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result1 = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result1 == MessageBoxResult.OK)
+                {
+                    bool? result = await controller.DeleteUser(user);
+                    if (result == true)
+                    {
+                        UsersGrid.ItemsSource = await controller.LoadDataUsers();
+                    }
+                }  
             }
         }
 

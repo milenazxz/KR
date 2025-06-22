@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="850">
 
     <!-- Подключение файла стилей формы -->
     <Window.Resources>
@@ -13,18 +13,60 @@
     </Window.Resources>
 
     <Grid>
-        <TabControl>
+        <TabControl x:Name="MainTabControl">
             <TabItem Header="Справочники" FontWeight ="Bold">
                 <Grid>
 
-                    <Grid Name="MainContent" Background="#E8F1FA" >
-                        <Button x:Name="buttonDirectory" Width="300" Height="45" Content="Справочник складов" Click="Button_Click_Warehouses" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,63,0,0"/>
-                        <Button x:Name="buttonItems" Width="300" Height="45" Content="Справочник товаров"  Click="Button_Click_Items" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="91,153,0,0"/>
-                        <Button x:Name="button" Width="300" Height="45" Content="Справочник поставщиков" Click="Button_Click_Suppliers" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="454,153,0,0"/>
-                        <Button x:Name="buttonClients" Width="300" Height="45" Content="Справочник клиентов"  Click="Button_Click_Clients" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="454,60,0,0" RenderTransformOrigin="0.522,1.647"/>
-                        <Button x:Name="buttonEmployees" Width="300" Height="45" Content="Справочник персонала"  Click="Button_Click_Employees" VerticalAlignment="Top" Margin="454,241,0,0" RenderTransformOrigin="0.522,1.647"/>
-                    </Grid>
+                    <Grid Name="MainContent" Background="#E8F1FA">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
+                        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="buttonDirectory" 
+                Width="300" Height="45" 
+                Content="Справочник складов" 
+                Click="Button_Click_Warehouses" HorizontalAlignment="Center" Margin="0,-29,0,29"/>
+
+                            <Button x:Name="buttonItems" 
+                Width="300" Height="45" 
+                Content="Справочник товаров" 
+                Click="Button_Click_Items"
+                Grid.Row="1"/>
+
+                            <Button x:Name="buttonClients" 
+                Width="300" Height="45" 
+                Content="Справочник клиентов" 
+                Click="Button_Click_Clients"
+                Grid.Column="1" Grid.Row="0" Margin="42,-29,0,29"/>
+
+                            <Button x:Name="buttonEmployees" 
+                Width="300" Height="45" 
+                Content="Справочник персонала" 
+                Click="Button_Click_Employees"
+                Grid.Column="1" Grid.Row="1" Margin="42,0,0,0"/>
+
+                            <Button x:Name="buttonSuppliers" 
+                Width="300" Height="45" 
+                Content="Справочник поставщиков" 
+                Click="Button_Click_Suppliers"
+                Grid.Row="2" HorizontalAlignment="Center" Margin="0,22,0,-22"/>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -41,12 +83,11 @@
             <TabItem Header ="Пользователи" FontWeight ="Bold" x:Name="UserTab">
                 <Grid>
                     <Grid Name="Users"  Background="#E8F1FA">
-                    <Button x:Name="OpenUserBtn" Width="360" Height="45" Content="Посмотреть список пользователей" Margin="0,223,0,138" HorizontalAlignment="Center" Click="Show_Btn_Users"/>
-                    <Button x:Name="AddUserBtn" Width="360" Height="45" Content="Добавить пользователя" Margin="0,136,0,225" HorizontalAlignment="Center" Click="AddUserBtn_Click"/>
+                        <Button x:Name="OpenUserBtn" Width="360" Height="45" Content="Посмотреть список пользователей" Margin="0,174,0,187" HorizontalAlignment="Center" Click="Show_Btn_Users"/>
                     </Grid>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header ="Журнал изменений" FontWeight ="Bold" x:Name="ChangesTab">
                 <Grid>
                     <Grid Name="Changes"  Background="#E8F1FA">

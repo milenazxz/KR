@@ -127,6 +127,8 @@ namespace ProductAccounting.Forms
         {
             InitializeComponent();
             _forCreating = true;
+            _currentDTO = new UserUpdateDTO();
+            this.DataContext = _currentDTO;
         }
 
         public RegistartionForm(int ID)
@@ -134,6 +136,8 @@ namespace ProductAccounting.Forms
             InitializeComponent();
             _id_user = ID;
             _forCreating = false;
+            _currentDTO = new UserUpdateDTO();
+            this.DataContext = _currentDTO;
             Loaded += async (s, e) =>
             {
                 await LoadData(ID);
@@ -203,6 +207,7 @@ namespace ProductAccounting.Forms
                 }
 
             }
+            this.Close();
            
         }
     }

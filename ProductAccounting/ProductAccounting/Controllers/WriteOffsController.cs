@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAccounting.Forms;
 using ProductAccounting.Interfaces;
 using ProductAccounting.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -57,7 +59,15 @@ namespace ProductAccounting.Controllers
                 return result;
             }
         }
-        public async Task<int> AddWriteOff(int inpId_head, int inpId_warehouse, DateTime date)
+        public async Task<List<Items>> LoadItemsAsync()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return await context.items.ToListAsync();
+            }
+        }
+
+        public async Task<int> AddWriteOff(int inpId_head, int inpId_warehouse, string date)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -67,14 +77,14 @@ namespace ProductAccounting.Controllers
             }
         }
 
-        public async Task AddItemsForWriteOff(int inpWriteOff_id, List<int> items_id, List<int> items_quantity)
+        public async Task AddItemsForWriteOff(int inpWriteOff_id, ObservableCollection<ItemForWriteOffDTO> itemsforWriteOffsDTO)
         {
             List<ItemsForWriteOff> items = new List<ItemsForWriteOff>();
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                for (int i = 0; i < items_id.Count(); i++) 
+                foreach (var item in itemsforWriteOffsDTO)
                 {
-                    items.Add(new ItemsForWriteOff { id_writeoff = inpWriteOff_id, id_item = items_id[i], quantity = items_quantity[i] });
+                    items.Add(new ItemsForWriteOff { id_writeoff = inpWriteOff_id, id_item = item.Id, quantity = item.Quantity });
                 }
                 await context.AddRangeAsync(items);
                 await context.SaveChangesAsync();

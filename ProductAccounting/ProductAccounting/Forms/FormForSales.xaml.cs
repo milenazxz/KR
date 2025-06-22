@@ -135,9 +135,7 @@ namespace ProductAccounting.Forms
         public FormForSales()
         {
             InitializeComponent();
-
             DataContext = this;
-
             Loaded += async (s, e) =>
             {
                 await LoadComboBoxAsync();
@@ -170,6 +168,23 @@ namespace ProductAccounting.Forms
         private void AddRowButton_Click(object sender, RoutedEventArgs e)
         {
             SalesItems.Add(new ItemsforsaleDTO());
+        }
+
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = salesItemsGrid.SelectedItems.Cast<ItemsforsaleDTO>().ToList();
+
+            if (selectedItems.Count > 0)
+            {
+                    foreach (var item in selectedItems)
+                    {
+                        SalesItems.Remove(item);
+                    }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите хотя бы одну строку для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
         private void Btn_AddSale(object sender, RoutedEventArgs e)
         {

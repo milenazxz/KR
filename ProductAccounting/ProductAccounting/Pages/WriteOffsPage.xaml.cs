@@ -40,8 +40,19 @@ namespace ProductAccounting.Forms
         private async void DeleteWriteOffs(object sender, EventArgs e)
         {
             var selectedItems = writeOffsGrid.SelectedItems;
-            await controller.DeleteItems(selectedItems);
-            writeOffsGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdWarehNavigation);
+            if(selectedItems.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteItems(selectedItems);
+                    writeOffsGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdWarehNavigation);
+                }
+            }
         }
 
         private void CloseWriteOffsPage(object sender, EventArgs e)

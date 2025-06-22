@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProductAccounting.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="900"
       Title="SuppliesPage">
     <Page.Resources>
         <Style TargetType="DataGridColumnHeader">
@@ -38,9 +38,15 @@
             <!-- Вторая строка для DataGrid -->
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30" Margin="690,5,0,5"  HorizontalAlignment="Left" Click="CloseSuppliesPage"/>
-            <Button x:Name="DeleteSuppliesBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30" Margin="585,5,0,5" HorizontalAlignment="Left" Click="DeleteSupplies"/>
-            <Button x:Name="AddSaleSuppliesBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30" Margin="480,5,0,5" HorizontalAlignment="Left" Click="AddSaleSuppliesBtn_Click"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,5,-10,5" Grid.ColumnSpan ="2">
+                <Button x:Name="AddSaleSuppliesBtn" Content="Добавить"  Background="#778FCB" Width="100" Height="30"  Margin="0,0,10,0" HorizontalAlignment="Left" Click="AddSaleSuppliesBtn_Click"/>
+                <Button x:Name="DeleteSuppliesBtn" Content="Удалить" Background="#FF6F61" Width="100" Height="30"  Margin="0,0,10,0" HorizontalAlignment="Left" Click="DeleteSupplies"/>
+                <Button x:Name="Close" Content="Закрыть" Width="100" Background="#B0BEC5" Height="30"  Margin="0,0,10,0"  HorizontalAlignment="Left" Click="CloseSuppliesPage"/>
+            </StackPanel>
         </Grid>
 
         <DataGrid x:Name="suppliesGrid" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="1">

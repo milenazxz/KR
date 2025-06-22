@@ -26,28 +26,30 @@ namespace ProductAccounting
     public partial class MainWindow : Window
     {
         private CurrentUserData _currentUser;
-       /* public MainWindow(CurrentUserData currentUser)
+       public MainWindow(CurrentUserData currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
             if (_currentUser.GetRole() == "Работник склада") //Ограничение функционала в зависимости от роли
             {
-                UserTab.Visibility = Visibility.Hidden;
+                //UserTab.Visibility = Visibility.Hidden;
+                ChangesTab.Visibility = Visibility.Hidden;
             }
             Logger.wasChanged += Logger.PrintChangesToFile;
-        }*/
+        }
         public MainWindow()
         {
             InitializeComponent();
             Logger.wasChanged += Logger.PrintChangesToFile;
         }
-
+        
         private void Button_Click_Warehouses(object sender, RoutedEventArgs e)
         {
             //MainContent.Visibility = Visibility.Hidden;
             
             FrameInformation.Navigate(new WarehousesPage());
             PageLayer.Visibility = Visibility.Visible;
+
         }
 
         private void Button_Click_Items(object sender, RoutedEventArgs e)

@@ -5,25 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting.Forms"
         mc:Ignorable="d"
-        Title="FormForSupplies" Height="450" Width="800">
+        Title="FormForSupplies" Height="550" Width="920" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <!-- Список доступных значений для ComboBox -->
+
+        <x:Array x:Key="AvailableNDS" Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+            <sys:String>20</sys:String>
+            <sys:String>10</sys:String>
+            <sys:String>7</sys:String>
+            <sys:String>5</sys:String>
+            <sys:String>0</sys:String>
+        </x:Array>
+
+
+    </Window.Resources>
     <Grid Background="#E8F1FA">
         <Grid.RowDefinitions>
             <RowDefinition Height="130"/>
             <!-- Первая строка для кнопки -->
-            <RowDefinition Height="280"/>
+            <RowDefinition Height="300"/>
             <!-- Вторая строка для DataGrid -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button Content="+" FontSize="20" Margin="17,97,753,4"/>
-            <Button Content="-" FontSize="20" Margin="52,97,718,4"/>
-            <StackPanel Orientation="Vertical" Margin="35,21,594,13">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="+" FontSize="20" Width="50" Margin="20,97,0,4" Click="AddRowButton_Click"/>
+                <Button Content="-" FontSize="20" Width="50" Margin="20,97,0,4" Click="DeleteRowButton_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="35,21,698,13">
                 <Label Content="Ответственный" FontWeight="Bold"  FontSize="20" />
                 <Label Content="Склад" FontWeight="Bold"  FontSize="20" />
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="197,31,400,16">
+            <StackPanel Orientation="Vertical" Margin="197,31,515,16">
                 <Border>
                     <ComboBox x:Name="HeadwarhouseComboBox" Margin="0,0,0,20" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding IdEmpNavigation}"/>
                 </Border>
@@ -32,12 +47,12 @@
                 </Border>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="405,21,234,31">
+            <StackPanel Orientation="Vertical" Margin="410,21,356,31">
                 <Label Content="Поставщик" FontWeight="Bold"  FontSize="20" />
                 <Label Content="Дата" FontWeight="Bold"  FontSize="20" />
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="522,32,26,24">
+            <StackPanel Orientation="Vertical" Margin="559,32,107,24">
                 <Border Margin="0,0,0,14" Width="202">
                     <ComboBox x:Name="SupplierComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="-23,0,-25,0" SelectedValue="{Binding IdSupNavigation}"/>
                 </Border>
@@ -48,7 +63,7 @@
             </StackPanel>
         </Grid>
 
-        <DataGrid x:Name="salesItemsGrid" ItemsSource="{Binding SuppliesItems}" Background="#E8F1FA" AutoGenerateColumns="False" CanUserAddRows="True" HeadersVisibility="Column"  Grid.Row="1">
+        <DataGrid x:Name="supplyItemsGrid" ItemsSource="{Binding SuppliesItems}" Background="#E8F1FA" AutoGenerateColumns="False" CanUserAddRows="True" HeadersVisibility="Column"  Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Наименование" Width ="200">
                     <DataGridTemplateColumn.CellTemplate>
@@ -77,7 +92,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox  SelectedItem="{Binding Nds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox ItemsSource="{StaticResource AvailableNDS}" SelectedItem="{Binding Nds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -86,8 +101,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="2">
-            <Button Margin="659,0,10,0" Height="20" Content="Подтвердить" Click="Button_ClickAddSup"/>
+        <Grid Grid.Row="2" Margin="10,0,-10,0">
+            <Button Margin="711,10,69,44" Height="30" Width="120" Content="Подтвердить" Click="Button_ClickAddSup"/>
         </Grid>
     </Grid>
 

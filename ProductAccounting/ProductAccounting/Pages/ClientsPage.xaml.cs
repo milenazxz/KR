@@ -47,8 +47,19 @@ namespace ProductAccounting.Pages
         private async void DeleteClient(object sender, EventArgs e)
         {
             var selectedClients = clientsGrid.SelectedItems;
-            await controller.DeleteClient(selectedClients);
-            clientsGrid.ItemsSource = await controller.RefreshAsync();
+            if (selectedClients.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteClient(selectedClients);
+                    clientsGrid.ItemsSource = await controller.RefreshAsync();
+                }
+            }
         }
 
         private async void ChangeClientBtn(object sender, EventArgs e) 

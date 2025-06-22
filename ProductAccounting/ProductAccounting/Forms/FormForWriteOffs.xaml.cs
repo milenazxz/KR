@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -24,7 +25,7 @@ namespace ProductAccounting.Forms
     /// Логика взаимодействия для FormForWriteOffs.xaml
     /// </summary>
 
-    public class ItemForWriteOff:INotifyPropertyChanged
+    public class ItemForWriteOffDTO:INotifyPropertyChanged
     {
         private int _id;
         private int _quantity;
@@ -62,7 +63,7 @@ namespace ProductAccounting.Forms
             }
         }
 
-        public string Unite 
+        public string Unit 
         {
             get => _unit;
             set 
@@ -118,9 +119,9 @@ namespace ProductAccounting.Forms
         {
             if (_idItem != null) 
             {
-                _id = IdItem.id;
-                _unit = IdItem.unit;
-                _price = IdItem.price;
+                Id = IdItem.id;
+                Unit = IdItem.unit;
+                Price = IdItem.price;
             }
         }
 
@@ -140,15 +141,17 @@ namespace ProductAccounting.Forms
     public partial class FormForWriteOffs : Window
     {
         WriteOffsController controller = new WriteOffsController();
-        public ObservableCollection<ItemForWriteOff> WriteOffItems { get; set; } = new ObservableCollection<ItemForWriteOff>();
+        public ObservableCollection<ItemForWriteOffDTO> WriteOffItems { get; set; } = new ObservableCollection<ItemForWriteOffDTO>();
 
         public ObservableCollection<Items> AvailableItems { get; set; } = new ObservableCollection<Items>();
         public FormForWriteOffs()
         {
             InitializeComponent();
+            DataContext = this;
             Loaded += async (a, e) =>
             {
                 await LoadDataForComboBox();
+                await LoadAvailableItemsAsync();
             };
         }
 
@@ -162,20 +165,52 @@ namespace ProductAccounting.Forms
             WarhouseComboBox.DisplayMemberPath = "Value";
             WarhouseComboBox.SelectedValuePath = "Key";
         }
+        private async Task LoadAvailableItemsAsync()
+        {
+            var itemsFromDb = await controller.LoadItemsAsync(); // метод, возвращающий List<Items> из БД
+            foreach (var item in itemsFromDb)
+                AvailableItems.Add(item);
+        }
+        public void AddRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            WriteOffItems.Add(new ItemForWriteOffDTO());
+        }
 
-        public async void GetAddSupply()
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = WriteOffItemsGrid.SelectedItems.Cast<ItemForWriteOffDTO>().ToList();
+
+            if (selectedItems.Count > 0)
+            {
+                foreach (var item in selectedItems)
+                {
+                    WriteOffItems.Remove(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите хотя бы одну строку для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        public void Button_ClickAddWriteOff(object sender, RoutedEventArgs e)
+        {
+            GetAddWriteOff();
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        public async void GetAddWriteOff()
         {
             int id_writeOff;
-            List<int> items_id = new List<int>();
-            List<int> item_quantity = new List<int>();
             if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId)
             {
                 DateTime date = (DateTime)datePicker1.SelectedDate;
-                id_writeOff = await controller.AddWriteOff(SelectedHeadId, SelectedWarehouseId, date);
+                string DateForDoc = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
+                id_writeOff = await controller.AddWriteOff(SelectedHeadId, SelectedWarehouseId, DateForDoc);
 
                 if (id_writeOff >= 0)
                 {
-                    foreach (ItemForWriteOff item in WriteOffItems)
+                   /* foreach (ItemForWriteOffDTO item in WriteOffItems)
                     {
                         if (item.Id >= 0 && item.Quantity > 0)
                         {
@@ -188,8 +223,8 @@ namespace ProductAccounting.Forms
                         }
 
 
-                    }
-                    await controller.AddItemsForWriteOff(id_writeOff, items_id, item_quantity);
+                    }*/
+                    await controller.AddItemsForWriteOff(id_writeOff, WriteOffItems);
                 }
             }
             else

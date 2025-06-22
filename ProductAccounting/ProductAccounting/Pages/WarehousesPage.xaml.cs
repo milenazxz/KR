@@ -59,9 +59,20 @@ namespace ProductAccounting.Pages
         private async void DeleteWarehouse(object sender, EventArgs e)
         {
             var selectedWarehouse = warehousesGrid.SelectedItems;
-            await controller.DeleteWarehouses(selectedWarehouse);
-            warehousesGrid.ItemsSource = await controller.RefreshAsync();
-            Logger.Log($"Пользователь удалил склад в справочнике warehouses {DateTime.Now} \n");
+            if(selectedWarehouse.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите запись");
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить запись", "Удаление", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    await controller.DeleteWarehouses(selectedWarehouse);
+                    warehousesGrid.ItemsSource = await controller.RefreshAsync();
+                    Logger.Log($"Пользователь удалил склад в справочнике warehouses {DateTime.Now} \n");
+                }
+            }
         }
 
         private async void Changewarehouses_Click(object sender, RoutedEventArgs e)
