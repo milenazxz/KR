@@ -187,7 +187,12 @@ namespace ProductAccounting.Forms
                 }
                 else
                 {
-                    await controller.Registration(password1, _currentDTO);
+                    bool st = await controller.Registration(password1, _currentDTO);
+                    if(st == true)
+                    {
+                        this.Close();
+                    }
+                    
                 }
             }
             else
@@ -201,13 +206,16 @@ namespace ProductAccounting.Forms
                 else
                 {
                     bool success = await controller.ChangeDataUser(_id_user, _currentDTO, changes);
-                    if (success) DialogResult = true;
+                    if (success) 
+                    {
+                        DialogResult = true;
+                        this.Close();
+                    }
                     else MessageBox.Show("Ошибка при обновлении данных пользователя");
-                    Logger.Log($"Пользователь внес изменения в справочник сотрудники {DateTime.Now} \n");
                 }
 
             }
-            this.Close();
+          
            
         }
     }

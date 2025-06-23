@@ -215,46 +215,50 @@ namespace ProductAccounting.Forms
                 MessageBox.Show("Пожалуйста, выберите хотя бы одну строку для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        public void Button_ClickAddSup(object sender, RoutedEventArgs e)
+        public async void Button_ClickAddSup(object sender, RoutedEventArgs e)
         {
-            GetAddSupply();
-            this.DialogResult = true;
-            this.Close();
+            bool success = await GetAddSupply();
+
+            if (success)
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
         }
 
-        public async void GetAddSupply()
+        public async Task<bool> GetAddSupply()
         {
             int id_supply;
-            List<int> items_id = new List<int>();
-            List<int> item_quantity = new List<int>();
+            DateTime date = new DateTime(2023, 4, 12);
+            try
+            {
+                date = (DateTime)datePicker1.SelectedDate;
+            }
+            catch
+            {
+                MessageBox.Show("Пожалуйста, заполните поле Дата");
+                return false;
+            }
             if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId && SupplierComboBox.SelectedValue is int SelectedSupplierID)
             {
-                DateTime date = (DateTime)datePicker1.SelectedDate;
                 string DateForDoc = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
                 id_supply = await controller.AddSupply(SelectedHeadId, SelectedWarehouseId, SelectedSupplierID, DateForDoc);
 
                 if (id_supply >= 0)
                 {
-                    /*foreach (ItemsforSupplyDTO item in SuppliesItems)
-                    {
-                        if (item.Id >= 0 && item.Quantity > 0)
-                        {
-                            items_id.Add(item.Id);
-                            item_quantity.Add(item.Quantity);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Не все поля товаров были заполнены");
-                        }*
-
-
-                    }*/
                     await controller.AddItemsForSupply(id_supply, SuppliesItems);
+                    return true;
                 }
+                return true;
             }
             else
             {
                 MessageBox.Show("Не все поля регистрации были заполнены");
+                return false;
             }
 
         }

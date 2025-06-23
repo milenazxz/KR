@@ -52,6 +52,7 @@ namespace ProductAccounting.Pages
             if (result == true) 
             {
                 InitializePage();
+                Logger.Log($"Пользователь добавил запись в журнал продажи {DateTime.Now} \n");
             }
         }
 
@@ -69,6 +70,7 @@ namespace ProductAccounting.Pages
                 {
                     await controller.DeleteItems(selectedItems);
                     salesGrid.ItemsSource = await controller.LoadData(s => s.IdWarehNavigation, s => s.IdClientNavigation, s => s.IdEmpNavigation);
+                    Logger.Log($"Пользователь удалил запись из журнала продажи {DateTime.Now} \n");
                 }
             }
         }
@@ -81,7 +83,11 @@ namespace ProductAccounting.Pages
             }
             else
             {
-                await controller.SaleXml(selectedSale.id);
+                bool staitnatnt = await controller.SaleXml(selectedSale.id);
+                if(staitnatnt == true)
+                {
+                    MessageBox.Show("Сформированный документ находится в папке D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\bin\\Debug");
+                }
             }
             
         }

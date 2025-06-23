@@ -186,49 +186,53 @@ namespace ProductAccounting.Forms
                 MessageBox.Show("Пожалуйста, выберите хотя бы одну строку для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        private void Btn_AddSale(object sender, RoutedEventArgs e)
+        public async void Btn_AddSale(object sender, RoutedEventArgs e)
         {
-            GetAddSale();
-            this.DialogResult = true;
-            this.Close();
+            bool success = await GetAddSale();
+
+            if (success)
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
         }
 
-        public async void GetAddSale() 
+        public async Task<bool> GetAddSale() 
         {
             int id_sale;
-            List<int> items_id = new List<int>();
-            List<int> item_quantity = new List<int>();
+            DateTime date = new DateTime(2023, 4, 12);
+            try
+            {
+                date = (DateTime)datePicker1.SelectedDate;
+            }
+            catch
+            {
+                MessageBox.Show("Пожалуйста, заполните поле Дата");
+                return false;
+            }
             if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId 
                 && ClientComboBox.SelectedValue is int SelectedClientID)
             {
                
-                DateTime date = (DateTime)datePicker1.SelectedDate;
                 string DateForDoc = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
                 id_sale = await controller.AddSale(SelectedHeadId, SelectedWarehouseId, SelectedClientID, DateForDoc);
                 
                 if (id_sale >= 0) 
                 {
-                  /* foreach (Itemsforsale item in SalesItems) 
-                    {
-                        if (item.Id >= 0 && item.Quantity > 0) 
-                        {
-                            items_id.Add(item.Id);
-                            item_quantity.Add(item.Quantity);
-                        }
-                        else 
-                        {
-                            MessageBox.Show("Не все поля товаров были заполнены");
-                        }
-                       
-
-                    }*/
                    await controller.AddItemsForSale(id_sale, SalesItems);
+                    return true;
 
                 }
+                return true;
             }
             else 
             {
                 MessageBox.Show("Не все поля регистрации были заполнены");
+                return false;
             }
 
         }

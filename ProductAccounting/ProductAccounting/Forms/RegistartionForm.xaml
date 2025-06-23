@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductAccounting.Forms"
         mc:Ignorable="d"
-        Title="RegistartionForm" Height="450" Width="800">
+        Title="RegistartionForm" Height="530" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
         <x:Array x:Key="AvailableRoles" Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
             <sys:String>Директор</sys:String>
@@ -14,7 +14,7 @@
         </x:Array>
     </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="159,104,443,108">
+        <StackPanel Orientation="Vertical" Margin="159,104,443,164">
             <Label x:Name="Name" Content="ФИО" FontWeight="Bold" FontSize="20"/>
             <Label x:Name="Login" Content="Логин" FontWeight="Bold" FontSize="20"/>
             <Label x:Name="Role" Content="Роль" FontWeight="Bold" FontSize="20"/>
@@ -23,7 +23,7 @@
             <Label x:Name="Password2" Content="Повторите пароль" FontWeight="Bold" FontSize="20"/>
         </StackPanel>
 
-        <StackPanel Margin="400,110,216,114">
+        <StackPanel Margin="400,110,163,164">
             <TextBox x:Name="NameField" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,7" Height="23"/>
             <TextBox x:Name="LoginField" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,11" Height="23"/>
             <ComboBox x:Name="RoleField" Text="{Binding Post, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{StaticResource AvailableRoles}" Height="23" Margin="0,2,0,10"/>
@@ -31,8 +31,8 @@
             <PasswordBox x:Name="PasswordField1" Margin="0,0,0,15" Height="23"/>
             <PasswordBox x:Name="PasswordField2" Height="23"/>
         </StackPanel>
-        <StackPanel Margin="270,352,270,51">
-            <Button x:Name="RegistrationBtn" Content="Зарегистрировать" FontWeight="Bold" Height="30" Width="200" Click="RegistrationBtn_Click"/>
-        </StackPanel>
+       
+            <Button x:Name="RegistrationBtn" Content="Подтвердить" FontWeight="Bold" Height="30" Width="200" Click="RegistrationBtn_Click" Margin="300,375,300,79"/>
+        
     </Grid>
 </Window>

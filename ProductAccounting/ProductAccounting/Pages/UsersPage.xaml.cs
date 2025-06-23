@@ -50,7 +50,7 @@ namespace ProductAccounting.Pages
             bool? result = winAddUser.ShowDialog();
             if(result == true) 
             {
-                await controller.LoadDataUsers();
+                UsersGrid.ItemsSource = await controller.LoadDataUsers();
             }
         }
         private async void Delete_Click(object sender, RoutedEventArgs e)

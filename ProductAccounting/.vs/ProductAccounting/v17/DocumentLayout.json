@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\KR\\KR\\ProductAccounting\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforwriteoffs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforwriteoffs.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforsales.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforsales.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforsales.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforsales.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforsupplies.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforsupplies.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|d:\\kr\\kr\\productaccounting\\productaccounting\\forms\\formforwriteoffs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|solutionrelative:productaccounting\\forms\\formforwriteoffs.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD202935-F5B2-4CB9-A4CA-3C60A0C98DDE}|ProductAccounting\\ProductAccounting.csproj|D:\\KR\\KR\\ProductAccounting\\productaccounting\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -35,30 +39,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormForWriteOffs.xaml",
-              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWriteOffs.xaml",
-              "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForWriteOffs.xaml",
-              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWriteOffs.xaml",
-              "RelativeToolTip": "ProductAccounting\\Forms\\FormForWriteOffs.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-22T18:23:51.526Z",
+              "Title": "FormForSales.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "RelativeToolTip": "ProductAccounting\\Forms\\FormForSales.xaml.cs",
+              "ViewState": "AQIAANkAAAAAAAAAAAAUwPgAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T12:55:00.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormForSales.xaml",
-              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSales.xaml",
-              "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForSales.xaml",
-              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSales.xaml",
-              "RelativeToolTip": "ProductAccounting\\Forms\\FormForSales.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-22T18:20:29.272Z",
+              "Title": "FormForSupplies.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSupplies.xaml.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForSupplies.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForSupplies.xaml.cs",
+              "RelativeToolTip": "ProductAccounting\\Forms\\FormForSupplies.xaml.cs",
+              "ViewState": "AQIAANYAAAAAAAAAAAAYwPQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T12:51:53.167Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "FormForWriteOffs.xaml.cs",
+              "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWriteOffs.xaml.cs",
+              "RelativeDocumentMoniker": "ProductAccounting\\Forms\\FormForWriteOffs.xaml.cs",
+              "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\Forms\\FormForWriteOffs.xaml.cs",
+              "RelativeToolTip": "ProductAccounting\\Forms\\FormForWriteOffs.xaml.cs",
+              "ViewState": "AQIAAMAAAAAAAAAAAAAWwN0AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T12:40:21.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "App.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\App.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\App.xaml",
@@ -70,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "ProductAccounting\\MainWindow.xaml.cs",
@@ -82,15 +101,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ProductAccounting\\MainWindow.xaml",
               "ToolTip": "D:\\KR\\KR\\ProductAccounting\\ProductAccounting\\MainWindow.xaml",
               "RelativeToolTip": "ProductAccounting\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-12T18:36:30.328Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-12T18:36:30.328Z"
             }
           ]
         }

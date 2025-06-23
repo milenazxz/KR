@@ -51,6 +51,7 @@ namespace ProductAccounting.Forms
                 {
                     await controller.DeleteItems(selectedItems);
                     writeOffsGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdWarehNavigation);
+                    Logger.Log($"Пользователь удалил запись из журнала списания {DateTime.Now} \n");
                 }
             }
         }
@@ -68,6 +69,7 @@ namespace ProductAccounting.Forms
             if (result == true) 
             {
                 InitializePage();
+                Logger.Log($"Пользователь добавил запись в журнал списания {DateTime.Now} \n");
             }
         }
     }

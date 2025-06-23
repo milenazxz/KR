@@ -54,7 +54,7 @@
                 <DataGridTextColumn Header="Сотрудник" Binding="{Binding IdEmpNavigation.name}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Поставщик" Binding="{Binding IdSupNavigation.name}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Склад" Binding="{Binding IdWarehNavigation.name}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding date}" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

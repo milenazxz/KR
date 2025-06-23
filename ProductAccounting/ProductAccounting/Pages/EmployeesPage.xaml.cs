@@ -58,6 +58,7 @@ namespace ProductAccounting.Pages
                 {
                     await controller.DeleteEmployee(selectedSuppliers);
                     employeersGrid.ItemsSource = await controller.LoadData();
+                    Logger.Log($"Пользователь удалил запись из справочника сотрудники {DateTime.Now} \n");
                 }
             }
         }
@@ -68,6 +69,7 @@ namespace ProductAccounting.Pages
             if (resultDialog == true)
             {
                 employeersGrid.ItemsSource = await controller.LoadData();
+                Logger.Log($"Пользователь добавил запись в справочник сотрудники {DateTime.Now} \n");
             }
         }
 
@@ -82,6 +84,7 @@ namespace ProductAccounting.Pages
                 if (dialogResualt == true)
                 {
                     employeersGrid.ItemsSource = await controller.LoadData();
+                    Logger.Log($"Пользователь внес изменения в справочник сотрудники {DateTime.Now} \n");
                 }
             }
             else

@@ -51,6 +51,7 @@ namespace ProductAccounting.Pages
                 {
                     await controller.DeleteItems(selectedItems);
                     suppliesGrid.ItemsSource = await controller.LoadData(sup => sup.IdEmpNavigation, sup => sup.IdSupNavigation, sup => sup.IdWarehNavigation);
+                    Logger.Log($"Пользователь удалил запись из журнала поставки {DateTime.Now} \n");
                 }
             }
         }
@@ -68,6 +69,7 @@ namespace ProductAccounting.Pages
             if (result == true) 
             {
                 InitializePage();
+                Logger.Log($"Пользователь добавил запись в журнал поставки {DateTime.Now} \n");
             }
         }
     }

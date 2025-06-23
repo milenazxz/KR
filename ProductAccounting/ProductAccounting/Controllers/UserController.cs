@@ -33,7 +33,7 @@ namespace ProductAccounting.Controllers
         {
 
         }
-        public async Task Registration(string password, UserUpdateDTO currentDTO) 
+        public async Task<bool> Registration(string password, UserUpdateDTO currentDTO) 
         {
             employees employee = null;
             using (var connection = _context.Database.GetDbConnection())
@@ -53,13 +53,16 @@ namespace ProductAccounting.Controllers
                         
                             employees newEmployee = new employees { name = currentDTO.Name, post = currentDTO.Post, contacts = currentDTO.Post, login = currentDTO.Login, emp_password = hashPassword };
                             await dbFunctions.AddData<employees>(newEmployee);
+                        return true;
                     }
 
                 }
                 else
                 {
                     MessageBox.Show("Пользователь с таким логином уже существует");
+                    return false;
                 }
+                return false;
             }
                        
         }

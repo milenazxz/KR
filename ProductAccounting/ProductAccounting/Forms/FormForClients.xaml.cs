@@ -268,7 +268,6 @@ namespace ProductAccounting.Forms
                         bool success = await controller.ChangeClient(IdClient, _currentDTO, changes);
                         if (success) DialogResult = true;
                         else MessageBox.Show("Ошибка при обновлении склада");
-                        Logger.Log($"Пользователь внес изменения в справочник клиенты {DateTime.Now} \n");
                     }
                 }
                 

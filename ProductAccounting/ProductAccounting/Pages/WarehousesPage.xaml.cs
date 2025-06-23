@@ -54,6 +54,7 @@ namespace ProductAccounting.Pages
             if (dialogResult == true)
             {
                 warehousesGrid.ItemsSource = await controller.RefreshAsync();
+                Logger.Log($"Пользователь добавил запись в справочник склады {DateTime.Now} \n");
             }
         }
         private async void DeleteWarehouse(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace ProductAccounting.Pages
                 {
                     await controller.DeleteWarehouses(selectedWarehouse);
                     warehousesGrid.ItemsSource = await controller.RefreshAsync();
-                    Logger.Log($"Пользователь удалил склад в справочнике warehouses {DateTime.Now} \n");
+                    Logger.Log($"Пользователь запись в справочнике склады{DateTime.Now} \n");
                 }
             }
         }
@@ -87,6 +88,7 @@ namespace ProductAccounting.Pages
                 if (dialogResult == true)
                 {
                     warehousesGrid.ItemsSource = await controller.RefreshAsync();
+                    Logger.Log($"Пользователь внес изменения в справочник склады {DateTime.Now} \n");
                 }
             }
             else

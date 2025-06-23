@@ -61,6 +61,7 @@ namespace ProductAccounting.Pages
                 {
                     await controller.DeleteItem(selectedItems);
                     ItemsGrid.ItemsSource = await controller.RefreshAsync();
+                    Logger.Log($"Пользователь удалил запись из справочника товары {DateTime.Now} \n");
                 }
             }
         }
@@ -72,6 +73,7 @@ namespace ProductAccounting.Pages
             if (dialogResult == true) 
             {
                 ItemsGrid.ItemsSource = await controller.RefreshAsync();
+                Logger.Log($"Пользователь добавил запись в справочник товары {DateTime.Now} \n");
             }
         }
 
@@ -86,6 +88,7 @@ namespace ProductAccounting.Pages
                 if (dialogResualt == true)
                 {
                     ItemsGrid.ItemsSource = await controller.RefreshAsync();
+                    Logger.Log($"Пользователь внес изменения в справочник товары {DateTime.Now} \n");
                 }
             }
             else 

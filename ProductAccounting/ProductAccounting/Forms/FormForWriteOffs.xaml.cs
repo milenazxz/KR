@@ -192,44 +192,50 @@ namespace ProductAccounting.Forms
                 MessageBox.Show("Пожалуйста, выберите хотя бы одну строку для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        public void Button_ClickAddWriteOff(object sender, RoutedEventArgs e)
+        public async void Button_ClickAddWriteOff(object sender, RoutedEventArgs e)
         {
-            GetAddWriteOff();
-            this.DialogResult = true;
-            this.Close();
+            bool success = await GetAddWriteOff();
+
+            if (success)
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
         }
 
-        public async void GetAddWriteOff()
+        public async Task<bool> GetAddWriteOff()
         {
+            DateTime date = new DateTime(2023, 4, 12);
             int id_writeOff;
+            try
+            {
+                date = (DateTime)datePicker1.SelectedDate;
+            }
+            catch
+            {
+                MessageBox.Show("Пожалуйста, заполните поле Дата");
+                return false;
+            }
             if (HeadwarhouseComboBox.SelectedValue is int SelectedHeadId && WarhouseComboBox.SelectedValue is int SelectedWarehouseId)
             {
-                DateTime date = (DateTime)datePicker1.SelectedDate;
                 string DateForDoc = date.ToString("dd MM yyyy HH:mm:ss", new CultureInfo("ru-RU"));
                 id_writeOff = await controller.AddWriteOff(SelectedHeadId, SelectedWarehouseId, DateForDoc);
 
                 if (id_writeOff >= 0)
                 {
-                   /* foreach (ItemForWriteOffDTO item in WriteOffItems)
-                    {
-                        if (item.Id >= 0 && item.Quantity > 0)
-                        {
-                            items_id.Add(item.Id);
-                            item_quantity.Add(item.Quantity);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Не все поля товаров были заполнены");
-                        }
-
-
-                    }*/
                     await controller.AddItemsForWriteOff(id_writeOff, WriteOffItems);
+                    return true;
                 }
+                return true;
             }
             else
             {
                 MessageBox.Show("Не все поля регистрации были заполнены");
+                return false;
             }
 
         }
